@@ -35,3 +35,10 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Prochaine étape :**
 
 -->
+
+## 2026-10-12 — Lab 1 : versionner un projet ML end-to-end
+
+- Données : contrat `dataset.yaml`, téléchargement et pipeline versionnés avec DVC ; sorties poussées vers le remote S3.
+- Entraînement : préparation et évaluation reproductibles ; recherche de paramètres avec MLflow et modèle enregistré dans le Model Registry.
+- Feature store : vue Feast `request_features` appliquée, extraction hors ligne comparée à `train.csv` et lecture en ligne vérifiée.
+- Validation : `make check-m1` — 18/18 vérifications OK ; `make lint` passe ; `make test` passe avec 9 tests.
