@@ -10,9 +10,7 @@ from src.dataset_config import load_config
 from src.train import EXPERIMENT
 
 MODEL_NAME = "scoring-model"
-HIGHER_IS_BETTER = {
-    "roc_auc", "average_precision", "f1", "precision", "recall", "accuracy"
-}
+HIGHER_IS_BETTER = {"roc_auc", "average_precision", "f1", "precision", "recall", "accuracy"}
 
 
 def parse_args() -> argparse.Namespace:

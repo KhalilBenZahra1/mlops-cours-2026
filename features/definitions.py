@@ -13,9 +13,9 @@ sys.path.insert(0, str(ROOT))
 from src.dataset_config import load_config  # noqa: E402
 
 cfg = load_config(ROOT / "dataset.yaml")
-id_column = yaml.safe_load((ROOT / "params.yaml").read_text(encoding="utf-8"))[
-    "prepare"
-]["id_column"]
+id_column = yaml.safe_load((ROOT / "params.yaml").read_text(encoding="utf-8"))["prepare"][
+    "id_column"
+]
 
 project = Project(
     name="scoring",

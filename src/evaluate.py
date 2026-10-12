@@ -21,9 +21,7 @@ def main() -> None:
 
     proba = model.predict_proba(X_test)[:, 1]
     metrics = compute_metrics(cfg, y_test, proba, threshold)
-    tn, fp, fn, tp = confusion_matrix(
-        y_test, (proba >= threshold).astype(int)
-    ).ravel()
+    tn, fp, fn, tp = confusion_matrix(y_test, (proba >= threshold).astype(int)).ravel()
 
     report = {
         **{key: round(float(value), 4) for key, value in metrics.items()},

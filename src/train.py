@@ -47,8 +47,7 @@ MODELS = {
 
 SKOPS_TRUSTED_TYPES = ["numpy.dtype", "sklearn.tree._tree.Tree"]
 PIP_REQUIREMENTS = [
-    f"{package}=={version(package)}"
-    for package in ("scikit-learn", "skops", "pandas", "numpy")
+    f"{package}=={version(package)}" for package in ("scikit-learn", "skops", "pandas", "numpy")
 ]
 
 
@@ -59,14 +58,10 @@ def none_or(cast):
 
 def parse_args() -> argparse.Namespace:
     defaults = yaml.safe_load(Path("params.yaml").read_text(encoding="utf-8"))["train"]
-    parser = argparse.ArgumentParser(
-        description="Entraîne un modèle et le trace dans MLflow"
-    )
+    parser = argparse.ArgumentParser(description="Entraîne un modèle et le trace dans MLflow")
     parser.add_argument("--model", choices=list(MODELS), default=defaults["model"])
     parser.add_argument("--C", type=float, default=defaults["C"])
-    parser.add_argument(
-        "--class_weight", type=none_or(str), default=defaults["class_weight"]
-    )
+    parser.add_argument("--class_weight", type=none_or(str), default=defaults["class_weight"])
     parser.add_argument("--n_estimators", type=int, default=defaults["n_estimators"])
     parser.add_argument("--max_depth", type=none_or(int), default=defaults["max_depth"])
     parser.add_argument("--learning_rate", type=float, default=defaults["learning_rate"])
@@ -74,9 +69,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def build_model(
-    cfg: DatasetConfig, model_type: str, hyperparams: dict, seed: int
-) -> Pipeline:
+def build_model(cfg: DatasetConfig, model_type: str, hyperparams: dict, seed: int) -> Pipeline:
     """Construit le prétraitement et le modèle dans un pipeline unique."""
     model_class, _ = MODELS[model_type]
     extra = {"random_state": seed} if model_type != "dummy" else {"strategy": "prior"}
@@ -92,11 +85,7 @@ def build_model(
 
 def decision_threshold(cfg: DatasetConfig, class_weight, y_train: pd.Series) -> float:
     """Calcule le seuil qui minimise le coût métier."""
-    ratio = (
-        (y_train == 0).sum() / (y_train == 1).sum()
-        if class_weight == "balanced"
-        else 1.0
-    )
+    ratio = (y_train == 0).sum() / (y_train == 1).sum() if class_weight == "balanced" else 1.0
     return cfg.cost_threshold(float(ratio))
 
 
@@ -127,9 +116,7 @@ def main() -> None:
 
     hyperparams = {name: getattr(args, name) for name in MODELS[args.model][1]}
     threshold = decision_threshold(cfg, hyperparams.get("class_weight"), y_train)
-    run_name = "-".join(
-        [args.model, *(f"{key}={value}" for key, value in hyperparams.items())]
-    )
+    run_name = "-".join([args.model, *(f"{key}={value}" for key, value in hyperparams.items())])
     launched_by = "dvc" if os.getenv("DVC_STAGE") else os.getenv("LAUNCHED_BY", "manual")
 
     mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000"))
@@ -144,17 +131,13 @@ def main() -> None:
                 "launched_by": launched_by,
             }
         )
-        mlflow.log_params(
-            {"model": args.model, "random_state": args.random_state, **hyperparams}
-        )
+        mlflow.log_params({"model": args.model, "random_state": args.random_state, **hyperparams})
         mlflow.log_param("decision_threshold", round(threshold, 4))
 
         model = build_model(cfg, args.model, hyperparams, args.random_state)
         model.fit(X_train, y_train)
 
-        metrics = compute_metrics(
-            cfg, y_test, model.predict_proba(X_test)[:, 1], threshold
-        )
+        metrics = compute_metrics(cfg, y_test, model.predict_proba(X_test)[:, 1], threshold)
         mlflow.log_metrics(metrics)
 
         signature = infer_signature(X_test, model.predict(X_test))
@@ -182,9 +165,7 @@ def main() -> None:
         )
 
         summary = ", ".join(
-            f"{key}={value:.3f}"
-            for key, value in metrics.items()
-            if key != "business_cost"
+            f"{key}={value:.3f}" for key, value in metrics.items() if key != "business_cost"
         )
         print(
             f"{run_name}: seuil={threshold:.3f}, {summary}, "
