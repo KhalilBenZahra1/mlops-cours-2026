@@ -35,3 +35,10 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Prochaine étape :**
 
 -->
+
+## 2026-10-12 — Lab 0 : setup de l'environnement
+
+- Environnement : Windows avec WSL2 Ubuntu 24.04 et Docker Desktop ; Python 3.12 géré avec uv.
+- Stack locale : cluster kind à trois nœuds, stockage S3 SeaweedFS et serveur MLflow.
+- Validation : `make check-m0` a réussi avec 19/19 vérifications ; `make lint` passe ; `make test` passe avec 9 tests.
+- Ajustements pour Docker Desktop et Kubernetes : le client AWS du lab utilise `host.docker.internal` pour joindre le port-forward S3 ; `enableServiceLinks: false` évite le conflit entre la variable Kubernetes `S3_PORT` et la configuration SeaweedFS.
