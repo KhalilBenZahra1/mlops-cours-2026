@@ -49,7 +49,7 @@ echo "==> 5/5 Démarrage (premier lancement : 3 à 5 min)"
 docker compose up airflow-init
 docker compose up -d
 for _ in $(seq 1 60); do
-  if curl -sf http://localhost:8081/api/v2/monitor/health >/dev/null; then
+  if curl -sf http://localhost:${AIRFLOW_UI_PORT:-8083}/api/v2/monitor/health >/dev/null; then
     break
   fi
   sleep 5
@@ -57,6 +57,6 @@ done
 docker compose ps
 cat <<EOF
 
-Airflow ${AIRFLOW_VERSION} prêt : http://localhost:8081  (airflow / airflow)
+Airflow ${AIRFLOW_VERSION} prêt : http://localhost:${AIRFLOW_UI_PORT:-8083}  (airflow / airflow)
 DAGs lus dans le dossier dags/ à la racine du repo.
 EOF
