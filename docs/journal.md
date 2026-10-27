@@ -42,3 +42,11 @@ Mode d'emploi (à garder en tête du fichier) :
 - Entraînement : préparation et évaluation reproductibles ; recherche de paramètres avec MLflow et modèle enregistré dans le Model Registry.
 - Feature store : vue Feast `request_features` appliquée, extraction hors ligne comparée à `train.csv` et lecture en ligne vérifiée.
 - Validation : `make check-m1` — 18/18 vérifications OK ; `make lint` passe ; `make test` passe avec 9 tests.
+
+## S2 — 2026-10-27 — Lab 2 : Kubeflow Pipelines et Airflow
+
+- **Pilote / copilote :** @KhalilBenZahra1 / Codex ; installation KFP débloquée manuellement par le pilote.
+- **Fait :** image 1.0.1, six composants réutilisant src, deux runs KFP réussis avec cache vérifié ; deux runs Airflow réussis avec six tâches chacun ; probes de gate et de parallélisme exécutées.
+- **Validé :** make check-m2 19/19, check-m0 19/19, check-m1 18/18 ; lint réussi et 15 tests réussis ; historique MLflow conservé.
+- **Appris :** SDK KFP incomplet avec --no-deps ; ports 8082/8083 ; promotions concurrentes visibles dans les alias. Voir reports/rapport-m2.md et docs/adr/0001-reutiliser-image-pipeline.md (proposé).
+- **Prochaine étape :** capture terminal authentique, commit/push des compléments par le pilote, puis revue croisée de la PR Draft existante sans fusion automatique.

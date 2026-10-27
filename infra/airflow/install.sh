@@ -24,10 +24,25 @@ fi
 mkdir -p ./logs ./plugins ./config ../../dags
 
 echo "==> 2/5 Fichier .env (UID, image épinglée)"
-cat >.env <<EOF
-AIRFLOW_UID=$(id -u)
-AIRFLOW_IMAGE_NAME=apache/airflow:${AIRFLOW_VERSION}-python${PYTHON_VERSION}
-EOF
+# Preserve existing local configuration and secrets on subsequent invocations.
+AIRFLOW_IMAGE="apache/airflow:${AIRFLOW_VERSION}-python${PYTHON_VERSION}" python3 - <<'PY'
+import base64
+import os
+import secrets
+from pathlib import Path
+
+p = Path(".env")
+lines = p.read_text().splitlines() if p.exists() else []
+keys = {line.split("=", 1)[0] for line in lines if "=" in line}
+defaults = {
+    "AIRFLOW_UID": str(os.getuid()),
+    "AIRFLOW_IMAGE_NAME": os.environ["AIRFLOW_IMAGE"],
+    "FERNET_KEY": base64.urlsafe_b64encode(secrets.token_bytes(32)).decode(),
+}
+lines.extend(f"{key}={value}" for key, value in defaults.items() if key not in keys)
+p.write_text("\n".join(lines) + "\n")
+p.chmod(0o600)
+PY
 
 echo "==> 3/5 kubeconfig « interne » (API server joignable depuis le réseau Docker kind)"
 # shellcheck disable=SC2094 # faux positif : « kubeconfig » est une sous-commande de kind
@@ -49,7 +64,7 @@ echo "==> 5/5 Démarrage (premier lancement : 3 à 5 min)"
 docker compose up airflow-init
 docker compose up -d
 for _ in $(seq 1 60); do
-  if curl -sf http://localhost:8081/api/v2/monitor/health >/dev/null; then
+  if curl -sf http://localhost:${AIRFLOW_UI_PORT:-8083}/api/v2/monitor/health >/dev/null; then
     break
   fi
   sleep 5
@@ -57,6 +72,6 @@ done
 docker compose ps
 cat <<EOF
 
-Airflow ${AIRFLOW_VERSION} prêt : http://localhost:8081  (airflow / airflow)
+Airflow ${AIRFLOW_VERSION} prêt : http://localhost:${AIRFLOW_UI_PORT:-8083}  (airflow / airflow)
 DAGs lus dans le dossier dags/ à la racine du repo.
 EOF

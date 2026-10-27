@@ -17,7 +17,13 @@ source ../versions.env
 
 KCTX="kind-${KIND_CLUSTER_NAME}"
 K=(kubectl --context "${KCTX}")
-BASE="github.com/kubeflow/pipelines/manifests/kustomize"
+# Optional local copy of the official manifests at KFP_VERSION (slow networks).
+BASE="${KFP_MANIFESTS_DIR:-github.com/kubeflow/pipelines/manifests/kustomize}"
+SUFFIX="?ref=${KFP_VERSION}&timeout=180s"
+if [ -n "${KFP_MANIFESTS_DIR:-}" ]; then
+  test -d "$BASE/cluster-scoped-resources"
+  SUFFIX=""
+fi
 
 if ! "${K[@]}" get nodes >/dev/null 2>&1; then
   echo "Cluster ${KCTX} injoignable : lancez d'abord 'make cluster' (Lab 0)." >&2
@@ -25,14 +31,14 @@ if ! "${K[@]}" get nodes >/dev/null 2>&1; then
 fi
 
 echo "==> 1/3 KFP ${KFP_VERSION} : ressources cluster (CRD + namespace kubeflow)"
-"${K[@]}" apply -k "${BASE}/cluster-scoped-resources?ref=${KFP_VERSION}"
+"${K[@]}" apply -k "${BASE}/cluster-scoped-resources${SUFFIX}"
 "${K[@]}" wait --for condition=established --timeout=120s \
   crd/applications.app.k8s.io \
   crd/scheduledworkflows.kubeflow.org \
   crd/workflows.argoproj.io
 
 echo "==> 2/3 KFP ${KFP_VERSION} : composants (env/platform-agnostic)"
-"${K[@]}" apply -k "${BASE}/env/platform-agnostic?ref=${KFP_VERSION}"
+"${K[@]}" apply -k "${BASE}/env/platform-agnostic${SUFFIX}"
 
 echo "==> 3/3 Attente des déploiements (premier pull des images : 5 à 10 min)"
 # mysql et seaweedfs d'abord : ml-pipeline et metadata-grpc redémarrent tant que
@@ -45,7 +51,7 @@ echo "==> 3/3 Attente des déploiements (premier pull des images : 5 à 10 min)"
 cat <<EOF
 
 KFP ${KFP_VERSION} prêt. UI et API (à laisser tourner dans un terminal) :
-  kubectl -n kubeflow port-forward svc/ml-pipeline-ui 8080:80
-  -> http://localhost:8080   (SDK : kfp.Client(host="http://localhost:8080"))
+  kubectl -n kubeflow port-forward svc/ml-pipeline-ui ${KFP_UI_PORT:-8082}:80
+  -> http://localhost:${KFP_UI_PORT:-8082}   (SDK : kfp.Client(host="http://localhost:${KFP_UI_PORT:-8082}"))
 Artefacts des runs : SeaweedFS interne de KFP (svc seaweedfs.kubeflow, bucket mlpipeline).
 EOF
