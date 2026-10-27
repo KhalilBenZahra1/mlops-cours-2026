@@ -25,14 +25,16 @@ ENV = {
 S3_CREDENTIALS = k8s.V1EnvFromSource(secret_ref=k8s.V1SecretEnvSource(name="s3-credentials"))
 
 
-def stage(task_id: str, module: str, *args: str, xcom=False, memory="1Gi", retries=0):
+def stage(
+    task_id: str, module: str, *args: str, xcom=False, memory="1Gi", retries=0, workspace=WORKSPACE
+):
     """Une task = un pod qui exécute « python -m pipelines.stage <module> » (une stage DVC)."""
     return KubernetesPodOperator(
         task_id=task_id,
         name=f"scoring-{task_id}",
         namespace="airflow",  # créé par make airflow, avec le secret s3-credentials
         image=IMAGE,
-        cmds=["python", "-m", "pipelines.stage", module, "--workspace", WORKSPACE],
+        cmds=["python", "-m", "pipelines.stage", module, "--workspace", workspace],
         arguments=[*(["--xcom"] if xcom else []), "--", *args],
         env_vars=ENV,
         env_from=[S3_CREDENTIALS],

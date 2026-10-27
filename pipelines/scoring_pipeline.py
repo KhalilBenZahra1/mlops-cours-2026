@@ -26,7 +26,7 @@ TRAIN = yaml.safe_load(Path("params.yaml").read_text(encoding="utf-8"))["train"]
 
 @dsl.pipeline(
     name="scoring-pipeline",
-    description="Credit scoring : ingest -> validate -> prepare -> train -> evaluate -> register",
+    description="Scoring WSL2 : ingest -> validate -> prepare -> train -> evaluate -> register",
 )
 def scoring_pipeline(
     model_type: str = TRAIN["model"],
