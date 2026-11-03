@@ -34,6 +34,6 @@ pour le socle (une seule suffit, mais choisissez une vraie décision) :
 | N° | Titre | Statut | Périmètre | Auteur |
 |---|---|---|---|---|
 | [0000](0000-modele.md) | Modèle d'ADR (non compté) | — | — | — |
-| 0001 | [À compléter] | | | |
+| [0001](0001-reutiliser-image-pipeline.md) | Réutiliser une image projet pour KFP et Airflow | proposé | socle Lab 2 | @KhalilBenZahra1 |
 | 0002 | [À compléter] | | | |
 | 0003 | [À compléter] | | | |

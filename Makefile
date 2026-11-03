@@ -13,6 +13,11 @@ export
 
 KCTX := kind-$(KIND_CLUSTER_NAME)
 PF_LOG := /tmp/mlops-port-forward
+KFP_UI_PORT ?= 8082
+KFP_HOST ?= http://localhost:$(KFP_UI_PORT)
+AIRFLOW_UI_PORT ?= 8083
+# Use the artifact proxy from WSL: internal S3 presigned hosts are not reachable.
+MLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD ?= false
 
 .PHONY: help
 help: ## Affiche cette aide
@@ -71,7 +76,7 @@ pf: ## Port-forwards : S3 :8333, filer :8888, MLflow :5000 (en arrière-plan)
 pf-stop: ## Arrête tous les port-forwards du cours (S3, MLflow, UI KFP)
 	pkill -f "^kubectl.*port-forward svc/s3 8333" || true
 	pkill -f "^kubectl.*port-forward svc/mlflow 5000" || true
-	pkill -f "port-forward svc/ml-pipeline-ui 8080" || true
+	pkill -f "^kubectl.*port-forward svc/ml-pipeline-ui $(KFP_UI_PORT):80" || true
 
 # --- Briques ajoutées module par module ----------------------------------------
 .PHONY: kfp airflow kserve argocd monitoring external-secrets
@@ -90,12 +95,8 @@ external-secrets: ## Lab 8 — External Secrets Operator
 
 # --- Raccourcis ---------------------------------------------------------------------
 .PHONY: kfp-ui pipeline-image pf-monitoring
-kfp-ui: ## Lab 2 — UI/API Kubeflow Pipelines sur http://localhost:8080 (arrière-plan)
-	mkdir -p $(PF_LOG)
-	pkill -f "port-forward svc/ml-pipeline-ui 8080" || true
-	nohup kubectl --context $(KCTX) -n kubeflow port-forward svc/ml-pipeline-ui 8080:80 \
-	  >$(PF_LOG)/kfp-ui.log 2>&1 &
-	sleep 2 && echo "KFP UI -> http://localhost:8080"
+kfp-ui: ## Lab 2 — UI/API KFP sur localhost:8082 (port configurable)
+	bash infra/kfp/port-forward.sh
 
 pipeline-image: ## Lab 2+ — construit et pousse l'image du pipeline (tag de pipelines/components.py)
 	test -f pipelines/Dockerfile || { echo "pipelines/Dockerfile absent (Lab 2, étape 2)"; exit 1; }
@@ -108,7 +109,7 @@ pf-monitoring: ## Lab 7 — port-forwards Grafana, Prometheus, Alertmanager
 
 # --- Vérifications de fin de lab ------------------------------------------------
 check-m%: ## Vérifie l'état attendu en fin de lab (ex. make check-m3)
-	./labs/m$*-*/check.sh
+	bash ./labs/m$*-*/check.sh
 
 # --- Qualité ------------------------------------------------------------------
 .PHONY: lint test check-sync pdf

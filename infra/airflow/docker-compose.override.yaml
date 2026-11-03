@@ -2,7 +2,7 @@
 # Adaptations du docker-compose.yaml OFFICIEL d'Airflow (téléchargé par
 # install.sh, non modifié) pour le cours. Docker Compose fusionne
 # automatiquement ce fichier avec docker-compose.yaml.
-#   - UI/API sur http://localhost:8081 (le 8080 est pris par l'UI KFP)
+#   - UI/API sur http://localhost:8083 (le 8080 est pris par l'UI KFP)
 #   - pas des ~80 DAGs d'exemple
 #   - DAGs lus dans le dossier dags/ à la racine du repo
 #   - conteneurs branchés sur le réseau Docker « kind » + kubeconfig interne :
@@ -21,7 +21,7 @@ services:
   airflow-apiserver:
     <<: *cours-mlops
     ports: !override
-      - "8081:8080"
+      - "${AIRFLOW_UI_PORT:-8083}:8080"
   airflow-scheduler: *cours-mlops
   airflow-dag-processor: *cours-mlops
   airflow-worker: *cours-mlops
