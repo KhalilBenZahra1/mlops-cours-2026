@@ -18,10 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 @pytest.fixture
 def sample():
     cfg = load_config(ROOT / "dataset.yaml")
-    row = {c: 1.0 for c in cfg.numeric} | {c: "category" for c in cfg.categorical}
-    row |= {c: "group" for c in cfg.extra_sensitive}
-    df = pd.DataFrame([row, row])
-    df[cfg.target] = [cfg.positive_class, "other"]
+    df = pd.read_csv(ROOT / "data/processed/train.csv")
     return cfg, df
 
 

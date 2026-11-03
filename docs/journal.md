@@ -50,3 +50,11 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Validé :** make check-m2 19/19, check-m0 19/19, check-m1 18/18 ; lint réussi et 15 tests réussis ; historique MLflow conservé.
 - **Appris :** SDK KFP incomplet avec --no-deps ; ports 8082/8083 ; promotions concurrentes visibles dans les alias. Voir reports/rapport-m2.md et docs/adr/0001-reutiliser-image-pipeline.md (proposé).
 - **Prochaine étape :** capture terminal authentique, commit/push des compléments par le pilote, puis revue croisée de la PR Draft existante sans fusion automatique.
+
+## S3 — 2026-11-03 — Lab 3 : gates de validation
+
+- **Pilote / copilote :** @KhalilBenZahra1 / Codex ; branche `lab/m3-validation` basée sur le Lab 2 (`3a71a24`), encore absent de `main` à l'audit.
+- **Fait :** contrat GX figé depuis l'entraînement (67 expectations), drift KS/χ² + PSI et gate modèle (2 tests Evidently + 8 comportementaux) ; images 1.1.0 et 1.2.0 publiées ; trois scénarios KFP confirmés, rapports HTML téléchargés du SeaweedFS interne.
+- **Validé :** `make check-m3` 20/20, contrôle final `check-m2` 19/19, contrôles M0 19/19 et M1 18/18 ; `make lint` et 23 tests réussis ; modèle 17 lié au run KFP à huit composants, aliases champion/challenger 17, ROC AUC 0,8094.
+- **Bloqué / appris :** publication des ports Docker rétablie par redémarrage du seul control plane existant ; délais PyPI augmentés ; deux premiers scénarios arrêtés à l'ingestion par DNS transitoire, relances vérifiées au bon gate sans changer le code Lab 1. Voir [ADR-0002](adr/0002-gates-validation.md).
+- **Prochaine étape :** revue croisée de la PR vers `main`, après prise en compte de la PR Lab 2 ; aucune fusion automatique.
