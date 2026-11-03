@@ -30,6 +30,7 @@ reports/validation.json
 # --- Lab 3 : validation ---
 # Pipelines de test compilés, rapports regénérés à chaque exécution
 # (gx/uncommitted/, résultats GX et Data Docs, est ignoré par gx/.gitignore)
+gx/uncommitted/
 test_bad_data.yaml
 drift_demo.yaml
 reports/validation.html
