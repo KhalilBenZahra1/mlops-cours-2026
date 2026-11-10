@@ -58,3 +58,13 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Validé :** `make check-m3` 20/20, contrôle final `check-m2` 19/19, contrôles M0 19/19 et M1 18/18 ; `make lint` et 23 tests réussis ; modèle 17 lié au run KFP à huit composants, aliases champion/challenger 17, ROC AUC 0,8094.
 - **Bloqué / appris :** publication des ports Docker rétablie par redémarrage du seul control plane existant ; délais PyPI augmentés ; deux premiers scénarios arrêtés à l'ingestion par DNS transitoire, relances vérifiées au bon gate sans changer le code Lab 1. Voir [ADR-0002](adr/0002-gates-validation.md).
 - **Prochaine étape :** revue croisée de la PR vers `main`, après prise en compte de la PR Lab 2 ; aucune fusion automatique.
+
+## S4 — 2026-11-10 — Lab 4 : packaging du modèle
+
+- **Pilote / assistance :** @KhalilBenZahra1 / Codex, puis finalisation manuelle.
+- **Fait :** export ONNX du champion v17, API FastAPI, images naïve, optimisée et BentoML ; benchmark et scans ModelScan/Trivy ; push et pull de scoring-api:1.0.0.
+- **Validé :** make check-m4 — 16/16 ; équivalence sur 200 lignes, écart maximal 8,73e-08 et décisions identiques ; image optimisée 458 MB sur disque, utilisateur 10001:10001 et healthy.
+- **Mesures :** P50 sklearn 4,653 ms, ONNX unitaire 0,077 ms, lot de 100 lignes 0,347 ms ; accélération unitaire ×60,1.
+- **Scans Trivy :** optimized 49 HIGH/0 CRITICAL ; naive 313 HIGH/15 CRITICAL ; BentoML 104 HIGH/0 CRITICAL.
+- **Bloqué / appris :** téléchargements interrompus ; base Python récupérée par miroir avec digest identique ; installation pip avec reprise et APT BentoML en HTTPS. ModelScan ignore ONNX et rencontre une incompatibilité NumPy sur skops.
+- **Prochaine étape :** commit, push et PR pour revue croisée du binôme.
