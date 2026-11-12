@@ -68,3 +68,13 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Scans Trivy :** optimized 49 HIGH/0 CRITICAL ; naive 313 HIGH/15 CRITICAL ; BentoML 104 HIGH/0 CRITICAL.
 - **Bloqué / appris :** téléchargements interrompus ; base Python récupérée par miroir avec digest identique ; installation pip avec reprise et APT BentoML en HTTPS. ModelScan ignore ONNX et rencontre une incompatibilité NumPy sur skops.
 - **Prochaine étape :** commit, push et PR pour revue croisée du binôme.
+
+## S5 — 2026-11-12 — Lab 5 : serving KServe
+
+- **Pilote :** @KhalilBenZahra1 ; réalisation manuelle et revue croisée prévue avec @oumaimagorrab.
+- **Fait :** déploiement FastAPI/ONNX avec KServe, Knative et Kourier ; KPA RPS de 0 à 5 pods ; trois charges Locust ; canary puis promotion de l'image 2.0.0.
+- **Validé :** make check-m5 — 14/14 ; 36 tests réussis ; modèle v17 et seuil 0.3182 identiques à MLflow.
+- **Mesures :** réveil à froid 7.320275 s, appel à chaud 0.003702 s ; cinq pods prêts observés après charge ; plateau autour de 1800 req/s. Temps de montée et CPU moyen sous charge non mesurés précisément.
+- **Canary :** 181 réponses v1 et 19 réponses v2 sur 200 ; promotion à 100 %, prédictions conservées.
+- **Bloqué / appris :** intégration Docker WSL et horloge rétablies ; téléchargements lents ; erreur TrustRemoteCode des configurations LLM, finalisation manuelle des étapes restantes de l'installation. Locust passé à quatre processus après saturation du générateur ; rares HTTP 502 conservés dans le rapport.
+- **Prochaine étape :** revue croisée de la PR avant fusion.
