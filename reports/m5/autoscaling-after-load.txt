@@ -1,0 +1,21 @@
+2026-11-12T17:57:22+01:00
+NAME                            DESIREDSCALE   ACTUALSCALE   READY   REASON
+scoring-model-predictor-00001   0              0             False   NoTraffic
+scoring-model-predictor-00002   5              5             True
+NAME                                                        READY   STATUS    RESTARTS   AGE
+scoring-model-predictor-00002-deployment-7c76985957-f8kn5   2/2     Running   0          11m
+scoring-model-predictor-00002-deployment-7c76985957-tc9dm   2/2     Running   0          11m
+scoring-model-predictor-00002-deployment-7c76985957-vk6mz   2/2     Running   0          11m
+scoring-model-predictor-00002-deployment-7c76985957-z65r8   2/2     Running   0          11m
+scoring-model-predictor-00002-deployment-7c76985957-zr759   2/2     Running   0          11m
+POD                                                         NAME               CPU(cores)   MEMORY(bytes)
+scoring-model-predictor-00002-deployment-7c76985957-f8kn5   kserve-container   3m           102Mi
+scoring-model-predictor-00002-deployment-7c76985957-f8kn5   queue-proxy        1m           32Mi
+scoring-model-predictor-00002-deployment-7c76985957-tc9dm   kserve-container   2m           94Mi
+scoring-model-predictor-00002-deployment-7c76985957-tc9dm   queue-proxy        2m           32Mi
+scoring-model-predictor-00002-deployment-7c76985957-vk6mz   kserve-container   2m           93Mi
+scoring-model-predictor-00002-deployment-7c76985957-vk6mz   queue-proxy        2m           32Mi
+scoring-model-predictor-00002-deployment-7c76985957-z65r8   kserve-container   2m           95Mi
+scoring-model-predictor-00002-deployment-7c76985957-z65r8   queue-proxy        2m           32Mi
+scoring-model-predictor-00002-deployment-7c76985957-zr759   kserve-container   2m           93Mi
+scoring-model-predictor-00002-deployment-7c76985957-zr759   queue-proxy        2m           31Mi
