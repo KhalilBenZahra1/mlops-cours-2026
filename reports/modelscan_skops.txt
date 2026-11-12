@@ -1,0 +1,117 @@
+No settings file detected at /home/khalil/mlops-cours-2026/modelscan-settings.toml. Using defaults.
+
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439558877552.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439558876976.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639051760.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439643133072.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639056272.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439637255152.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639055216.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639052240.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639052048.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639054448.npy: module 'numpy.lib.format' has no attribute '_check_version'
+Error encountered from scanner modelscan.scanners.NumpyUnsafeOpScan with path /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639055120.npy: module 'numpy.lib.format' has no attribute '_check_version'
+
+--- Summary ---
+
+ No issues found! 🎉
+
+--- Errors ---
+
+Error 1:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 2:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 3:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 4:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 5:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 6:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 7:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 8:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 9:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 10:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+Error 11:
+The following error was raised during a modelscan.scanners.NumpyUnsafeOpScan
+scan:
+module 'numpy.lib.format' has no attribute '_check_version'
+
+--- Skipped ---
+
+Total skipped: 12 - run with --show-skipped to see the full list.
+
+Skipped files list:
+
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439558877552.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439558876976.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639051760.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439643133072.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639056272.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439637255152.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639055216.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639052240.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639052048.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639054448.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:126439639055120.npy
+was skipped during a ModelScan scan:
+Model Scan did not scan file
+The following file /tmp/lab4-skops-scan-_hr9ck0p/model.skops:schema.json was
+skipped during a ModelScan scan:
+Model Scan did not scan file
