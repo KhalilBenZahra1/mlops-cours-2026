@@ -1,0 +1,5 @@
+Observation du 12 novembre 2026
+Révision : scoring-model-predictor-00002
+Avant réveil : DESIREDSCALE=0, ACTUALSCALE=0, aucun pod
+Premier appel /health à froid : HTTP 200 en 7.320275 s
+Second appel /health à chaud : HTTP 200 en 0.003702 s

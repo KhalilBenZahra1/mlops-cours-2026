@@ -1,0 +1,201 @@
+LAST SEEN   TYPE      REASON                  OBJECT                                                           MESSAGE
+33m         Normal    Scheduled               pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Successfully assigned scoring/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2 to mlops-lab-worker
+33m         Normal    Created                 service/scoring-model-predictor                                  Created Configuration "scoring-model-predictor"
+33m         Normal    Created                 service/scoring-model-predictor                                  Created Route "scoring-model-predictor"
+33m         Normal    Created                 configuration/scoring-model-predictor                            Created Revision "scoring-model-predictor-00001"
+33m         Normal    FinalizerUpdate         route/scoring-model-predictor                                    Updated "scoring-model-predictor" finalizers
+33m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00001-deployment              Scaled up replica set scoring-model-predictor-00001-deployment-789cd99dc5 from 0 to 1
+33m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00001-deployment-789cd99dc5   Created pod: scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2
+33m         Normal    Pulling                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Pulling image "localhost:5001/scoring-api:1.0.0"
+33m         Normal    Created                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Container created
+33m         Normal    Pulling                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Pulling image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2"
+33m         Normal    Started                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Container started
+33m         Normal    Pulled                  pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Successfully pulled image "localhost:5001/scoring-api:1.0.0" in 4.031s (4.031s including waiting). Image size: 106797737 bytes.
+29m         Normal    Created                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Container created
+29m         Normal    LatestReadyUpdate       configuration/scoring-model-predictor                            LatestReadyRevisionName updated to "scoring-model-predictor-00001"
+29m         Normal    RevisionReady           revision/scoring-model-predictor-00001                           Revision becomes ready upon all resources being ready
+29m         Normal    Pulled                  pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Successfully pulled image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" in 4m29.632s (4m29.632s including waiting). Image size: 12304724 bytes.
+29m         Normal    ConfigurationReady      configuration/scoring-model-predictor                            Configuration becomes ready
+29m         Normal    Started                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Container started
+29m         Warning   Unhealthy               pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Readiness probe failed: Get "http://10.244.1.11:8012/": dial tcp 10.244.1.11:8012: connect: connection refused
+29m         Normal    FinalizerUpdate         ingress/scoring-model-predictor                                  Updated "scoring-model-predictor" finalizers
+29m         Normal    Created                 route/scoring-model-predictor                                    Created Ingress "scoring-model-predictor"
+29m         Normal    Created                 route/scoring-model-predictor                                    Created placeholder service "scoring-model-predictor"
+21m         Normal    InferenceServiceReady   inferenceservice/scoring-model                                   InferenceService [scoring-model] is Ready
+26m         Normal    Pulling                 pod/client-test                                                  Pulling image "python:3.12-slim"
+26m         Normal    Scheduled               pod/client-test                                                  Successfully assigned scoring/client-test to mlops-lab-worker2
+24m         Warning   Failed                  pod/client-test                                                  Failed to pull image "python:3.12-slim": failed to pull and unpack image "docker.io/library/python:3.12-slim": short read: expected 29856132 bytes but got 7667109: unexpected EOF
+24m         Warning   Failed                  pod/client-test                                                  Error: ErrImagePull
+23m         Normal    Pulling                 pod/client-test                                                  Pulling image "python:3.12-slim"
+23m         Normal    Scheduled               pod/client-test                                                  Successfully assigned scoring/client-test to mlops-lab-worker2
+23m         Normal    Started                 pod/client-test                                                  Container started
+23m         Normal    Pulled                  pod/client-test                                                  Successfully pulled image "python:3.12-slim" in 22.366s (22.366s including waiting). Image size: 43286505 bytes.
+23m         Normal    Created                 pod/client-test                                                  Container created
+21m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-fn5kz
+11m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled up replica set scoring-model-predictor-00002-deployment-7c76985957 from 0 to 1
+21m         Normal    Created                 configuration/scoring-model-predictor                            Created Revision "scoring-model-predictor-00002"
+21m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-fn5kz to mlops-lab-worker2
+21m         Normal    Pulling                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Pulling image "localhost:5001/scoring-api:1.0.0"
+21m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Successfully pulled image "localhost:5001/scoring-api:1.0.0" in 2.401s (2.401s including waiting). Image size: 106797737 bytes.
+21m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Container created
+21m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Container started
+21m         Normal    Pulling                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Pulling image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2"
+21m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Container started
+21m         Normal    RevisionReady           revision/scoring-model-predictor-00002                           Revision becomes ready upon all resources being ready
+21m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Successfully pulled image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" in 17.024s (17.025s including waiting). Image size: 12304724 bytes.
+21m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Container created
+21m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Readiness probe failed: Get "http://10.244.2.12:8012/": dial tcp 10.244.2.12:8012: connect: connection refused
+21m         Normal    Killing                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Stopping container kserve-container
+21m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00001-deployment-789cd99dc5   Deleted pod: scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2
+21m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00001-deployment              Scaled down replica set scoring-model-predictor-00001-deployment-789cd99dc5 from 1 to 0
+21m         Normal    LatestReadyUpdate       configuration/scoring-model-predictor                            LatestReadyRevisionName updated to "scoring-model-predictor-00002"
+21m         Normal    Killing                 pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Stopping container queue-proxy
+21m         Warning   Unhealthy               pod/scoring-model-predictor-00001-deployment-789cd99dc5-xkdv2    Readiness probe failed: HTTP probe failed with statuscode: 503
+11m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled down replica set scoring-model-predictor-00002-deployment-7c76985957 from 1 to 0
+20m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Stopping container kserve-container
+20m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-fn5kz
+20m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Stopping container queue-proxy
+20m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-fn5kz    Readiness probe failed: HTTP probe failed with statuscode: 503
+19m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-nn7px
+19m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-nn7px to mlops-lab-worker
+19m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Container started
+19m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Container started
+19m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Container created
+19m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+19m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+19m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Container created
+19m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Readiness probe failed: Get "http://10.244.1.12:8012/": dial tcp 10.244.1.12:8012: connect: connection refused
+19m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Readiness probe failed: Get "http://10.244.1.12:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+17m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Stopping container queue-proxy
+17m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-nn7px
+17m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Stopping container kserve-container
+17m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-nn7px    Readiness probe failed: HTTP probe failed with statuscode: 503
+15m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-7684j to mlops-lab-worker
+15m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-7684j
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Readiness probe failed: Get "http://10.244.1.13:8012/": dial tcp 10.244.1.13:8012: connect: connection refused
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Container started
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Container created
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Container started
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Container created
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Readiness probe failed: Get "http://10.244.1.13:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Container created
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Container started
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Container created
+15m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-rjjkk
+15m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-rjjkk to mlops-lab-worker2
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Container started
+11m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled up replica set scoring-model-predictor-00002-deployment-7c76985957 from 1 to 2
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Readiness probe failed: Get "http://10.244.2.13:8012/": dial tcp 10.244.2.13:8012: connect: connection refused
+15m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-9mj5l to mlops-lab-worker
+15m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-ck69c to mlops-lab-worker2
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Container created
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Container started
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Container created
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+15m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-9mj5l
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Container created
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Container started
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Container created
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Readiness probe failed: Get "http://10.244.2.13:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+15m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-ck69c
+11m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled up replica set scoring-model-predictor-00002-deployment-7c76985957 from 2 to 4
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Container started
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Readiness probe failed: Get "http://10.244.1.14:8012/": dial tcp 10.244.1.14:8012: connect: connection refused
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Container started
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Readiness probe failed: Get "http://10.244.2.14:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Readiness probe failed: Get "http://10.244.1.14:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+11m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled up replica set scoring-model-predictor-00002-deployment-7c76985957 from 4 to 5
+15m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-bmrdm
+15m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-bmrdm to mlops-lab-worker
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Container created
+15m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Container created
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Readiness probe failed: Get "http://10.244.1.15:8012/": dial tcp 10.244.1.15:8012: connect: connection refused
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Container started
+15m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+15m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Container started
+15m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Readiness probe failed: Get "http://10.244.1.15:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+13m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-bmrdm
+13m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Stopping container queue-proxy
+13m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled down replica set scoring-model-predictor-00002-deployment-7c76985957 from 5 to 4
+13m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Stopping container kserve-container
+13m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-bmrdm    Readiness probe failed: HTTP probe failed with statuscode: 503
+12m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-rjjkk
+12m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Stopping container kserve-container
+12m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Stopping container queue-proxy
+12m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled down replica set scoring-model-predictor-00002-deployment-7c76985957 from 4 to 3
+12m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-rjjkk    Readiness probe failed: HTTP probe failed with statuscode: 503
+12m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-7684j
+12m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Stopping container queue-proxy
+12m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Stopping container kserve-container
+12m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled down replica set scoring-model-predictor-00002-deployment-7c76985957 from 3 to 2
+12m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-7684j    Readiness probe failed: HTTP probe failed with statuscode: 503
+12m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Stopping container queue-proxy
+12m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Stopping container kserve-container
+12m         Normal    ScalingReplicaSet       deployment/scoring-model-predictor-00002-deployment              Scaled down replica set scoring-model-predictor-00002-deployment-7c76985957 from 2 to 1
+12m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-9mj5l
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-9mj5l    Readiness probe failed: HTTP probe failed with statuscode: 503
+11m         Normal    SuccessfulDelete        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Deleted pod: scoring-model-predictor-00002-deployment-7c76985957-ck69c
+11m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Stopping container queue-proxy
+11m         Normal    Killing                 pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Stopping container kserve-container
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-ck69c    Readiness probe failed: HTTP probe failed with statuscode: 503
+11m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-f8kn5
+11m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-f8kn5 to mlops-lab-worker
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Container created
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Readiness probe failed: Get "http://10.244.1.16:8012/": dial tcp 10.244.1.16:8012: connect: connection refused
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Container started
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Container started
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Container created
+78s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Readiness probe failed: Get "http://10.244.1.16:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Container started
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Readiness probe failed: Get "http://10.244.2.16:8012/": dial tcp 10.244.2.16:8012: connect: connection refused
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Container created
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Container started
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Container created
+11m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   Created pod: scoring-model-predictor-00002-deployment-7c76985957-z65r8
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+11m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-z65r8 to mlops-lab-worker2
+11m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-tc9dm to mlops-lab-worker
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+69s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Readiness probe failed: Get "http://10.244.2.16:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+11m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-zr759 to mlops-lab-worker2
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Readiness probe failed: Get "http://10.244.1.17:8012/": dial tcp 10.244.1.17:8012: connect: connection refused
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Container started
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Container created
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Container started
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Readiness probe failed: Get "http://10.244.2.17:8012/": dial tcp 10.244.2.17:8012: connect: connection refused
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Container created
+11m         Normal    SuccessfulCreate        replicaset/scoring-model-predictor-00002-deployment-7c76985957   (combined from similar events): Created pod: scoring-model-predictor-00002-deployment-7c76985957-vk6mz
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Container created
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Container started
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Container created
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Container started
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Container image "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2" already present on machine and can be accessed by the pod
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Container created
+11m         Normal    Scheduled               pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Successfully assigned scoring/scoring-model-predictor-00002-deployment-7c76985957-vk6mz to mlops-lab-worker
+77s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Readiness probe failed: Get "http://10.244.1.17:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+88s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Readiness probe failed: Get "http://10.244.2.17:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+11m         Normal    Created                 pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Container created
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Container started
+11m         Normal    Pulled                  pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Container image "localhost:5001/scoring-api:1.0.0" already present on machine and can be accessed by the pod
+11m         Normal    Started                 pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Container started
+11m         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Readiness probe failed: Get "http://10.244.1.18:8012/": dial tcp 10.244.1.18:8012: connect: connection refused
+75s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Readiness probe failed: Get "http://10.244.1.18:8012/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+69s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-f8kn5    Readiness probe failed: HTTP probe failed with statuscode: 503
+79s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-zr759    Readiness probe failed: HTTP probe failed with statuscode: 503
+97s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-tc9dm    Readiness probe failed: HTTP probe failed with statuscode: 503
+105s        Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-vk6mz    Readiness probe failed: HTTP probe failed with statuscode: 503
+89s         Warning   Unhealthy               pod/scoring-model-predictor-00002-deployment-7c76985957-z65r8    Readiness probe failed: HTTP probe failed with statuscode: 503
