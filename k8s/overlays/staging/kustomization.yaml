@@ -10,7 +10,7 @@ resources:
 images:
   - name: scoring-api
     newName: ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api
-    newTag: "0.0.0"
+    newTag: "2.1.2"
 patches:
   # Économie de RAM : zéro pod quand personne n'appelle (scale-to-zero), un seul au plus
   - target:
