@@ -87,3 +87,11 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Validé :** `make lint`, `make test` (52 réussis), copie de checkout sans `.env`/DVC ni services accessibles (44 réussis, 8 comportementaux ignorés comme prévu sans modèle DVC), schéma GitHub Actions avec `check-jsonschema@0.38.2`, rendus staging/prod avec Kustomize 5.8.1 ; `make check-m5` 14/14. État et journaux de la CI distante consultables dans la PR.
 - **Préservé / appris :** overlay prod identique au spec servi (image 2.0.0, trafic 100 %, révision 00003), ONNX et métadonnées inchangés ; 14 déploiements KFP disponibles, UI/API sur 8082 et `KFP_HOST` cohérent dans `.env` ignoré ; MLflow/S3 accessibles par les port-forwards du cours. SSH indisponible dans le terminal de contrôle : authentification `gh` existante utilisée temporairement en HTTPS, sans changer clés ou remotes.
 - **Prochaine étape :** relecture et approbation du binôme, puis fusion par le pilote ; suivre la publication et le commit staging sur `main`, avant la phase Argo CD dans sa PR dédiée. Aucun CT ni déploiement GitOps exécuté ; validation complète `check-m6` réservée à la fin du lab. Aucune nouvelle décision d'architecture hors du guide.
+
+
+## S6.2 — 2026-11-20 — Lab 6 : Argo CD, PR dépendante
+
+- **Fait :** branche `lab/m6-argocd` issue de `lab/m6-cicd` ; Applications personnalisées, script d'installation rendu exécutable, docstring de serving de l'étape 5 mise à jour. Argo CD v3.5.3 installé par `make argocd`, quatre pods prêts, réconciliation 60 s ; identifiants masqués.
+- **Validé :** lint et 52 tests réussis ; Applications acceptées en dry-run serveur ; production 2.0.0 à 100 % et modèle Git conservés. Contrôle initial réel `check-m6` : 4/18, avant Argo CD et CT.
+- **Bloqué / décision de déroulement :** `main` ne contient pas les overlays et aucune image GHCR de staging n'est publiée ; Applications non activées pour préserver prod et éviter le tag de gabarit inexistant. Synced/Healthy, self-heal et déploiement par fusion restent à mesurer.
+- **Livraison :** PR vers `lab/m6-cicd`, deuxième dans l'ordre cicd → argocd → ct → rapport. Retargetage vers `main` après fusion du parent par le pilote ; aucune fusion ni poussée directe sur `main`.
