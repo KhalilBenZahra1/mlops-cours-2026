@@ -1,6 +1,6 @@
 # Fichier : k8s/argocd-app.yaml
 # Deux Applications Argo CD : chacune synchronise un overlay Kustomize de votre fork
-# vers un namespace. Remplacez VOTRE_USER (2 occurrences), puis :
+# vers un namespace. Appliquer après fusion et publication de l’image de staging :
 #   kubectl apply -f k8s/argocd-app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/VOTRE_USER/mlops-cours-2026.git
+    repoURL: https://github.com/KhalilBenZahra1/mlops-cours-2026.git
     targetRevision: main
     path: k8s/overlays/staging
   destination:
@@ -31,7 +31,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/VOTRE_USER/mlops-cours-2026.git
+    repoURL: https://github.com/KhalilBenZahra1/mlops-cours-2026.git
     targetRevision: main
     path: k8s/overlays/prod
   destination:
