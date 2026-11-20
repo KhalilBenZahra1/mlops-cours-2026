@@ -95,3 +95,12 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Validé :** lint et 52 tests réussis ; Applications acceptées en dry-run serveur ; production 2.0.0 à 100 % et modèle Git conservés. Contrôle initial réel `check-m6` : 4/18, avant Argo CD et CT.
 - **Bloqué / décision de déroulement :** `main` ne contient pas les overlays et aucune image GHCR de staging n'est publiée ; Applications non activées pour préserver prod et éviter le tag de gabarit inexistant. Synced/Healthy, self-heal et déploiement par fusion restent à mesurer.
 - **Livraison :** PR vers `lab/m6-cicd`, deuxième dans l'ordre cicd → argocd → ct → rapport. Retargetage vers `main` après fusion du parent par le pilote ; aucune fusion ni poussée directe sur `main`.
+
+
+## S6.3 — 2026-11-20 — Lab 6 : CT isolé, PR dépendante
+
+- **Fait :** branche `lab/m6-ct` issue de `lab/m6-argocd` ; webhook, pipeline CT et cinq tests du guide ajoutés, KFP sur 8082. Jeton seulement dans `.env` ignoré ; webhook lié à 127.0.0.1:8095, `CT_AUTO_RELEASE=0` ; refus HTTP 401 sans jeton et acceptation HTTP 202 authentifiée.
+- **Validé :** lint et 57 tests réussis ; checkout sans DVC ni services : 49 réussis, 8 comportementaux ignorés ; pipelines scoring et CT compilés, sept composants CT. Dérive réelle : 15 % des variables, rapport et lot enregistrés dans MLflow (`61cba61414724aa7b4c4469e41ca3f30`).
+- **Exécuté :** run KFP `2698026a-2258-475e-88ce-9866032d1104` SUCCEEDED, sept étapes réussies en 221 s ; run MLflow `a902bebbdde241ea87a32bc744279ee2`, modèle v18 promu par la gate, `previous_champion=17`. ROC AUC 0,8094 ; coût récent 108 contre 124 pour v17 ; seuil 0,3182 lu dans le run.
+- **Préservé / en attente :** production 2.0.0 / modèle 17, ONNX et métadonnées Git inchangés. Les alias du Registry sont v18 après la gate ; aucun export ni commit automatique, aucune publication ou mise en production. Validation complète de promotion/serving attend les fusions et GHCR.
+- **Livraison :** PR vers `lab/m6-argocd`, troisième dans l'ordre cicd → argocd → ct → rapport ; retargetage vers `main` après fusion du parent, sans modification des déclencheurs CI ni poussée directe sur `main`.
