@@ -1,68 +1,99 @@
 # Rapport — Lab 6 : CI/CD/CT de bout en bout
 
-**Rapport intermédiaire — démonstration de bout en bout incomplète.** Observations du 20 novembre 2026, avant les fusions des quatre PR dépendantes.
+Pilote : Khalil Ben Zahra (`KhalilBenZahra1`), option B et revue croisée avec `oumaimagorrab`. Dépôt : `KhalilBenZahra1/mlops-cours-2026`. Dataset : `german-credit`. Mesures du **20 novembre 2026** sur Ubuntu 24.04 WSL2 / Docker Desktop, cluster kind à trois nœuds Ready. Les PR **#7 → #8 → #9 → #10** ont été approuvées, retargetées vers `main` puis fusionnées dans cet ordre ; commits staging conservés. Le présent bilan final est livré dans une nouvelle PR de documentation, à relire avant fusion.
 
-Pilote : Khalil Ben Zahra (`KhalilBenZahra1`), option B et revue croisée du binôme. Fork : `KhalilBenZahra1/mlops-cours-2026`. Dataset : `german-credit`. Production préservée : `localhost:5001/scoring-api:2.0.0`, modèle **17**, révision `scoring-model-predictor-00003`, trafic **100 %**. Registry après CT : `@champion` et `@challenger` **18**, version 17 conservée.
+État confirmé : production **`ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.8`**, modèle **19**, seuil **0.3182**, révision **`scoring-model-predictor-00006`**, trafic **100 %**. `@champion` et `@challenger` sont à 19, l'ancien champion 18 est conservé. Le champion 18 de la première séance n'était pas alors servi : il a d'abord été publié et déployé manuellement avant ce nouveau cycle automatique.
 
 ## 1. Architecture
 
-Le flux prévu par le guide est : développeur → GitHub ; Actions construit et pousse dans GHCR puis commite le tag staging dans Git ; Argo CD tire Git et KServe tire les images. Evidently pousse un événement authentifié au webhook, qui soumet un run KFP ; KFP lit le lot étiqueté dans MLflow, entraîne, évalue et enregistre un challenger. La gate déplace l'alias MLflow si les règles réussissent. La publication du modèle, le commit GitOps et le canary complètent ensuite le cycle.
+```mermaid
+flowchart LR
+    D[Développeur] -->|push et fusion| G[GitHub / main]
+    G -->|déclenche| CI[GitHub Actions]
+    CI -->|push image immuable| R[GHCR]
+    CI -->|commit tag staging| G
+    A[Argo CD] -->|tire les overlays de main| G
+    A -->|applique| S[KServe staging / prod]
+    S -->|tire les images| R
+    E[Evidently] -->|POST authentifié| W[Webhook local]
+    W -->|soumet le run| K[KFP CT]
+    K -->|lit le lot, logge et promeut par gate| M[MLflow]
+    W -->|export et commit du modèle promu| G
+    W -->|prédictions de contrôle et commits canary/promotion| G
+```
 
-Exécuté : CI de PR #7 verte (lint/tests et build/smoke) ; Argo CD **v3.5.3**, quatre pods prêts, réconciliation 60 s ; manifests acceptés en dry-run serveur ; détection, webhook et CT réels. KFP utilise `http://localhost:8082`, Argo UI `https://localhost:8443`, MLflow `http://localhost:5000`.
+Le code et l'architecture du professeur sont conservés. La CI teste, construit, réalise le smoke test puis publie dans GHCR ; elle n'accède pas au cluster. Argo CD **v3.5.3** lit `main` avec auto-sync, prune et selfHeal. Les deux Applications sont **Synced/Healthy**. KFP utilise **8082**, MLflow **5000**, Argo UI **8443**, le webhook **8095** et Kourier **30080** ; les applications sur 8080/8081 sont préservées. Le package GHCR est accessible anonymement et un nœud kind a réellement téléchargé l'image, sans `kind load`.
 
-Non exécuté : publication GHCR sur `main`, activation des Applications et adoption GitOps. `main` reste `a14ed12` et ne contient pas les overlays. Les Applications visent bien `main`, avec auto-sync, prune et selfHeal ; elles restent non appliquées pour éviter de tirer le tag de gabarit staging `0.0.0` inexistant. La production du Lab 5 reste opérationnelle. Les déclencheurs du workflow sont inchangés : publication après fusion, sans contournement par dispatch.
+La production du Lab 5 a été adoptée avec le même spec et le même modèle 17. SelfHeal démontré : patch manuel de 100 à 50 %, retour automatique à **100 % en 2.01 s**, spec restauré. Les révisions historiques et les versions MLflow sont conservées.
 
 ## 2. Temps du cycle
 
-Horodatages **UTC**, issus du webhook et de l'API KFP. La préparation a simulé un facteur 1,5 sur trois variables numériques configurées ; Evidently a détecté **15 %** de variables en dérive.
+Scénario automatique réussi : variables numériques continues configurées multipliées par **1,5**, lot étiqueté de 1 000 lignes, **15 %** de variables en dérive. Le webhook a été lancé avec `CT_AUTO_RELEASE=1`, `CT_AUTO_PROMOTE=1`, `CT_LOCAL_CI=0`. Après `detect`, aucune commande de publication, de refresh Argo ou de promotion n'a été exécutée manuellement pendant ce cycle.
+
+Horodatages **UTC**, issus des API KFP/GitHub, des commits et d'un observateur local :
 
 | Étape | Début UTC | Fin UTC | Durée |
 |---|---|---|---|
-| Détection seule, rapport et stockage MLflow | 20:51:05,090 | 20:51:14,074 | 8.984 s |
-| POST authentifié → accusé de soumission KFP | 20:52:13,473 | 20:52:14,545 | 1.072 s |
-| Pipeline CT, ingest → gate | 20:52:14 | 20:55:55 | **221 s** |
-| Commit du modèle → image publiée | Non exécuté | En attente des fusions | Non mesuré |
-| Image publiée → staging servi | Non exécuté | En attente GHCR/Argo | Non mesuré |
-| Canary 10 % → promotion 100 % | Non exécuté pour le CT | En attente de publication | Non mesuré |
-| **Cycle complet** | **Démo partielle** | **Non terminé** | **Non mesuré** |
+| Détection et soumission KFP | 2026-11-20T21:40:28.303551+00:00 | 2026-11-20T21:40:35+00:00 | 6.696 s |
+| Pipeline CT, ingest → gate | 2026-11-20T21:40:35+00:00 | 2026-11-20T21:44:15+00:00 | 220.000 s |
+| Commit modèle → image publiée | 2026-11-20T21:44:27+00:00 | 2026-11-20T21:46:04+00:00 | 97.000 s |
+| Image publiée → staging observé | 2026-11-20T21:46:04+00:00 | 2026-11-20T21:49:18.161769+00:00 | 194.162 s |
+| Canary prêt à 10 % → promotion observée à 100 % | 2026-11-20T21:50:14.454503+00:00 | 2026-11-20T21:52:05.265964+00:00 | 110.811 s |
+| **Cycle complet** | 2026-11-20T21:40:28.303551+00:00 | 2026-11-20T21:52:05.265964+00:00 | 696.962 s |
 
-La détection a été lancée avec `--no-send`, puis l'événement enregistré a été envoyé séparément : l'attente entre les deux commandes ne mesure pas la latence automatique. Ces durées ne sont donc pas additionnées pour prétendre mesurer le cycle complet. KFP domine les segments mesurés, mais une seule exécution ne permet pas de conclure sur le goulot global. Les temps des tâches et les téléchargements devront être examinés avant toute optimisation.
+Le cycle complet vaut **11.62 min**. La fin de publication est celle de l'étape CI `Publier l'image testée` ; les états servis sont les premières observations de `/version` et du trafic Kubernetes. L'observateur interroge environ toutes les trois secondes, en plus du temps des requêtes : ces valeurs sont des latences observées et non une précision sub-seconde garantie. Il maintient staging actif pendant la mesure. Les délais d'attente du bot entre KFP, Git et CI font partie du cycle complet ; les sous-intervalles ne sont pas présentés comme une somme exhaustive.
+
+Une seule exécution réussie ne mesure pas une distribution de performances. La construction/publication CI et la réconciliation Argo contribuent au temps total ; les caches et le réseau influencent les résultats. Le segment publication → staging observé vaut 194.162 s : la configuration Argo de 60 s et 10 s de gigue n'est pas une garantie du délai complet, qui inclut commit GitOps, détection du changement, téléchargement et démarrage. La part de chaque cause n'a pas été isolée. La promotion manuelle précédente a demandé un refresh Argo normal : cette intervention n'est pas incluse dans le cycle automatique mesuré ici.
 
 ## 3. Gates et décisions
 
-Run KFP `2698026a-2258-475e-88ce-9866032d1104`, nom `ct-evidently-drift-20261120-215214` : **SUCCEEDED**, sept tâches réussies (`ingest-ct-data`, `validate-data`, `prepare-features`, `train-model`, `evaluate-model`, `register-challenger`, `promotion-gate`). Validation GX réussie avant préparation. Run d'entraînement MLflow `a902bebbdde241ea87a32bc744279ee2` ; rapport de drift et lot dans `runs:/61cba61414724aa7b4c4469e41ca3f30/batch/current.csv` et `runs:/61cba61414724aa7b4c4469e41ca3f30/drift_report.html`. Le modèle 18 porte `kfp_run_id`, `ct_trigger=evidently-drift`, `ct_drift_share=0.1500`, `previous_champion=17`, `promotion=passed`.
+Run KFP **`d538fecb-e59e-4d95-a5f0-76ebbd3a5037`**, `ct-evidently-drift-20261120-224035` : **SUCCEEDED**, sept tâches réussies (`ingest-ct-data`, `validate-data`, `prepare-features`, `train-model`, `evaluate-model`, `register-challenger`, `promotion-gate`). Run MLflow d'entraînement **`f2d47c40fcfd4fe98b66a149ed010410`** ; rapport et lot : `runs:/c03767f36e094618adbbd54f9e262183/drift_report.html` et `runs:/c03767f36e094618adbbd54f9e262183/batch/current.csv`. Les tags `kfp_run_id`, `ct_trigger`, `ct_drift_share`, `previous_champion` et `promotion=passed` relient les étapes.
 
-Comparaison de gate sur les **mêmes données récentes** :
+### Gate de promotion : version 19 PROMUE
 
-| Modèle | ROC AUC | Coût métier |
-|---|---:|---:|
-| Ancien champion 17 | 0,8050 | 124 |
-| Challenger 18 | 0,8094 | 108 |
+| Règle | Résultat |
+|---|---|
+| roc_auc >= 0.7 | OK |
+| business_cost <= 108 (champion v18) | OK |
 
-Règles du contrat : ROC AUC ≥ 0,70 et coût challenger ≤ coût champion. Les deux passent ; la gate promeut réellement la version **18**. Seuil de décision lu dans le run : **0,3182**. Ce résultat Registry ne signifie pas une mise en production : `CT_AUTO_RELEASE=0`, aucun export ni commit automatique ; ONNX et métadonnées versionnés inchangés. Le canary du nouveau modèle et sa décision restent **en attente**, sans extrapoler la démonstration du Lab 5.
+| Modèle | roc_auc | coût métier |
+|---|---|---|
+| challenger v19 | 0.8094 | 108 |
+| champion v18 | 0.8094 | 108 |
 
-Contrôle final réel : **Résultat : 11/18 vérifications OK**, `make` retourne **2** (sept échecs, code du script 7), sans contrôle ignoré. Référence initiale avant Argo/CT : **4/18**.
+Chaque modèle est évalué au seuil de son propre run sur les **mêmes données récentes** ; les règles du contrat ne sont pas modifiées. Le nouveau numéro de version atteste une nouvelle exécution et un nouvel enregistrement ; il ne démontre pas à lui seul un gain prédictif. Le lot ×1,5 est celui du scénario déjà utilisé pour le champion 18.
 
-Les contrôles acquis couvrent les fichiers, le schéma Actions, lint/tests, les deux rendus Kustomize, Argo prêt, webhook joignable, MLflow CT, run KFP réussi, contrat sans colonnes codées en dur, jeton hors Git et structure du rapport. Les sept contrôles restant à démontrer concernent la CI sur `main`, les Applications Synced/Healthy, staging, la gestion GitOps de prod, le tag servi conforme à Git, le champion CT servi et l'historique des commits automatiques. Ce sont des validations bloquées par les fusions/publications, pas des résultats positifs. La structure du rapport peut passer son contrôle alors que la démonstration reste incomplète.
+La phase manuelle de l'étape 8 a publié le modèle 18 dans **2.1.7** : sur 200 appels au canary 10 %, **181 anciennes réponses / 19 nouvelles**, sans erreur ; après promotion, **200/200** réponses 2.1.7. Le bot a ensuite effectué son analyse naïve du nouveau canary (50 prédictions sur la route `latest-`), puis poussé le commit à 100 %. Son historique porte `released=true` ; trafic, `/version` et prédictions ont été revérifiés sur le cluster. Aucun rollback n'a été nécessaire.
 
-Non-régression réelle après CT : `check-m5` **14/14**. Lint et **57 tests locaux réussis** ; checkout sans `.env`, DVC, MLflow ni cluster : **49 réussis, 8 tests comportementaux ignorés** faute de modèle DVC, tous exécutés avec succès dans l'environnement local. CI distante de #7 : **44 réussis, 8 ignorés**, build et smoke réussis ; les cinq tests CT arrivent dans les PR suivantes.
+Preuve Git du cycle automatique :
+
+| Étape | Commit | Horodatage | Sujet |
+|---|---|---|---|
+| model | `fb82046` | 2026-11-20T21:44:27+00:00 | `ct: scoring-model v19 (run KFP d538fecb, drift_share=0.15)` |
+| staging | `3e8000c` | 2026-11-20T21:46:28+00:00 | `gitops(staging): ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.8 [fb82046]` |
+| canary | `937485f` | 2026-11-20T21:49:24+00:00 | `gitops(prod): canary 10% 2.1.8` |
+| promotion | `1bbe78a` | 2026-11-20T21:50:17+00:00 | `gitops(prod): promote 100% 2.1.8` |
+
+[CI automatique réussie](https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44822990660). Image résolue par Knative : **`ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api@sha256:1c0d2a48bb6b6a1b2c013bd7a94f85c6f42cab1138fb906f3862248cdf07b0f2`**. SHA-256 ONNX : **`4b7517525ab6398be391bb58404f8584bdb49502cace1ca070d43b99ddaa222e`**. Le seuil exporté **0.3182** vient du run, sans constante ajoutée pour cette version.
+
+**Écart au scénario ×2 de l'étape 9.3 :** le run `5ac6dafd-f7b7-48e8-abc2-17c82f87705c` a réellement échoué à `validate-data` (2 contrôles sur 67). Les bornes GX figées sont 116 pour la durée et 131 pour l'âge ; ×2 produit **14/1 000** et **18/1 000** valeurs hors contrat, au-delà de la tolérance de **1 %**. Préparation et entraînement n'ont pas démarré, aucune version n'a été promue ni publiée. Le scénario ×1,5, lui aussi prévu par le guide, ne dépasse pas ces bornes tout en produisant le drift de 15 %. Il a servi au cycle positif, **sans régénérer GX, modifier les seuils ou changer le code du pipeline**. La réussite du cycle ×2 exact n'est donc pas revendiquée.
+
+Validation réelle sur `main` après le cycle : **`Résultat : 18/18 vérifications OK`**, code retour **0**, aucun SKIP ; contrôle officiel inchangé. Référence précédente : 11/18 avant les fusions, sept validations alors bloquées. Non-régression après le cycle : **M0 19/19, M1 18/18, M5 14/14**, lint réussi ; les **57 tests** sont exécutés par le contrôle M6. Équivalence ONNX/scikit-learn revérifiée sur 200 lignes après le nouvel export (voir preuves). Airflow reste arrêté comme demandé ; le contrôle M2 complet n'a pas été rejoué pour ne pas présenter ses services arrêtés comme disponibles.
 
 ## 4. Points d'attention
 
-Le webhook est lié à `127.0.0.1:8095`. Le jeton aléatoire reste dans `.env` ignoré : sans jeton, **401** ; avec jeton, **202**. Aucun secret n'est versionné. La publication automatique est désactivée et le pilote conserve la décision de fusion après revue du binôme. Cette exécution s'arrête au Registry, conformément au déroulement adapté.
+Le webhook écoute uniquement sur `127.0.0.1` ; le jeton reste dans `.env` ignoré et n'est affiché ni commité. Tests réels précédents : **401 sans jeton**, **202 authentifié**. Les accès Git du bot restent ceux du pilote, obtenus via l'authentification `gh` existante, sans modifier clés ou remotes. Le code des quatre PR a été revu avant fusion ; la publication manuelle du modèle de l'étape 8, puis les commits automatiques de publication et de déploiement prévus par le lab arrivent sur `main` sans PR, conformément à l'autorisation du pilote.
 
-Un retour arrière complet doit distinguer trois états : trafic KServe, alias MLflow et image déclarée dans Git. Après le CT, l'alias est 18 tandis que le service reste volontairement sur 17 ; un alias seul ne change pas l'ONNX embarqué. Les contrôles ont confirmé le même spec, la même révision et les mêmes empreintes des fichiers modèle. Aucun cluster, volume, bucket, historique ou service existant supprimé. L'installeur Argo a seulement nécessité le bit exécutable manquant ; son contenu et les contrôles officiels sont inchangés.
+Les trois états sont distincts : alias Registry, artifacts ONNX dans Git et image réellement servie. Leur concordance finale a été vérifiée ; elle ne découle pas du déplacement d'un alias. Pour un retour arrière, il faut piloter le trafic par Git et vérifier l'alias précédent ; une modification manuelle durable serait annulée par selfHeal. Aucun volume, bucket, modèle ou historique supprimé, aucun nettoyage global.
 
 ## 5. Différences avec la prod
 
-Le lot récent est **simulé et étiqueté** depuis le dataset du cours : il prouve le mécanisme, pas l'efficacité sur un changement réel de population. Les décisions sont fondées sur un échantillon unique, sans estimation d'incertitude ni suivi des labels retardés. Les horodatages mesurés dépendent de ce poste WSL2/Docker Desktop et de sa connexion. Le webhook conserve son état en mémoire ; ce lab ne démontre pas une reprise durable après panne.
+La gate GX a montré son utilité en bloquant le scénario ×2. Le lot étiqueté reste simulé depuis le dataset du cours : il prouve l'orchestration, pas la qualité d'un monitoring sur une vraie population récente. La référence de drift reste l'ancien `train.csv` du guide ; elle n'est pas actualisée automatiquement après promotion, ce qui peut provoquer une nouvelle alerte sur un lot identique. L'état et le cooldown du webhook sont en mémoire ; ce TP ne démontre pas la reprise durable après panne.
 
-En production, il faudrait discuter des secrets managés, d'une identité limitée pour le bot, de PR de release plutôt que de commits directs, d'environnements séparés, d'audit, de reprise et de métriques métier. Ces pistes ne sont pas implémentées ici. Le code et l'architecture du professeur sont conservés.
+L'analyse naïve de 50 prédictions vérifie la disponibilité et les probabilités, sans comparer les distributions d'erreurs ou de latences des deux révisions. Les étapes suivantes du cours traiteront ce sujet. En production, discuter de labels retardés, validation humaine, secrets managés, identité limitée du bot, PR de release, environnements séparés, audit et reprise. Ces pistes ne sont pas implémentées dans ce lab.
 
-Ordre des PR : **#7 cicd → main**, **#8 argocd → cicd**, **#9 ct → argocd**, puis **rapport → ct**. Après revue, fusionner successivement et ajuster chaque base vers `main` une fois le parent fusionné. Préserver les tags staging générés par la CI lors de la résolution d'éventuels conflits. Après publication GHCR accessible : appliquer les Applications, vérifier Synced/Healthy et selfHeal, terminer le parcours contrôlé de publication/canary, relever le temps complet puis relancer `make check-m6`. Aucune fusion ou poussée directe sur `main` effectuée dans cette séance.
+## 6. Captures d'écran et preuves
 
-## 6. Captures d'écran
+Les fichiers [preuves-cycle.json](m6/preuves-cycle.json), [validation.txt](m6/validation.txt) et [gate.md](m6/gate.md) conservent les mesures, identifiants et sorties authentiques. Les logs détaillés restent aussi dans l'environnement du pilote ; aucune capture n'est fabriquée. La tentative de capture Windows a été interrompue par l'outil, qui ne pouvait pas identifier l'URL du navigateur avec assez de certitude pour appliquer ses règles de sécurité ; aucune capture PNG n'a été produite.
 
-Captures authentiques à réaliser dans l'environnement du pilote : run KFP ci-dessus avec sept tâches vertes et tableau de gate ; MLflow version 18, tags et alias ; Actions de #7, run `44811547598` vert ; terminal montrant les quatre pods Argo prêts et `check-m5` 14/14.
-
-Captures **encore impossibles avant les fusions** : Applications Argo Synced/Healthy, Actions de publication sur `main`, staging prêt avec image GHCR et canary du modèle CT puis promotion. Elles seront ajoutées après la démonstration, ainsi que la validation finale complète. Aucune capture ni sortie de validation n'est fabriquée.
+Captures utiles dans les interfaces réelles : Argo `scoring-staging` et `scoring-prod` Synced/Healthy ; run KFP `d538fecb-e59e-4d95-a5f0-76ebbd3a5037` à sept tâches vertes et rapport de gate ; run GitHub Actions ci-dessus avec trois jobs verts ; MLflow version 19 et tags ; terminal montrant `/version`, trafic 100 % et `make check-m6`. La preuve du canary manuel est conservée dans le JSON ; son état transitoire n'est plus affichable après promotion. Le run ×2 échoué reste consultable dans KFP comme preuve de protection.
