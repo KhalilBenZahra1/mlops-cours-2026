@@ -78,3 +78,12 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Canary :** 181 réponses v1 et 19 réponses v2 sur 200 ; promotion à 100 %, prédictions conservées.
 - **Bloqué / appris :** intégration Docker WSL et horloge rétablies ; téléchargements lents ; erreur TrustRemoteCode des configurations LLM, finalisation manuelle des étapes restantes de l'installation. Locust passé à quatre processus après saturation du générateur ; rares HTTP 502 conservés dans le rapport.
 - **Prochaine étape :** revue croisée de la PR avant fusion.
+
+
+## S6 — 2026-11-20 — Lab 6 : première PR, étapes 1–2
+
+- **Pilote / assistance :** @KhalilBenZahra1 / Codex ; branche `lab/m6-cicd` issue de `main` (`a14ed12`, PR Lab 5 fusionnée).
+- **Fait :** fixtures et mini-modèle ONNX du guide, tests API et Kustomize ; couverture des Labs 3–4 conservée, imports isolés entre mini-modèle et véritable ONNX versionné ; repli synthétique issu des domaines GX figés quand les données DVC sont absentes. Workflow `CI scoring` à trois jobs : lint/tests, build et fumée, puis publication GHCR et commit GitOps staging sur `main` après fusion. Starter `gitops.py` conservé, y compris `local-ci` ; Applications Argo CD préparées selon l'étape 1, sans application au cluster.
+- **Validé :** `make lint`, `make test` (52 réussis), copie de checkout sans `.env`/DVC ni services accessibles (44 réussis, 8 comportementaux ignorés comme prévu sans modèle DVC), schéma GitHub Actions avec `check-jsonschema@0.38.2`, rendus staging/prod avec Kustomize 5.8.1 ; `make check-m5` 14/14. État et journaux de la CI distante consultables dans la PR.
+- **Préservé / appris :** overlay prod identique au spec servi (image 2.0.0, trafic 100 %, révision 00003), ONNX et métadonnées inchangés ; 14 déploiements KFP disponibles, UI/API sur 8082 et `KFP_HOST` cohérent dans `.env` ignoré ; MLflow/S3 accessibles par les port-forwards du cours. SSH indisponible dans le terminal de contrôle : authentification `gh` existante utilisée temporairement en HTTPS, sans changer clés ou remotes.
+- **Prochaine étape :** relecture et approbation du binôme, puis fusion par le pilote ; suivre la publication et le commit staging sur `main`, avant la phase Argo CD dans sa PR dédiée. Aucun CT ni déploiement GitOps exécuté ; validation complète `check-m6` réservée à la fin du lab. Aucune nouvelle décision d'architecture hors du guide.
