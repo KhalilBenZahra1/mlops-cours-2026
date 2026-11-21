@@ -13,3 +13,11 @@ images:
     newTag: "2.1.16"
 patches:
   - path: canary.yaml
+  # Lab 8 : identité minimale, uniquement en production.
+  - target:
+      kind: InferenceService
+      name: scoring-model
+    patch: |-
+      - op: add
+        path: /spec/predictor/serviceAccountName
+        value: scoring-sa

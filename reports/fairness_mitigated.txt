@@ -1,0 +1,33 @@
+Champion v19 · seuil 0.318 · coût de référence 105
+
+=== Attribut sensible : age ===
+                             coût    Δcoût refus DP diff ratio acc. EO diff attribut en prod
+champion                      105    +0.0%   58%   0.133       0.70   0.042              oui
+sans_attribut                 111    +5.7%   64%   0.154       0.60   0.094              non
+threshold_optimizer_accuracy  248  +136.2%    7%   0.040       0.96   0.037              oui
+threshold_optimizer_cout      120   +14.3%   60%   0.013       0.97   0.117              oui
+exponentiated_gradient        116   +10.5%   64%   0.065       0.83   0.118              non
+Proxy : le groupe se devine sans la colonne avec une AUC de 0.77
+        variables les plus révélatrices : housing (0.69), personal_status (0.67), employment (0.63)
+
+=== Attribut sensible : personal_status ===
+                             coût   Δcoût refus DP diff ratio acc. EO diff attribut en prod
+champion                      105   +0.0%   58%   0.188       0.61   0.333              oui
+sans_attribut                 119  +13.3%   68%   0.172       0.49   0.389              non
+threshold_optimizer_accuracy  154  +46.7%   26%   0.199       0.74   0.529              oui
+threshold_optimizer_cout      100   -4.8%   65%   0.194       0.53   0.333              oui
+exponentiated_gradient        118  +12.4%   65%   0.140       0.64   0.333              non
+Proxy : le groupe se devine sans la colonne avec une AUC de 0.71
+        variables les plus révélatrices : age (0.64), housing (0.61), employment (0.61)
+
+=== Attribut sensible : foreign_worker ===
+                             coût   Δcoût refus DP diff ratio acc. EO diff attribut en prod
+champion                      105   +0.0%   58%   0.259       0.61   0.274              oui
+sans_attribut                 107   +1.9%   62%   0.129       0.74   0.119              non
+threshold_optimizer_accuracy  178  +69.5%   20%   0.034       0.96   0.559              oui
+threshold_optimizer_cout      103   -1.9%   57%   0.077       0.85   0.136              oui
+exponentiated_gradient        110   +4.8%   64%   0.144       0.71   0.141              non
+Proxy : le groupe se devine sans la colonne avec une AUC de 0.78
+        variables les plus révélatrices : duration (0.77), property_magnitude (0.67), purpose (0.67)
+
+-> reports/fairness_mitigated.json
