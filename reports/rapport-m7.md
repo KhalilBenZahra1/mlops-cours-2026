@@ -217,25 +217,69 @@ tous code 0 ; lint et 83 tests réussis. Le contrôle Lab 6 confirme toujours le
 19 validé et servi ; il ne signifie pas que le challenger 20 de cette séance a été promu.
 Le SHA-256 du contrôle officiel Lab 7 est inchangé, conservé dans l'état final.
 
-Captures PNG de cette démonstration **non produites dans cette séance** : les preuves
-jointes sont des sorties/API réelles, pas des captures reconstituées. Pour la soutenance :
+### Captures de la démonstration
 
-1. [Grafana](http://localhost:3000/d/scoring-overview) : namespace `scoring`, fenêtre UTC
-   18:17–19:08 le 21/11, puis zoom 18:25–18:41 ; métriques, PSI et logs JSON. Réduire la
-   vue des caractéristiques de demandes sensibles sur les captures partagées.
-2. [Prometheus](http://localhost:9090/targets) : cible courante UP ; historique d'alerte
-   via requête `ALERTS{alertname="ScoringDataDrift"}`. [Alertmanager](http://localhost:9093)
-   peut maintenant être résolu : ne pas le présenter comme encore Firing.
-3. Réceptions webhook.site FIRING/RESOLVED en masquant l'URL et l'identifiant de l'endpoint.
-4. KFP : run exact `a052e470-2935-40d6-a687-f2175e33b88a`, sept tâches et gate REFUSÉE ;
-   [MLflow](http://localhost:5000) : champion 19 et challenger 20 rejeté.
-5. [Argo CD](https://localhost:8443) : deux Applications Synced/Healthy ; CI n°15 et n°16,
-   distinction push/main et déclenchement manuel ; `/version` final avec le Host KServe.
-6. Terminal Ubuntu : `cd ~/mlops-cours-2026 && make check-m7`, puis les deux rapports
-   canary positifs et le rollback. Utiliser une vraie capture du terminal, sans `.env`.
+Captures réelles réalisées manuellement après les démonstrations. Les heures affichées dans Grafana sont en heure de Tunis (UTC + 1). Les notifications ont été reçues sur webhook.site ; aucun canal Slack n'a été contacté. Les captures complètent les preuves textuelles et JSON liées dans ce rapport.
 
-Les interfaces, le webhook CT inactif (`busy=false`) et le trafic normal nécessaire aux
-captures restent disponibles. Aucun nettoyage, suppression d'intégration ou pause KFP.
+**Grafana : trafic normal et métriques du modèle.**
+
+![Grafana : trafic normal et métriques du modèle.](m7/captures/grafana-normal.png)
+
+**Grafana : trafic du scénario de dérive.**
+
+![Grafana : trafic du scénario de dérive.](m7/captures/grafana-drift.png)
+
+**PSI : dérive observée sur age et credit_amount.**
+
+![PSI : dérive observée sur age et credit_amount.](m7/captures/grafana-psi.png)
+
+**Historique Prometheus : alertes ScoringDataDrift en état FIRING.**
+
+![Historique Prometheus : alertes ScoringDataDrift en état FIRING.](m7/captures/prometheus-drift-alert.png)
+
+**Webhook.site : notification FIRING reçue.**
+
+![Webhook.site : notification FIRING reçue.](m7/captures/notification-firing.png)
+
+**Webhook.site : notification RESOLVED reçue.**
+
+![Webhook.site : notification RESOLVED reçue.](m7/captures/notification-resolved.png)
+
+**KFP : sept tâches réussies du ré-entraînement.**
+
+![KFP : sept tâches réussies du ré-entraînement.](m7/captures/kfp-ct.png)
+
+**Gate : challenger 20 refusé, coût métier 108 contre 105 pour le champion.**
+
+![Gate : challenger 20 refusé, coût métier 108 contre 105 pour le champion.](m7/captures/gate-refus.png)
+
+**Canary à 10 % : six garde-fous PASS, décision CONTINUE.**
+
+![Canary à 10 % : six garde-fous PASS, décision CONTINUE.](m7/captures/canary-10.png)
+
+**Canary à 50 % : six garde-fous PASS, décision PROMOTE.**
+
+![Canary à 50 % : six garde-fous PASS, décision PROMOTE.](m7/captures/canary-50.png)
+
+**Canary défectueux : observabilité FAIL, décision ROLLBACK.**
+
+![Canary défectueux : observabilité FAIL, décision ROLLBACK.](m7/captures/canary-rollback.png)
+
+**Argo CD : production et staging Synced et Healthy.**
+
+![Argo CD : production et staging Synced et Healthy.](m7/captures/argocd.png)
+
+**GitHub Actions : workflow manuel réussi, distinct du CT.**
+
+![GitHub Actions : workflow manuel réussi, distinct du CT.](m7/captures/github-actions.png)
+
+**Production finale : API 2.1.16, modèle 19, trafic à 100 %.**
+
+![Production finale : API 2.1.16, modèle 19, trafic à 100 %.](m7/captures/production.png)
+
+**Validation officielle : 15/15 vérifications OK.**
+
+![Validation officielle : 15/15 vérifications OK.](m7/captures/check-m7.png)
 
 ## 6. Améliorations à prévoir
 
