@@ -1,0 +1,109 @@
+{
+  "started": "2026-11-21T19:00:47.295569+00:00",
+  "ready_at": "2026-11-21T19:02:00.314227+00:00",
+  "ready_epoch": 1795287720.3142471,
+  "good_before": {
+    "version": "2.1.16",
+    "model_version": "19"
+  },
+  "bad": {
+    "version": "2.0.0",
+    "model_version": "17"
+  },
+  "metrics_status": 404,
+  "champion_before": "19",
+  "status": {
+    "address": {
+      "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+    },
+    "components": {
+      "predictor": {
+        "address": {
+          "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+        },
+        "latestCreatedRevision": "scoring-model-predictor-00009",
+        "latestReadyRevision": "scoring-model-predictor-00009",
+        "latestRolledoutRevision": "scoring-model-predictor-00008",
+        "previousRolledoutRevision": "scoring-model-predictor-00007",
+        "traffic": [
+          {
+            "latestRevision": true,
+            "percent": 10,
+            "revisionName": "scoring-model-predictor-00009",
+            "tag": "latest",
+            "url": "http://latest-scoring-model-predictor.scoring.example.com"
+          },
+          {
+            "latestRevision": false,
+            "percent": 90,
+            "revisionName": "scoring-model-predictor-00008",
+            "tag": "prev",
+            "url": "http://prev-scoring-model-predictor.scoring.example.com"
+          }
+        ],
+        "url": "http://scoring-model-predictor.scoring.example.com"
+      }
+    },
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-11-12T16:27:52Z",
+        "status": "True",
+        "type": "IngressReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T19:01:53Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "LatestDeploymentReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T19:01:53Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorConfigurationReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T19:01:54Z",
+        "status": "True",
+        "type": "PredictorReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T19:01:54Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorRouteReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T19:01:54Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T19:01:54Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "RoutesReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-12T16:23:30Z",
+        "severity": "Info",
+        "status": "False",
+        "type": "Stopped"
+      }
+    ],
+    "deploymentMode": "Knative",
+    "modelStatus": {
+      "copies": {
+        "failedCopies": 0,
+        "totalCopies": 1
+      },
+      "states": {
+        "activeModelState": "Loaded",
+        "targetModelState": "Loaded"
+      },
+      "transitionStatus": "UpToDate"
+    },
+    "observedGeneration": 18,
+    "url": "http://scoring-model-predictor.scoring.example.com"
+  }
+}

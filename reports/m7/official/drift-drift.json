@@ -1,0 +1,39 @@
+{
+  "mode": "drift",
+  "job": "scoring-drift-29921430",
+  "started": "2026-11-21T18:30:00Z",
+  "completed": "2026-11-21T18:30:12Z",
+  "reference_rows": 800,
+  "current_rows": 5000,
+  "scores": {
+    "age": 4.163754786657942,
+    "checking_status": 0.0008262096661010685,
+    "credit_amount": 1.458036086968391,
+    "credit_history": 0.01702025654957367,
+    "duration": 0.0635384294537506,
+    "employment": 0.0566963427223732,
+    "existing_credits": 0.018707570046250344,
+    "foreign_worker": 0.0011020554430236982,
+    "housing": 5.819471771759955e-05,
+    "installment_commitment": 0.01563052336453994,
+    "job": 0.01346619993767373,
+    "num_dependents": 0.004342877589519029,
+    "other_parties": 0.014392914402649858,
+    "other_payment_plans": 0.0016820559821560791,
+    "own_telephone": 0.00045464411712766513,
+    "personal_status": 0.025922801855750636,
+    "property_magnitude": 0.0019006373773283523,
+    "purpose": 0.07417805561731651,
+    "residence_since": 0.01741595546035027,
+    "savings_status": 0.039253964372143055
+  },
+  "detected_features": [
+    "age",
+    "credit_amount"
+  ],
+  "report_uri": "s3://monitoring/drift-reports/drift-20261121T183007Z.html",
+  "report_bytes": 4363142,
+  "report_sha256": "cd78b95cf97d319a70f5b1c55ce19b5fcc2041bc18979cbaf9757e244c4b987f",
+  "ct_called_from_job": false,
+  "observed_at": "2026-11-21T18:30:53.342260+00:00"
+}

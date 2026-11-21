@@ -1,0 +1,653 @@
+{
+  "at": "2026-11-21T19:07:24.233757+00:00",
+  "head": "387ce1e4f9051bb80b35d12c65cef6de47a9ae15",
+  "branch": "main",
+  "lab6_files_unchanged": {
+    "reports/m6/captures/argocd.png": true,
+    "reports/m6/captures/check-m6.png": true,
+    "reports/m6/captures/github-actions.png": true,
+    "reports/m6/captures/kfp.png": true,
+    "reports/m6/captures/production.png": true,
+    "reports/m6/gate.md": true,
+    "reports/m6/preuves-cycle.json": true,
+    "reports/m6/validation.txt": true,
+    "reports/rapport-m6.md": true
+  },
+  "official_check_sha256": "198f4f0326ef15faf4e205c9cbd0b3715e6123465b213552ed5007cf062294d7",
+  "nodes": [
+    {
+      "name": "mlops-lab-control-plane",
+      "ready": "True"
+    },
+    {
+      "name": "mlops-lab-worker",
+      "ready": "True"
+    },
+    {
+      "name": "mlops-lab-worker2",
+      "ready": "True"
+    }
+  ],
+  "apps": [
+    {
+      "name": "scoring-prod",
+      "sync": "Synced",
+      "health": "Healthy",
+      "revision": "387ce1e4f9051bb80b35d12c65cef6de47a9ae15"
+    },
+    {
+      "name": "scoring-staging",
+      "sync": "Synced",
+      "health": "Healthy",
+      "revision": "387ce1e4f9051bb80b35d12c65cef6de47a9ae15"
+    }
+  ],
+  "isvcs": {
+    "scoring": {
+      "spec": {
+        "predictor": {
+          "canaryTrafficPercent": 100,
+          "containers": [
+            {
+              "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.16",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "kserve-container",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "httpGet": {
+                  "path": "/health",
+                  "port": 8000
+                }
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "1",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "200m",
+                  "memory": "256Mi"
+                }
+              }
+            }
+          ],
+          "maxReplicas": 5,
+          "minReplicas": 1,
+          "scaleMetric": "rps",
+          "scaleTarget": 200
+        }
+      },
+      "status": {
+        "address": {
+          "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+        },
+        "components": {
+          "predictor": {
+            "address": {
+              "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+            },
+            "latestCreatedRevision": "scoring-model-predictor-00010",
+            "latestReadyRevision": "scoring-model-predictor-00010",
+            "latestRolledoutRevision": "scoring-model-predictor-00010",
+            "previousRolledoutRevision": "scoring-model-predictor-00009",
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100,
+                "revisionName": "scoring-model-predictor-00010",
+                "tag": "latest",
+                "url": "http://latest-scoring-model-predictor.scoring.example.com"
+              }
+            ],
+            "url": "http://scoring-model-predictor.scoring.example.com"
+          }
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-11-12T16:27:52Z",
+            "status": "True",
+            "type": "IngressReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T19:06:08Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "LatestDeploymentReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T19:06:08Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "PredictorConfigurationReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T19:06:08Z",
+            "status": "True",
+            "type": "PredictorReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T19:06:08Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "PredictorRouteReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T19:06:08Z",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T19:06:08Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "RoutesReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-12T16:23:30Z",
+            "severity": "Info",
+            "status": "False",
+            "type": "Stopped"
+          }
+        ],
+        "deploymentMode": "Knative",
+        "modelStatus": {
+          "copies": {
+            "failedCopies": 0,
+            "totalCopies": 1
+          },
+          "states": {
+            "activeModelState": "Loaded",
+            "targetModelState": "Loaded"
+          },
+          "transitionStatus": "UpToDate"
+        },
+        "observedGeneration": 20,
+        "url": "http://scoring-model-predictor.scoring.example.com"
+      }
+    },
+    "scoring-staging": {
+      "spec": {
+        "predictor": {
+          "containers": [
+            {
+              "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.16",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "kserve-container",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "httpGet": {
+                  "path": "/health",
+                  "port": 8000
+                }
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "1",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "200m",
+                  "memory": "256Mi"
+                }
+              }
+            }
+          ],
+          "maxReplicas": 1,
+          "minReplicas": 0,
+          "scaleMetric": "rps",
+          "scaleTarget": 200
+        }
+      },
+      "status": {
+        "address": {
+          "url": "http://scoring-model-predictor.scoring-staging.svc.cluster.local"
+        },
+        "components": {
+          "predictor": {
+            "address": {
+              "url": "http://scoring-model-predictor.scoring-staging.svc.cluster.local"
+            },
+            "latestCreatedRevision": "scoring-model-predictor-00008",
+            "latestReadyRevision": "scoring-model-predictor-00008",
+            "latestRolledoutRevision": "scoring-model-predictor-00008",
+            "previousRolledoutRevision": "scoring-model-predictor-00007",
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100,
+                "revisionName": "scoring-model-predictor-00008",
+                "tag": "latest",
+                "url": "http://latest-scoring-model-predictor.scoring-staging.example.com"
+              }
+            ],
+            "url": "http://scoring-model-predictor.scoring-staging.example.com"
+          }
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-11-20T21:28:28Z",
+            "status": "True",
+            "type": "IngressReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T18:48:11Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "LatestDeploymentReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T18:48:11Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "PredictorConfigurationReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T18:48:11Z",
+            "status": "True",
+            "type": "PredictorReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T18:48:11Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "PredictorRouteReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T18:48:11Z",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T18:48:11Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "RoutesReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-20T21:28:08Z",
+            "severity": "Info",
+            "status": "False",
+            "type": "Stopped"
+          }
+        ],
+        "deploymentMode": "Knative",
+        "modelStatus": {
+          "copies": {
+            "failedCopies": 0,
+            "totalCopies": 1
+          },
+          "states": {
+            "activeModelState": "Loaded",
+            "targetModelState": "Loaded"
+          },
+          "transitionStatus": "UpToDate"
+        },
+        "observedGeneration": 8,
+        "url": "http://scoring-model-predictor.scoring-staging.example.com"
+      }
+    },
+    "scoring-integration": {
+      "spec": {
+        "predictor": {
+          "canaryTrafficPercent": 10,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "APP_VERSION",
+                  "value": "m7-integration-db3668ce7ab8-candidate"
+                },
+                {
+                  "name": "LOG_PREDICTIONS",
+                  "value": "true"
+                }
+              ],
+              "image": "localhost:5001/scoring-api:m7-integration-db3668ce7ab8",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "kserve-container",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "httpGet": {
+                  "path": "/health",
+                  "port": 8000
+                }
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "1",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "200m",
+                  "memory": "256Mi"
+                }
+              }
+            }
+          ],
+          "maxReplicas": 1,
+          "minReplicas": 1,
+          "scaleMetric": "rps",
+          "scaleTarget": 200
+        }
+      },
+      "status": {
+        "address": {
+          "url": "http://scoring-integration-predictor.scoring-integration.svc.cluster.local"
+        },
+        "components": {
+          "predictor": {
+            "address": {
+              "url": "http://scoring-integration-predictor.scoring-integration.svc.cluster.local"
+            },
+            "latestCreatedRevision": "scoring-integration-predictor-00002",
+            "latestReadyRevision": "scoring-integration-predictor-00002",
+            "latestRolledoutRevision": "scoring-integration-predictor-00001",
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 10,
+                "revisionName": "scoring-integration-predictor-00002"
+              },
+              {
+                "latestRevision": false,
+                "percent": 90,
+                "revisionName": "scoring-integration-predictor-00001",
+                "tag": "prev",
+                "url": "http://prev-scoring-integration-predictor.scoring-integration.example.com"
+              }
+            ],
+            "url": "http://scoring-integration-predictor.scoring-integration.example.com"
+          }
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-11-21T16:34:17Z",
+            "status": "True",
+            "type": "IngressReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:30Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "LatestDeploymentReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:30Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "PredictorConfigurationReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:31Z",
+            "status": "True",
+            "type": "PredictorReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:31Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "PredictorRouteReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:31Z",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:31Z",
+            "severity": "Info",
+            "status": "True",
+            "type": "RoutesReady"
+          },
+          {
+            "lastTransitionTime": "2026-11-21T16:34:02Z",
+            "severity": "Info",
+            "status": "False",
+            "type": "Stopped"
+          }
+        ],
+        "deploymentMode": "Knative",
+        "modelStatus": {
+          "copies": {
+            "failedCopies": 0,
+            "totalCopies": 1
+          },
+          "states": {
+            "activeModelState": "Loaded",
+            "targetModelState": "Loaded"
+          },
+          "transitionStatus": "UpToDate"
+        },
+        "observedGeneration": 2,
+        "url": "http://scoring-integration-predictor.scoring-integration.example.com"
+      }
+    }
+  },
+  "integration_spec_unchanged": true,
+  "kfp_deployments": [
+    {
+      "name": "cache-deployer-deployment",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "cache-server",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "metadata-envoy-deployment",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "metadata-grpc-deployment",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "metadata-writer",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "ml-pipeline",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "ml-pipeline-persistenceagent",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "ml-pipeline-scheduledworkflow",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "ml-pipeline-ui",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "ml-pipeline-viewer-crd",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "ml-pipeline-visualizationserver",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "mysql",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "seaweedfs",
+      "desired": 1,
+      "available": 1
+    },
+    {
+      "name": "workflow-controller",
+      "desired": 1,
+      "available": 1
+    }
+  ],
+  "airflow_running": [],
+  "monitoring_pods": [
+    {
+      "name": "alertmanager-kube-prom-stack-kube-prome-alertmanager-0",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "alloy-758967f44d-s6ksl",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "kube-prom-stack-grafana-5b8db57fb5-68n4r",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "kube-prom-stack-kube-prome-operator-77c4c4bcd4-d7fw7",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "kube-prom-stack-kube-state-metrics-689cfd7488-qb9wm",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "kube-prom-stack-prometheus-node-exporter-7bncf",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "kube-prom-stack-prometheus-node-exporter-jfs84",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "kube-prom-stack-prometheus-node-exporter-wzsc4",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "loki-0",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "prometheus-kube-prom-stack-kube-prome-prometheus-0",
+      "phase": "Running",
+      "ready": true
+    },
+    {
+      "name": "prometheus-pushgateway-589c7894d9-mzr27",
+      "phase": "Running",
+      "ready": true
+    }
+  ],
+  "http": {
+    "prometheus": 200,
+    "grafana": 200,
+    "alertmanager": 200,
+    "loki": 200,
+    "pushgateway": 200,
+    "kfp": 200,
+    "mlflow": 200,
+    "registry": 200,
+    "argocd": 200,
+    "ct": 200
+  },
+  "aliases": {
+    "champion": {
+      "version": "19",
+      "run_id": "f2d47c40fcfd4fe98b66a149ed010410",
+      "promotion": "passed"
+    },
+    "challenger": {
+      "version": "20",
+      "run_id": "9ed81e39c7f34009a297653c505ce627",
+      "promotion": "rejected"
+    }
+  },
+  "served": {
+    "version": "2.1.16",
+    "model_version": "19"
+  },
+  "model_metadata": {
+    "dataset": "german-credit",
+    "model_name": "scoring-model",
+    "model_alias": "champion",
+    "model_version": "19",
+    "run_id": "f2d47c40fcfd4fe98b66a149ed010410",
+    "target": "credit_risk",
+    "positive_class": "bad",
+    "threshold": 0.3182,
+    "threshold_source": "param decision_threshold du run",
+    "features": {
+      "numeric": [
+        "duration",
+        "credit_amount",
+        "installment_commitment",
+        "residence_since",
+        "age",
+        "existing_credits",
+        "num_dependents"
+      ],
+      "categorical": [
+        "checking_status",
+        "credit_history",
+        "purpose",
+        "savings_status",
+        "employment",
+        "personal_status",
+        "other_parties",
+        "property_magnitude",
+        "other_payment_plans",
+        "housing",
+        "job",
+        "own_telephone",
+        "foreign_worker"
+      ]
+    },
+    "onnx_opset": 17,
+    "onnx_sha256": "4b7517525ab6398be391bb58404f8584bdb49502cace1ca070d43b99ddaa222e",
+    "exported_at": "2026-11-20T21:44:26+00:00"
+  },
+  "packaging/model/model.onnx_unchanged": true,
+  "packaging/model/metadata.json_unchanged": true,
+  "cronjob": {
+    "schedule": "*/15 * * * *",
+    "suspend": false,
+    "successfulJobsHistoryLimit": 20,
+    "failedJobsHistoryLimit": 20
+  },
+  "ct_health": {
+    "status": "ok",
+    "busy": false,
+    "last_run_id": "a052e470-2935-40d6-a687-f2175e33b88a"
+  }
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "id": 44932624287,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44932624287",
+    "event": "pull_request",
+    "head_branch": "lab/m7-monitoring",
+    "head_sha": "820371d4b6c4fe8b6af5f5d6fa27396f3fb1ffcf",
+    "run_number": 10,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T17:54:58Z",
+    "updated_at": "2026-11-21T17:56:31Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T17:55:00Z",
+        "completed_at": "2026-11-21T17:55:47Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T17:55:49Z",
+        "completed_at": "2026-11-21T17:56:30Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "skipped",
+        "started_at": "2026-11-21T17:56:30Z",
+        "completed_at": "2026-11-21T17:56:30Z"
+      }
+    ]
+  },
+  {
+    "id": 44933184253,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44933184253",
+    "event": "pull_request",
+    "head_branch": "lab/m7-observabilite",
+    "head_sha": "db3668ce7ab8df4da9e2890412a4029e1cfb5fcb",
+    "run_number": 12,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T18:01:09Z",
+    "updated_at": "2026-11-21T18:03:11Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:01:11Z",
+        "completed_at": "2026-11-21T18:02:06Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:02:08Z",
+        "completed_at": "2026-11-21T18:03:10Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "skipped",
+        "started_at": "2026-11-21T18:03:10Z",
+        "completed_at": "2026-11-21T18:03:10Z"
+      }
+    ]
+  },
+  {
+    "id": 44933526547,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44933526547",
+    "event": "pull_request",
+    "head_branch": "lab/m7-integration",
+    "head_sha": "2199cefb9e22e661daf54b631c6d55e28fb9d8cb",
+    "run_number": 14,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T18:04:50Z",
+    "updated_at": "2026-11-21T18:06:35Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:04:52Z",
+        "completed_at": "2026-11-21T18:05:39Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:05:41Z",
+        "completed_at": "2026-11-21T18:06:34Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "skipped",
+        "started_at": "2026-11-21T18:06:35Z",
+        "completed_at": "2026-11-21T18:06:35Z"
+      }
+    ]
+  },
+  {
+    "id": 44932840409,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44932840409",
+    "event": "push",
+    "head_branch": "main",
+    "head_sha": "26f409debd1a473dca5892ee58044010f0a09614",
+    "run_number": 11,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T17:57:24Z",
+    "updated_at": "2026-11-21T18:00:21Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T17:57:26Z",
+        "completed_at": "2026-11-21T17:58:11Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T17:58:13Z",
+        "completed_at": "2026-11-21T18:00:05Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:00:07Z",
+        "completed_at": "2026-11-21T18:00:21Z"
+      }
+    ]
+  },
+  {
+    "id": 44933458996,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44933458996",
+    "event": "push",
+    "head_branch": "main",
+    "head_sha": "d712bd179d8bc84967d179e13b5d21734cde5618",
+    "run_number": 13,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T18:04:06Z",
+    "updated_at": "2026-11-21T18:06:28Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:04:08Z",
+        "completed_at": "2026-11-21T18:05:04Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:05:05Z",
+        "completed_at": "2026-11-21T18:06:11Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:06:13Z",
+        "completed_at": "2026-11-21T18:06:27Z"
+      }
+    ]
+  },
+  {
+    "id": 44933819281,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44933819281",
+    "event": "push",
+    "head_branch": "main",
+    "head_sha": "2640de203dfda1b4a5a5ef58dc15a885136aeb74",
+    "run_number": 15,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T18:07:56Z",
+    "updated_at": "2026-11-21T18:10:06Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:07:58Z",
+        "completed_at": "2026-11-21T18:08:48Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:08:50Z",
+        "completed_at": "2026-11-21T18:09:49Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:09:51Z",
+        "completed_at": "2026-11-21T18:10:06Z"
+      }
+    ]
+  },
+  {
+    "id": 44937266448,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44937266448",
+    "event": "workflow_dispatch",
+    "head_branch": "main",
+    "head_sha": "46e1696258321af2694b4725a2b3f3312b91908b",
+    "run_number": 16,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-21T18:45:37Z",
+    "updated_at": "2026-11-21T18:47:38Z",
+    "jobs": [
+      {
+        "name": "Lint + tests",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:45:40Z",
+        "completed_at": "2026-11-21T18:46:19Z"
+      },
+      {
+        "name": "Image scoring-api",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:46:21Z",
+        "completed_at": "2026-11-21T18:47:18Z"
+      },
+      {
+        "name": "Déployer en staging (commit GitOps)",
+        "conclusion": "success",
+        "started_at": "2026-11-21T18:47:20Z",
+        "completed_at": "2026-11-21T18:47:37Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,18 @@
+bash ./labs/m5-*/check.sh
+Lab 5 — Serving avec KServe (scoring/scoring-model, appel : http://localhost:30080 + Host: scoring-model-predictor.scoring.example.com)
+✅ Cluster joignable, namespace scoring présent
+✅ Knative Serving + Kourier prêts, passerelle sur le NodePort 30080
+✅ cert-manager + contrôleur KServe prêts
+✅ metrics-server répond (kubectl top nodes)
+✅ InferenceService scoring-model Ready
+✅ /health répond via la passerelle
+✅ /predict : ligne réelle de test.csv (colonnes de dataset.yaml), décision cohérente
+✅ Seuil servi = decision_threshold du champion (MLflow)
+✅ Autoscaling configuré (maxReplicas ≥ 2 + KPA, HPA ou KEDA)
+✅ Canary : image 2.0.0 dans le registry et déployée dans une révision
+✅ /version répond 2.x (v2 en canary ou promue)
+✅ Tests de charge Locust : run_100, run_500, run_1000 (reports/m5/)
+✅ Rapport reports/rapport-m5.md : 5 sections + tableau de charge rempli
+✅ Manifests et scripts dans serving/
+
+Résultat : 14/14 vérifications OK

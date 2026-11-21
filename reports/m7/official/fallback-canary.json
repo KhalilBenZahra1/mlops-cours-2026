@@ -1,0 +1,113 @@
+{
+  "start": "2026-11-21T18:49:19.179647+00:00",
+  "ready_at": "2026-11-21T18:51:02.776925+00:00",
+  "ready_epoch": 1795287062.776948,
+  "tag": "2.1.16",
+  "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api",
+  "champion": "19",
+  "versions": {
+    "latest-": {
+      "version": "2.1.16",
+      "model_version": "19"
+    },
+    "prev-": {
+      "version": "2.1.15",
+      "model_version": "19"
+    }
+  },
+  "status": {
+    "address": {
+      "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+    },
+    "components": {
+      "predictor": {
+        "address": {
+          "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+        },
+        "latestCreatedRevision": "scoring-model-predictor-00008",
+        "latestReadyRevision": "scoring-model-predictor-00008",
+        "latestRolledoutRevision": "scoring-model-predictor-00007",
+        "previousRolledoutRevision": "scoring-model-predictor-00006",
+        "traffic": [
+          {
+            "latestRevision": true,
+            "percent": 10,
+            "revisionName": "scoring-model-predictor-00008",
+            "tag": "latest",
+            "url": "http://latest-scoring-model-predictor.scoring.example.com"
+          },
+          {
+            "latestRevision": false,
+            "percent": 90,
+            "revisionName": "scoring-model-predictor-00007",
+            "tag": "prev",
+            "url": "http://prev-scoring-model-predictor.scoring.example.com"
+          }
+        ],
+        "url": "http://scoring-model-predictor.scoring.example.com"
+      }
+    },
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-11-12T16:27:52Z",
+        "status": "True",
+        "type": "IngressReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:50:57Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "LatestDeploymentReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:50:57Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorConfigurationReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:50:58Z",
+        "status": "True",
+        "type": "PredictorReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:50:58Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorRouteReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:50:58Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:50:58Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "RoutesReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-12T16:23:30Z",
+        "severity": "Info",
+        "status": "False",
+        "type": "Stopped"
+      }
+    ],
+    "deploymentMode": "Knative",
+    "modelStatus": {
+      "copies": {
+        "failedCopies": 0,
+        "totalCopies": 1
+      },
+      "states": {
+        "activeModelState": "Loaded",
+        "targetModelState": "Loaded"
+      },
+      "transitionStatus": "UpToDate"
+    },
+    "observedGeneration": 15,
+    "url": "http://scoring-model-predictor.scoring.example.com"
+  },
+  "reason": "CT v20 rejected; guide fallback on approved champion, manual existing CI trigger"
+}
