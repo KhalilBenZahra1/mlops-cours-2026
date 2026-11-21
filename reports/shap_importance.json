@@ -1,0 +1,34 @@
+{
+  "model_version": "19",
+  "estimator": "LogisticRegression",
+  "explainer": "LinearExplainer",
+  "output_space": "log-odds",
+  "decision_threshold": 0.3182,
+  "importance": {
+    "checking_status": 0.534,
+    "savings_status": 0.2776,
+    "installment_commitment": 0.2529,
+    "credit_history": 0.2474,
+    "purpose": 0.23,
+    "personal_status": 0.229,
+    "other_payment_plans": 0.196,
+    "duration": 0.1709,
+    "credit_amount": 0.1424,
+    "own_telephone": 0.1393,
+    "employment": 0.1368,
+    "property_magnitude": 0.1332,
+    "housing": 0.1096,
+    "existing_credits": 0.0562,
+    "num_dependents": 0.0492,
+    "foreign_worker": 0.0419,
+    "age": 0.0366,
+    "other_parties": 0.0227,
+    "residence_since": 0.0167,
+    "job": 0.0066
+  },
+  "sensitive_ranks": {
+    "age": 17,
+    "personal_status": 6,
+    "foreign_worker": 16
+  }
+}
