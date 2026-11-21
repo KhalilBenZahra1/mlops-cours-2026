@@ -9,7 +9,7 @@ resources:
   - ../../base
 images:
   - name: scoring-api
-    newName: localhost:5001/scoring-api
-    newTag: "2.0.0"
+    newName: ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api
+    newTag: "2.1.16"
 patches:
   - path: canary.yaml
