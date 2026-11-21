@@ -36,7 +36,7 @@ for f in "${FORWARDS[@]}"; do
     >"$LOG/${svc#svc/}.log" 2>&1 &
 done
 sleep 3
-echo "Grafana      -> http://localhost:3000  (admin / admin)"
+echo "Grafana      -> http://localhost:3000  (identifiants : Secret monitoring/grafana-admin)"
 echo "Prometheus   -> http://localhost:9090"
 echo "Alertmanager -> http://localhost:9093"
 echo "Loki         -> http://localhost:3100"

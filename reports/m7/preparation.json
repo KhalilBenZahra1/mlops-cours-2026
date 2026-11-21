@@ -1,0 +1,62 @@
+{
+  "observed_at": "2026-11-21T13:14:41.066835+00:00",
+  "production": {
+    "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.8",
+    "model_version": "19",
+    "threshold": 0.3182,
+    "revision": "scoring-model-predictor-00006",
+    "spec_unchanged": true
+  },
+  "tests": {
+    "local_passed": 78,
+    "clean_passed": 70,
+    "clean_skipped_behavioral": 8,
+    "monitoring_passed": 17,
+    "drift_job_passed": 4
+  },
+  "stack": {
+    "ready_pods": 11,
+    "grafana_panels": 18,
+    "alerts_healthy": 6
+  },
+  "manual_job": {
+    "name": "scoring-drift-premerge-20261121",
+    "started": "2026-11-21T13:01:54Z",
+    "completed": "2026-11-21T13:02:17Z",
+    "current_rows": 0,
+    "reference_rows": 800,
+    "succeeded": 1,
+    "node": "mlops-lab-worker",
+    "image_id": "localhost:5001/scoring-drift@sha256:2ecc6a2b193b105b2b0fbf7e542cabe8aa1113bce8f4d1d90220acd50f263d57",
+    "ct_called": false,
+    "drift_computed": false
+  },
+  "drift_image": {
+    "image": "localhost:5001/scoring-drift:1.0.0",
+    "size_bytes": 308883848,
+    "user": "10001:10001",
+    "digests": [
+      "localhost:5001/scoring-drift@sha256:2ecc6a2b193b105b2b0fbf7e542cabe8aa1113bce8f4d1d90220acd50f263d57"
+    ],
+    "calc_sha256": "22f6c40d5d4f2ae8dfc32de7e5a29bdf809d1860cb937d677a3310c159b8ba5c"
+  },
+  "check_m7": {
+    "passed": 9,
+    "total": 15,
+    "script_exit_code": 6,
+    "make_exit_code": 2
+  },
+  "check_m6": {
+    "passed": 18,
+    "total": 18,
+    "make_exit_code": 0
+  },
+  "not_executed": [
+    "instrumented API deployment",
+    "notification send",
+    "drift traffic",
+    "CT run",
+    "canary",
+    "rollback"
+  ]
+}
