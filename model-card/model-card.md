@@ -1,7 +1,7 @@
 # Model Card — scoring-model v19
 
 Dataset : german-credit · Date : 2026-11-21
-Statut : prototype pédagogique ; audit en cours.
+Statut : prototype pédagogique ; validation technique du Lab 8 : 29/29.
 Équipe : Khalil Ben Zahra et binôme du dépôt.
 
 ## 1. Détails du modèle
@@ -233,8 +233,9 @@ Le téléchargement MLflow depuis WSL fonctionne avec
 MLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD=false.
 
 RBAC créé : create pods=no, list secrets=no, lecture du Secret S3 nommé=yes,
-lecture inter-namespace=no. Le patch Git déclare scoring-sa ; son utilisation
-effective en production attend la fusion et reste à vérifier.
+lecture inter-namespace=no. Le patch Git a été fusionné par la PR #17 et appliqué par Argo CD.
+Le pod de production utilise scoring-sa ; aucun volume kube-api-access
+n'a été trouvé. Validation officielle : 29/29.
 
 External Secrets Operator installé ; SecretStore Valid et ExternalSecret
 SecretSynced. Clés identiques à la source, propriétaire ExternalSecret et
@@ -251,3 +252,9 @@ La conformité pour un usage bancaire réel n'est pas établie.
 
 Voir le [rapport AI Act et RGPD](../reports/compliance-ai-act.md)
 pour les sources officielles, les preuves et les écarts.
+
+### Preuves de validation finale
+
+![Validation officielle : 29/29](../reports/m8/captures/check-m8.png)
+
+![Pod de production sous scoring-sa, sans volume kube-api-access](../reports/m8/captures/rbac-production.png)
