@@ -26,10 +26,3 @@ Unsafe operator found:
 --- Skipped ---
 
 Total skipped: 1 - run with --show-skipped to see the full list.
-
-Skipped files list:
-
-The following file
-/home/khalil/mlops-cours-2026/packaging/scan-demo/make_pickles.py was skipped
-during a ModelScan scan:
-Model Scan did not scan file

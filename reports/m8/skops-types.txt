@@ -1,0 +1,2 @@
+Fichier : /tmp/m8-champion19/model.skops
+Types à examiner : ['numpy.dtype']

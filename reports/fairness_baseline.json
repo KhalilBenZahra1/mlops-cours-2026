@@ -1,0 +1,131 @@
+{
+  "model_name": "scoring-model",
+  "model_version": "19",
+  "decision_threshold": 0.3182,
+  "n_test": 200,
+  "business_cost": 105.0,
+  "refusal_rate": 0.585,
+  "attributes": {
+    "age": {
+      "groups_column": "age_group",
+      "groups": {
+        "<25": {
+          "n": 39.0,
+          "taux_defaut": 0.48717948717948717,
+          "taux_refus": 0.6923076923076923,
+          "TPR": 0.8947368421052632,
+          "FPR": 0.5,
+          "cout_moyen": 0.5128205128205128,
+          "refus_ic95_bas": 0.5514445479962722,
+          "refus_ic95_haut": 0.8333333333333334
+        },
+        ">=25": {
+          "n": 161.0,
+          "taux_defaut": 0.2546583850931677,
+          "taux_refus": 0.5590062111801242,
+          "TPR": 0.8536585365853658,
+          "FPR": 0.4583333333333333,
+          "cout_moyen": 0.5279503105590062,
+          "refus_ic95_bas": 0.47021994773519166,
+          "refus_ic95_haut": 0.630759837442851
+        }
+      },
+      "demographic_parity_difference": 0.13330148112756812,
+      "demographic_parity_ratio": 0.8074534161490683,
+      "acceptance_rate_ratio": 0.6977248104008668,
+      "equalized_odds_difference": 0.041666666666666685,
+      "false_positive_rate_difference": 0.041666666666666685,
+      "most_refused_group": "<25",
+      "small_groups": []
+    },
+    "personal_status": {
+      "groups_column": "personal_status",
+      "groups": {
+        "female div/dep/mar": {
+          "n": 61.0,
+          "taux_defaut": 0.32786885245901637,
+          "taux_refus": 0.7049180327868853,
+          "TPR": 0.95,
+          "FPR": 0.5853658536585366,
+          "cout_moyen": 0.47540983606557374,
+          "refus_ic95_bas": 0.5740555555555555,
+          "refus_ic95_haut": 0.8
+        },
+        "male div/sep": {
+          "n": 9.0,
+          "taux_defaut": 0.3333333333333333,
+          "taux_refus": 0.6666666666666666,
+          "TPR": 1.0,
+          "FPR": 0.5,
+          "cout_moyen": 0.3333333333333333,
+          "refus_ic95_bas": 0.3326923076923077,
+          "refus_ic95_haut": 1.0
+        },
+        "male mar/wid": {
+          "n": 12.0,
+          "taux_defaut": 0.25,
+          "taux_refus": 0.5833333333333334,
+          "TPR": 0.6666666666666666,
+          "FPR": 0.5555555555555556,
+          "cout_moyen": 0.8333333333333334,
+          "refus_ic95_bas": 0.25,
+          "refus_ic95_haut": 0.875
+        },
+        "male single": {
+          "n": 118.0,
+          "taux_defaut": 0.288135593220339,
+          "taux_refus": 0.5169491525423728,
+          "TPR": 0.8235294117647058,
+          "FPR": 0.39285714285714285,
+          "cout_moyen": 0.5338983050847458,
+          "refus_ic95_bas": 0.41721293199554066,
+          "refus_ic95_haut": 0.5983333333333333
+        }
+      },
+      "demographic_parity_difference": 0.18796888024451242,
+      "demographic_parity_ratio": 0.7333464722112731,
+      "acceptance_rate_ratio": 0.6108714408973253,
+      "equalized_odds_difference": 0.33333333333333337,
+      "false_positive_rate_difference": 0.1925087108013937,
+      "most_refused_group": "female div/dep/mar",
+      "small_groups": [
+        "male div/sep",
+        "male mar/wid"
+      ]
+    },
+    "foreign_worker": {
+      "groups_column": "foreign_worker",
+      "groups": {
+        "no": {
+          "n": 6.0,
+          "taux_defaut": 0.16666666666666666,
+          "taux_refus": 0.3333333333333333,
+          "TPR": 1.0,
+          "FPR": 0.2,
+          "cout_moyen": 0.16666666666666666,
+          "refus_ic95_bas": 0.0,
+          "refus_ic95_haut": 0.837500000000001
+        },
+        "yes": {
+          "n": 194.0,
+          "taux_defaut": 0.30412371134020616,
+          "taux_refus": 0.5927835051546392,
+          "TPR": 0.864406779661017,
+          "FPR": 0.4740740740740741,
+          "cout_moyen": 0.5360824742268041,
+          "refus_ic95_bas": 0.5050912182220543,
+          "refus_ic95_haut": 0.6596215647163121
+        }
+      },
+      "demographic_parity_difference": 0.25945017182130586,
+      "demographic_parity_ratio": 0.5623188405797102,
+      "acceptance_rate_ratio": 0.6108247422680413,
+      "equalized_odds_difference": 0.2740740740740741,
+      "false_positive_rate_difference": 0.2740740740740741,
+      "most_refused_group": "yes",
+      "small_groups": [
+        "no"
+      ]
+    }
+  }
+}
