@@ -52,7 +52,7 @@ Les éléments ci-dessous sont des contributions techniques, pas une certificati
 - ../model-card/model-card.md : identité, usages, résultats et limites.
 - ../k8s/rbac-scoring.yaml : identité et droits minimaux.
 - ../k8s/overlays/prod/kustomization.yaml : ServiceAccount prévu par Git ;
-  application effective en production en attente de fusion.
+  appliqué en production par Argo CD après fusion de la PR #17.
 - ../k8s/mlflow-creds-source.yaml : synchronisation ESO sans valeur secrète.
   SecretStore prêt, clés identiques et recréation du Secret vérifiés sur le cluster.
 
@@ -69,7 +69,8 @@ une évaluation indépendante. Le champion reste en version 19.
 
 Vulnérabilités résiduelles et écart setuptools non expliqué :
 Trivy annonce 70.3.0, métadonnées inspectées 84.2.1.
-Le changement de ServiceAccount en production n'est pas encore appliqué.
+Le ServiceAccount scoring-sa est appliqué en production ; aucun volume
+kube-api-access n'a été trouvé dans le pod vérifié. Contrôle officiel : 29/29.
 
 Absence de procédure réelle d'intervention humaine et de contestation,
 d'analyse d'impact formelle, de validation juridique et organisationnelle,
@@ -89,8 +90,8 @@ Choisir une atténuation selon plusieurs critères, avec validation humaine.
 
 Mettre en place information compréhensible, recours et intervention humaine
 effective. Définir conservation, accès, sécurité et surveillance après déploiement.
-Traiter les vulnérabilités, tracer les digests et vérifier la nouvelle révision
-sous scoring-sa après fusion. Prévoir des revues périodiques et lors des changements.
+Traiter les vulnérabilités, tracer les digests et maintenir les vérifications du ServiceAccount et de l'absence de jeton
+à chaque nouvelle révision. Prévoir des revues périodiques et lors des changements.
 
 ## Sources
 
