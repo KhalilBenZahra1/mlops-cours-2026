@@ -103,7 +103,7 @@ kubectl --context "$CTX" -n "$NS" get pods
 cat <<'EOF'
 
 Accès depuis le poste (port-forwards en arrière-plan) : ./infra/monitoring/port-forward.sh
-  Grafana      http://localhost:3000   (admin / admin)
+  Grafana      http://localhost:3000   (identifiants : Secret monitoring/grafana-admin)
   Prometheus   http://localhost:9090
   Alertmanager http://localhost:9093
   Loki         http://localhost:3100   (API, pas d'interface)

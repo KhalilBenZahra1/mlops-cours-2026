@@ -92,3 +92,24 @@ le drift n'est plus surveillé.
 **Agir** : causes fréquentes : image absente du registry, Secret `s3-credentials` manquant
 dans `monitoring`, Loki ou Pushgateway injoignable, ConfigMap `scoring-drift-reference`
 absente. Relancer à la main : `kubectl create job --from=cronjob/scoring-drift manual-$(date +%s) -n monitoring`.
+
+
+## Préparation avant fusion des PR du Lab 7
+
+La stack peut être installée sans modifier l'InferenceService du Lab 6. Avant la fusion
+de l'instrumentation, une cible `/metrics` en HTTP 404 et l'absence de métriques métier
+sont attendues : ne pas remplacer la production pour obtenir artificiellement un contrôle
+vert. Le CronJob est suspendu dans cette phase ; un job manuel sans trafic instrumenté
+ne calcule pas de PSI sous les 500 demandes et ne prouve pas l'absence de dérive.
+
+L'AlertmanagerConfig est préparé mais non appliqué : aucun message Slack autorisé.
+Une URL de test devra être demandée au pilote au moment de vérifier les notifications,
+puis placée uniquement dans le Secret `slack-webhook`. Aucun receiver CT n'est activé.
+Grafana utilise le Secret local `grafana-admin` ; ne pas publier ses valeurs.
+
+Ordre après revue : fusionner la PR `lab/m7-monitoring` vers `main`, vérifier la CI et
+la publication staging, puis retargeter et fusionner `lab/m7-observabilite` vers `main`.
+Exécuter ensuite le premier canary instrumenté de l'étape 2.2 sous contrôle du pilote,
+générer le trafic normal et désuspendre le CronJob. Vérifier les métriques et les logs
+avant les démonstrations des étapes 9 et 10. Vérifier que KFP est actif avant tout CT.
+Le présent rendu ne réalise ni canary, ni dérive simulée, ni rollback, ni entraînement.

@@ -1,0 +1,22 @@
+Validation intermédiaire du 21 novembre 2026 — avant fusion des PR du Lab 7
+
+bash ./labs/m7-*/check.sh
+Lab 7 — Monitoring & observabilité ML (scoring/scoring-model, stack dans monitoring)
+✅ Fichiers du lab (monitoring/, prometheus-client dans packaging/requirements.txt)
+✅ Tests du Lab 7 : /metrics de l'API, trafic, analyse du canary (pytest)
+✅ Stack prête : Prometheus, Alertmanager, Grafana, operator, Pushgateway, Loki, Alloy
+✅ PodMonitor scoring-api présent
+❌ Cible scoring-model scrapée par Prometheus (up == 1)  →  Prometheus > Status > Target health ; image instrumentée déployée ? (étapes 2 et 4)
+❌ Métriques métier présentes (décisions, scores, latence, groupes de dataset.yaml)  →  générer du trafic : uv run python monitoring/traffic.py (étape 5)
+✅ Dashboard scoring-overview chargé par Grafana
+✅ Règles d'alerte chargées (groupe scoring.alerts, ≥ 4 alertes, santé ok)
+❌ Alertmanager : AlertmanagerConfig scoring-slack + Secret slack-webhook chargés  →  étape 8.2 ; kubectl logs -n monitoring alertmanager-kube-prom-stack-kube-prome-alertmanager-0
+✅ Image du job de drift dans le registry (scoring-drift)
+✅ CronJob scoring-drift : au moins une exécution réussie
+❌ Métrique de drift : une série ml_drift_score par variable de dataset.yaml  →  ≥ 500 demandes dans la dernière heure, puis relancer le job (étape 6.5)
+❌ Loki reçoit les prédictions journalisées par l'API  →  Alloy et Loki Running ? requête LogQL de l'étape 7.2
+❌ Rapport d'analyse du canary (reports/m7/canary-analysis.{md,json})  →  uv run python monitoring/canary_analysis.py (étape 10)
+✅ Rapport reports/rapport-m7.md : 5 sections remplies, sans TODO
+
+Résultat : 9/15 vérifications OK
+make: *** [Makefile:112: check-m7] Error 6
