@@ -122,3 +122,11 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Écart diagnostiqué :** scénario ×2 rejeté au gate GX, 14 durées et 18 âges hors bornes sur 1 000 lignes, tolérance 1 %. Aucun entraînement aval. Démonstration positive avec le scénario ×1,5 du guide, drift 15 %, contrat et seuils inchangés ; réussite du scénario ×2 exact non revendiquée.
 - **Validé :** `make check-m6` **18/18**, code 0, aucun SKIP ; lint et 57 tests ; contrôles M0 **19/19**, M1 **18/18**, M5 **14/14**, équivalence ONNX/scikit-learn revérifiée. Contrôles officiels inchangés. Voir `reports/rapport-m6.md` et `reports/m6/` pour les preuves et limites de mesure.
 - **Suite :** PR finale de documentation sur une nouvelle branche, à relire sans fusion automatique. Les services et historiques sont conservés ; aucune extension du Lab 7 commencée.
+
+
+## S6.6 — 2026-11-21 — Lab 6 : captures finales et rendu de la PR #11
+
+- **Fait :** cinq captures fournies par le pilote intégrées sans retouche dans `reports/rapport-m6.md`, avec chemins relatifs `m6/captures/` et légendes : Argo CD, KFP CT, GitHub Actions, production et `check-m6`. Ancienne mention d'absence de PNG actualisée ; PR #11 existante conservée, sans fusion.
+- **Vérifié :** `kfp.png` montre le run `ct-evidently-drift-20261120-224035`, sept tâches réussies ; nom recoupé avec l'API pour l'UUID `d538fecb-e59e-4d95-a5f0-76ebbd3a5037`. Capture du Lab 6, pas du Lab 3. Images ouvertes et lisibles, aucun secret visible ni métadonnée textuelle PNG ; tous les liens locaux du rapport résolvent vers des fichiers existants.
+- **Préservé :** mesures du cycle (696,962 s), preuves JSON/texte/Markdown et explication du rejet ×2 puis du cycle positif ×1,5 inchangées. Aucun ré-entraînement, déploiement, changement d'alias ou modification des contrôles.
+- **Livraison :** vérification `git diff --check`, commit limité au rapport, au journal et aux cinq PNG, puis push sur `lab/m6-validation-finale` et actualisation de la description de #11. Captures distinctes du canary et de MLflow non fournies ; preuves existantes conservées. Relecture du binôme requise avant fusion.

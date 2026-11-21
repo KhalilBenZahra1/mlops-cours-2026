@@ -94,6 +94,38 @@ L'analyse naïve de 50 prédictions vérifie la disponibilité et les probabilit
 
 ## 6. Captures d'écran et preuves
 
-Les fichiers [preuves-cycle.json](m6/preuves-cycle.json), [validation.txt](m6/validation.txt) et [gate.md](m6/gate.md) conservent les mesures, identifiants et sorties authentiques. Les logs détaillés restent aussi dans l'environnement du pilote ; aucune capture n'est fabriquée. La tentative de capture Windows a été interrompue par l'outil, qui ne pouvait pas identifier l'URL du navigateur avec assez de certitude pour appliquer ses règles de sécurité ; aucune capture PNG n'a été produite.
+Les fichiers [preuves-cycle.json](m6/preuves-cycle.json), [validation.txt](m6/validation.txt) et [gate.md](m6/gate.md) conservent les mesures, identifiants et sorties authentiques. Les cinq captures PNG ci-dessous ont été réalisées manuellement par le pilote le **21 novembre 2026**, après remise en marche de l'environnement existant. Elles complètent les preuves du cycle du 20 novembre ; elles ne représentent pas une nouvelle exécution de ce cycle. La tentative de capture automatisée précédente n'avait pas abouti ; les PNG fournis par le pilote sont désormais intégrés au rendu.
 
-Captures utiles dans les interfaces réelles : Argo `scoring-staging` et `scoring-prod` Synced/Healthy ; run KFP `d538fecb-e59e-4d95-a5f0-76ebbd3a5037` à sept tâches vertes et rapport de gate ; run GitHub Actions ci-dessus avec trois jobs verts ; MLflow version 19 et tags ; terminal montrant `/version`, trafic 100 % et `make check-m6`. La preuve du canary manuel est conservée dans le JSON ; son état transitoire n'est plus affichable après promotion. Le run ×2 échoué reste consultable dans KFP comme preuve de protection.
+Les originaux sont conservés sans retouche. Les fichiers ont été ouverts et examinés : états et textes lisibles, aucun secret visible, aucune métadonnée textuelle PNG embarquée. Cliquer sur une image permet de l'ouvrir à sa taille d'origine, notamment pour lire les libellés du graphe KFP.
+
+### 6.1 Argo CD : staging et production synchronisés
+
+![Applications Argo CD scoring-prod et scoring-staging Healthy et Synced](m6/captures/argocd.png)
+
+*Figure 1 — Argo CD v3.5.3 : `scoring-prod` et `scoring-staging` sont toutes deux Healthy et Synced, suivent `main` et les overlays de leurs namespaces respectifs.*
+
+### 6.2 Kubeflow : run de ré-entraînement continu du Lab 6
+
+![Run CT ct-evidently-drift-20261120-224035 réussi avec ses sept tâches](m6/captures/kfp.png)
+
+*Figure 2 — Expérience `scoring-ct`, run `ct-evidently-drift-20261120-224035`, identifiant `d538fecb-e59e-4d95-a5f0-76ebbd3a5037` : les sept tâches sont réussies, jusqu'à `register-challenger` et `promotion-gate`. Le nom affiché a été recoupé avec l'API KFP et les preuves JSON ; il s'agit bien du CT du Lab 6, et non du pipeline à huit composants du Lab 3. L'UUID n'est pas visible dans ce cadrage.*
+
+### 6.3 GitHub Actions : publication et commit GitOps
+
+![CI scoring numéro 8 réussie pour le commit automatique du modèle 19](m6/captures/github-actions.png)
+
+*Figure 3 — Workflow `CI scoring`, run nº 8, commit `fb82046` (`ct: scoring-model v19`, run KFP `d538fecb`) : succès des trois jobs lint/tests, image et déploiement staging par commit GitOps. La durée totale affichée par Actions, 2 min, concerne ce workflow ; elle ne remplace pas les 97 s du segment commit modèle → fin de publication, ni les 696,962 s du cycle complet.*
+
+### 6.4 Production : modèle effectivement servi
+
+![InferenceService de production Ready à 100 pour cent et version API 2.1.8 avec modèle 19](m6/captures/production.png)
+
+*Figure 4 — `scoring/scoring-model` est Ready, la révision `scoring-model-predictor-00006` reçoit 100 % du trafic et `/version` répond `2.1.8` / modèle `19`. L'appel sur `localhost:18000` passe par le port-forward local de cette révision existante ; la commande Kubernetes fournit la preuve distincte du trafic de production.*
+
+### 6.5 Validation officielle du lab
+
+![Commande make check-m6 et résultat 18 vérifications sur 18 réussies](m6/captures/check-m6.png)
+
+*Figure 5 — Exécution réelle de `make check-m6` dans Ubuntu, sur le dépôt du pilote : les 18 contrôles sont réussis, sans SKIP, avec le message final `Résultat : 18/18 vérifications OK`. L'invite SSH affiche seulement le chemin de la clé : aucune passphrase ni aucun contenu de clé n'est visible.*
+
+La capture du canary transitoire et une capture séparée de MLflow ne font pas partie de ces cinq fichiers. Le routage 181/19, la promotion 200/200, les aliases et les tags du modèle restent documentés par les preuves existantes et le rapport de gate ; aucune capture manquante n'est fabriquée. Le run ×2 rejeté reste consultable dans KFP comme preuve de protection, et le cycle positif ×1,5 ainsi que ses mesures restent inchangés dans les sections précédentes.
