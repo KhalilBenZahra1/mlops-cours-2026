@@ -10,6 +10,6 @@ resources:
 images:
   - name: scoring-api
     newName: ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api
-    newTag: "2.1.15"
+    newTag: "2.1.16"
 patches:
   - path: canary.yaml
