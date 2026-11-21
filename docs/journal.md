@@ -112,3 +112,21 @@ Mode d'emploi (à garder en tête du fichier) :
 - **Validé :** contrôle officiel `make check-m6` : **11/18 vérifications OK**, aucun SKIP ; code du script 7, code de Make 2. Fichiers, schéma Actions, lint/tests, overlays, Argo prêt, webhook, CT MLflow/KFP, contrat, jeton hors Git et structure du rapport passent. Référence initiale : 4/18. Non-régression après CT : `check-m5` **14/14** ; production et fichiers ONNX/métadonnées conservés.
 - **Bloqué par le déroulement sans fusion :** CI sur `main`, Applications Synced/Healthy, staging GHCR, gestion GitOps de prod, tag servi conforme à Git, champion CT servi et historique des commits automatiques. `main` reste `a14ed12`. L'absence d'Applications actives évite le tag staging de gabarit inexistant ; aucun état non fonctionnel n'est déployé. Le rapport passe son contrôle structurel mais le Lab 6 n'est pas déclaré terminé.
 - **Livraison / suite :** PR #7 cicd vers `main`, #8 argocd vers cicd, #9 ct vers argocd, puis rapport vers ct. Revue des quatre parties, fusions successives par le pilote et bases ajustées vers `main` après fusion du parent. Préserver les tags générés par la CI ; vérifier publication/accessibilité GHCR avant d'activer les Applications, puis selfHeal, publication du modèle CT, canary et cycle complet. Aucune fusion ni poussée directe sur `main` effectuée.
+
+
+## S6.5 — 2026-11-20 — Lab 6 : fusions et cycle automatique validé
+
+- **Livré :** approbations des PR #7, #8, #9 et #10 vérifiées ; fusions dans cet ordre, bases ajustées vers `main`, branches conservées et commits staging préservés. CI applicables réussies ; publication GHCR publique et pull réel depuis kind.
+- **Argo :** deux Applications Synced/Healthy, adoption du spec de prod existant ; selfHeal 50 → 100 % en 2.01 s. Phase manuelle : modèle 18, image 2.1.7, canary 181/19 sur 200 appels sans erreur, promotion 200/200.
+- **Cycle automatique :** run KFP `d538fecb-e59e-4d95-a5f0-76ebbd3a5037` SUCCEEDED, sept tâches ; modèle 19, run MLflow `f2d47c40fcfd4fe98b66a149ed010410`, champion précédent 18. Export/commit → CI/GHCR → staging → canary/50 prédictions → commit promotion sans intervention de déploiement ; durée observée 696.962 s. Production `ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.8` à 100 %, modèle 19 confirmé par `/version`.
+- **Écart diagnostiqué :** scénario ×2 rejeté au gate GX, 14 durées et 18 âges hors bornes sur 1 000 lignes, tolérance 1 %. Aucun entraînement aval. Démonstration positive avec le scénario ×1,5 du guide, drift 15 %, contrat et seuils inchangés ; réussite du scénario ×2 exact non revendiquée.
+- **Validé :** `make check-m6` **18/18**, code 0, aucun SKIP ; lint et 57 tests ; contrôles M0 **19/19**, M1 **18/18**, M5 **14/14**, équivalence ONNX/scikit-learn revérifiée. Contrôles officiels inchangés. Voir `reports/rapport-m6.md` et `reports/m6/` pour les preuves et limites de mesure.
+- **Suite :** PR finale de documentation sur une nouvelle branche, à relire sans fusion automatique. Les services et historiques sont conservés ; aucune extension du Lab 7 commencée.
+
+
+## S6.6 — 2026-11-21 — Lab 6 : captures finales et rendu de la PR #11
+
+- **Fait :** cinq captures fournies par le pilote intégrées sans retouche dans `reports/rapport-m6.md`, avec chemins relatifs `m6/captures/` et légendes : Argo CD, KFP CT, GitHub Actions, production et `check-m6`. Ancienne mention d'absence de PNG actualisée ; PR #11 existante conservée, sans fusion.
+- **Vérifié :** `kfp.png` montre le run `ct-evidently-drift-20261120-224035`, sept tâches réussies ; nom recoupé avec l'API pour l'UUID `d538fecb-e59e-4d95-a5f0-76ebbd3a5037`. Capture du Lab 6, pas du Lab 3. Images ouvertes et lisibles, aucun secret visible ni métadonnée textuelle PNG ; tous les liens locaux du rapport résolvent vers des fichiers existants.
+- **Préservé :** mesures du cycle (696,962 s), preuves JSON/texte/Markdown et explication du rejet ×2 puis du cycle positif ×1,5 inchangées. Aucun ré-entraînement, déploiement, changement d'alias ou modification des contrôles.
+- **Livraison :** vérification `git diff --check`, commit limité au rapport, au journal et aux cinq PNG, puis push sur `lab/m6-validation-finale` et actualisation de la description de #11. Captures distinctes du canary et de MLflow non fournies ; preuves existantes conservées. Relecture du binôme requise avant fusion.

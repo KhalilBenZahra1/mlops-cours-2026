@@ -1,0 +1,110 @@
+bash ./labs/m6-*/check.sh
+Lab 6 — CI/CD/CT (Git : origin/main = 1bbe78a, prod : scoring)
+✅ Fichiers du lab (workflow, k8s/, pipelines CT, tests, modèle versionné)
+✅ .github/workflows/ci.yml valide (schéma GitHub Actions, lint/tests/build/deploy)
+✅ Dernier run de la CI sur main : success (gh run list)
+✅ Lint + tests locaux (ruff, pytest)
+✅ Overlays Kustomize staging et prod construits
+✅ Argo CD installé et prêt (namespace argocd)
+✅ Applications scoring-staging et scoring-prod : Synced + Healthy, auto-sync + selfHeal
+✅ Staging : InferenceService prêt, image construite par la CI (ghcr.io)
+✅ Prod : InferenceService géré par Argo CD, image et canary = origin/main
+✅ Prod : la nouvelle révision sert le tag de Git (route latest-, /version)
+✅ Webhook CT joignable (localhost:8095/health)
+✅ Ré-entraînement déclenché : run MLflow tagué ct_trigger + rapport de dérive
+✅ KFP : le run ct-pipeline de ce ré-entraînement a réussi
+✅ Promotion : @champion issu de la gate du CT et servi en prod
+✅ Historique GitOps : commits CI (staging), bot CT (modèle) et prod (canary)
+✅ Aucun nom de colonne en dur dans le code du lab (dataset.yaml)
+✅ CT_WEBHOOK_TOKEN dans .env et absent de Git
+✅ Rapport reports/rapport-m6.md : 5 sections, sans TODO
+
+Résultat : 18/18 vérifications OK
+
+bash ./labs/m0-*/check.sh
+Lab 0 — vérification de l'environnement (contexte kind-mlops-lab)
+
+✅ Docker : hello-world
+✅ Docker Compose (plugin v2+)
+✅ kubectl installé
+✅ helm installé (v3/v4)
+✅ k9s installé
+✅ kind : cluster mlops-lab présent
+✅ Cluster : 3 nœuds Ready
+✅ Contexte kubectl courant = kind-mlops-lab
+✅ Registry localhost:5001 répond
+✅ SeaweedFS : pod Running/Ready
+✅ MLflow : pod Running/Ready
+✅ S3 : buckets mlflow-artifacts, dvc-store, mlops-test
+✅ MLflow : http://localhost:5000/health = OK
+✅ MLflow : run hello-mlops (+ artefact hello.txt)
+✅ uv + Python 3.12 (venv du repo)
+✅ DVC 3.x installé
+✅ DVC : objet poussé dans mlops-test/dvcstore/
+✅ Git : remote origin = VOTRE_USER/mlops-cours-2026
+✅ Git : smoke_mlflow.py commité et poussé
+
+🎉 19/19 vérifications OK — Lab 0 validé.
+
+bash ./labs/m1-*/check.sh
+Lab 1 — vérification du projet (MLflow : http://localhost:5000)
+
+✅ dataset.yaml valide (src.dataset_config)
+✅ Données brutes conformes au contrat
+✅ Remote DVC 'storage' -> s3://dvc-store/scoring (défaut)
+✅ Identifiants S3 dans .dvc/config.local uniquement
+✅ dvc.yaml (download, prepare, train, evaluate) + params.yaml + dvc.lock
+✅ Code et pointeurs commités, données hors Git
+✅ dvc status : pipeline à jour
+✅ Remote S3 joignable, données poussées (dvc status --cloud)
+✅ reports/metrics.json contient la métrique primaire
+✅ MLflow : http://localhost:5000/health = OK
+✅ MLflow : ≥ 20 runs terminés dans 'scoring' (métrique + seuil)
+✅ MLflow : ≥ 3 types de modèles comparés
+✅ MLflow : un run DVC tracé avec le data_md5 de dvc.lock
+✅ Registry : 'scoring-model' a ≥ 3 versions
+✅ Registry : @champion avec métrique ≥ seuil de dataset.yaml
+✅ Registry : alias @challenger présent
+✅ Modèle @champion chargé et prédit sur le jeu de test
+✅ Feast : vue request_features appliquée et matérialisée
+
+🎉 18/18 vérifications OK — Lab 1 validé.
+
+bash ./labs/m5-*/check.sh
+Lab 5 — Serving avec KServe (scoring/scoring-model, appel : http://localhost:30080 + Host: scoring-model-predictor.scoring.example.com)
+✅ Cluster joignable, namespace scoring présent
+✅ Knative Serving + Kourier prêts, passerelle sur le NodePort 30080
+✅ cert-manager + contrôleur KServe prêts
+✅ metrics-server répond (kubectl top nodes)
+✅ InferenceService scoring-model Ready
+✅ /health répond via la passerelle
+✅ /predict : ligne réelle de test.csv (colonnes de dataset.yaml), décision cohérente
+✅ Seuil servi = decision_threshold du champion (MLflow)
+✅ Autoscaling configuré (maxReplicas ≥ 2 + KPA, HPA ou KEDA)
+✅ Canary : image 2.0.0 dans le registry et déployée dans une révision
+✅ /version répond 2.x (v2 en canary ou promue)
+✅ Tests de charge Locust : run_100, run_500, run_1000 (reports/m5/)
+✅ Rapport reports/rapport-m5.md : 5 sections + tableau de charge rempli
+✅ Manifests et scripts dans serving/
+
+Résultat : 14/14 vérifications OK
+
+uv run ruff check .
+uv run ruff format --check .
+uv run yamllint -c .yamllint.yaml .
+All checks passed!
+80 files already formatted
+
+
+Downloading artifacts:   0%|          | 0/7 [00:00<?, ?it/s]
+Downloading artifacts:  14%|█▍        | 1/7 [00:00<00:00, 16.41it/s]
+Downloading artifacts:  29%|██▊       | 2/7 [00:00<00:00, 20.24it/s]
+Downloading artifacts:  43%|████▎     | 3/7 [00:00<00:00, 22.98it/s]
+Downloading artifacts:  43%|████▎     | 3/7 [00:00<00:00, 22.98it/s]
+Downloading artifacts:  57%|█████▋    | 4/7 [00:00<00:00, 22.98it/s]
+Downloading artifacts:  71%|███████▏  | 5/7 [00:00<00:00, 22.98it/s]
+Downloading artifacts:  86%|████████▌ | 6/7 [00:00<00:00, 22.98it/s]
+Downloading artifacts: 100%|██████████| 7/7 [00:00<00:00, 22.98it/s]
+Downloading artifacts: 100%|██████████| 7/7 [00:00<00:00, 52.45it/s]
+200 rows · max |p_sklearn - p_onnx| = 9.93e-08 · same decision (threshold 0.318) : 100.0%
+OK: predictions match.
