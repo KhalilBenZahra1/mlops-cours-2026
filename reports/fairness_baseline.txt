@@ -4,10 +4,10 @@ Global : refus 58%, coût métier 105
 
 === Attribut sensible : age ===
               n taux_defaut taux_refus  TPR  FPR cout_moyen   refus_IC95
-age_group                                                               
+age_group
 <25          39         49%        69%  89%  50%       0.51  [55% ; 83%]
 >=25        161         25%        56%  85%  46%       0.53  [47% ; 63%]
-(ensemble)  200         30%        58%  87%  46%       0.53             
+(ensemble)  200         30%        58%  87%  46%       0.53
 Demographic Parity Diff (refus)  : 0.133
 Demographic Parity Ratio (refus) : 0.807
 Ratio d'acceptation (4/5)        : 0.698  <-- sous la règle des 4/5
@@ -16,12 +16,12 @@ Groupe le plus refusé            : <25
 
 === Attribut sensible : personal_status ===
                       n taux_defaut taux_refus   TPR  FPR cout_moyen    refus_IC95
-personal_status                                                                   
+personal_status
 female div/dep/mar   61         33%        70%   95%  59%       0.48   [57% ; 80%]
 male div/sep          9         33%        67%  100%  50%       0.33  [33% ; 100%]
 male mar/wid         12         25%        58%   67%  56%       0.83   [25% ; 88%]
 male single         118         29%        52%   82%  39%       0.53   [42% ; 60%]
-(ensemble)          200         30%        58%   87%  46%       0.53              
+(ensemble)          200         30%        58%   87%  46%       0.53
 Demographic Parity Diff (refus)  : 0.188
 Demographic Parity Ratio (refus) : 0.733
 Ratio d'acceptation (4/5)        : 0.611  <-- sous la règle des 4/5
@@ -31,10 +31,10 @@ Attention : moins de 30 demandes pour ['male div/sep', 'male mar/wid']
 
 === Attribut sensible : foreign_worker ===
                   n taux_defaut taux_refus   TPR  FPR cout_moyen   refus_IC95
-foreign_worker                                                               
+foreign_worker
 no                6         17%        33%  100%  20%       0.17   [0% ; 84%]
 yes             194         30%        59%   86%  47%       0.54  [51% ; 66%]
-(ensemble)      200         30%        58%   87%  46%       0.53             
+(ensemble)      200         30%        58%   87%  46%       0.53
 Demographic Parity Diff (refus)  : 0.259
 Demographic Parity Ratio (refus) : 0.562
 Ratio d'acceptation (4/5)        : 0.611  <-- sous la règle des 4/5

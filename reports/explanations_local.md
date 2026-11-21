@@ -55,4 +55,3 @@ Principaux éléments favorables :
 Test contrefactuel (un seul attribut sensible modifié) : age -> <25, personal_status -> female div/dep/mar, personal_status -> male div/sep, foreign_worker -> yes.
 
 ![waterfall](shap_waterfall_cas_limite.png)
-
