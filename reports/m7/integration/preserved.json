@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-21T16:59:09.850973+00:00",
+  "prs_11_12_13_unchanged": true,
+  "production_and_staging_specs_and_revisions_unchanged": true,
+  "argo_applications_unchanged_and_healthy": true,
+  "protected_files_unchanged": true,
+  "kfp_deployments": [
+    "cache-deployer-deployment         1/1   1     1     25d",
+    "cache-server                      1/1   1     1     25d",
+    "metadata-envoy-deployment         1/1   1     1     25d",
+    "metadata-grpc-deployment          1/1   1     1     25d",
+    "metadata-writer                   1/1   1     1     25d",
+    "ml-pipeline                       1/1   1     1     25d",
+    "ml-pipeline-persistenceagent      1/1   1     1     25d",
+    "ml-pipeline-scheduledworkflow     1/1   1     1     25d",
+    "ml-pipeline-ui                    1/1   1     1     25d",
+    "ml-pipeline-viewer-crd            1/1   1     1     25d",
+    "ml-pipeline-visualizationserver   1/1   1     1     25d",
+    "mysql                             1/1   1     1     25d",
+    "seaweedfs                         1/1   1     1     25d",
+    "workflow-controller               1/1   1     1     25d"
+  ],
+  "memory": "total        used        free      shared  buff/cache   available\nMem:            11Gi       8.5Gi       655Mi        30Mi       2.6Gi       3.0Gi\nSwap:          3.0Gi       1.1Gi       1.9Gi"
+}

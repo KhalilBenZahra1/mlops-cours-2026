@@ -1,0 +1,26 @@
+# Intégration isolée, hors production et hors Applications Argo CD.
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: scoring-api-integration
+  namespace: monitoring
+  labels:
+    release: kube-prom-stack
+spec:
+  namespaceSelector:
+    matchNames:
+    - scoring-integration
+  selector:
+    matchLabels:
+      serving.kserve.io/inferenceservice: scoring-integration
+  podMetricsEndpoints:
+  - portNumber: 8000
+    path: /metrics
+    interval: 15s
+    relabelings:
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_serving_knative_dev_revision
+      targetLabel: revision
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_serving_kserve_io_inferenceservice
+      targetLabel: isvc

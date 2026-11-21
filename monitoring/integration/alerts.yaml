@@ -1,0 +1,136 @@
+# Règles du guide limitées à l’intégration ; aucun récepteur externe.
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: scoring-alerts-integration
+  namespace: monitoring
+  labels:
+    release: kube-prom-stack
+spec:
+  groups:
+  - name: scoring.integration.rules
+    interval: 30s
+    rules:
+    - record: scoring_integration:predict_requests:rate5m
+      expr: |
+        sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict"}[5m]))
+    - record: scoring_integration:predict_errors:ratio_rate5m
+      expr: |
+        sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict",code=~"5.."}[5m]))
+        / sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict"}[5m]))
+    - record: scoring_integration:predict_errors:ratio_rate30m
+      expr: |
+        sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict",code=~"5.."}[30m]))
+        / sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict"}[30m]))
+    - record: scoring_integration:predict_errors:ratio_rate1h
+      expr: |
+        sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict",code=~"5.."}[1h]))
+        / sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict"}[1h]))
+    - record: scoring_integration:predict_errors:ratio_rate6h
+      expr: |
+        sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict",code=~"5.."}[6h]))
+        / sum by (namespace) (rate(http_requests_total{isvc="scoring-integration",
+          handler="/predict"}[6h]))
+    - record: scoring_integration:latency_p95:5m
+      expr: |
+        histogram_quantile(0.95,
+          sum by (namespace, le) (rate(ml_inference_latency_seconds_bucket{isvc="scoring-integration"}[5m])))
+    - record: scoring_integration:positive_rate:ratio_rate5m
+      expr: |
+        sum by (namespace) (rate(ml_predictions_total{isvc="scoring-integration",outcome="1"}[5m]))
+        / sum by (namespace) (rate(ml_predictions_total{isvc="scoring-integration"}[5m]))
+    - record: scoring_integration:positive_rate:ratio_rate6h
+      expr: |
+        sum by (namespace) (rate(ml_predictions_total{isvc="scoring-integration",outcome="1"}[6h]))
+        / sum by (namespace) (rate(ml_predictions_total{isvc="scoring-integration"}[6h]))
+  - name: scoring.integration.alerts
+    interval: 30s
+    rules:
+    - alert: ScoringIntegrationHighLatency
+      expr: scoring_integration:latency_p95:5m{namespace="scoring-integration"} > 0.2
+      for: 5m
+      labels:
+        severity: warning
+        team: ml-integration
+        environment: integration
+      annotations:
+        summary: 'Scoring : latence P95 > 200 ms'
+        description: 'P95 actuelle : {{ $value | humanizeDuration }} (SLO : 95 % < 200 ms).'
+        runbook: monitoring/runbooks.md#scoringhighlatency
+    - alert: ScoringIntegrationErrorBudgetBurn
+      expr: |
+        (scoring_integration:predict_errors:ratio_rate1h{namespace="scoring-integration"} > (14.4 * 0.005)
+          and scoring_integration:predict_errors:ratio_rate5m{namespace="scoring-integration"} > (14.4 * 0.005))
+        or
+        (scoring_integration:predict_errors:ratio_rate6h{namespace="scoring-integration"} > (6 * 0.005)
+          and scoring_integration:predict_errors:ratio_rate30m{namespace="scoring-integration"} > (6 * 0.005))
+      for: 2m
+      labels:
+        severity: critical
+        team: ml-integration
+        environment: integration
+      annotations:
+        summary: 'Scoring : le budget d''erreur du SLO 99,5 % brûle trop vite'
+        description: '{{ $value | humanizePercentage }} de requêtes /predict en erreur 5xx.'
+        runbook: monitoring/runbooks.md#scoringerrorbudgetburn
+    - alert: ScoringIntegrationDataDrift
+      expr: |
+        (ml_drift_detected{model="scoring-model-integration"} == 1)
+          * on (model) group_left () ml_drift_share{model="scoring-model-integration"}
+      for: 5m
+      labels:
+        severity: warning
+        team: ml-integration
+        environment: integration
+      annotations:
+        summary: Drift sur la variable {{ $labels.feature }}
+        description: La distribution de {{ $labels.feature }} s'écarte des données d'entraînement ({{
+          $value | humanizePercentage }} des variables en dérive). Ré-entraînement à évaluer.
+        drift_share: '{{ $value }}'
+        runbook: monitoring/runbooks.md#scoringdatadrift
+    - alert: ScoringIntegrationPositiveRateShift
+      expr: |
+        abs(scoring_integration:positive_rate:ratio_rate5m{namespace="scoring-integration"}
+            - scoring_integration:positive_rate:ratio_rate6h{namespace="scoring-integration"}) > 0.10
+        and scoring_integration:predict_requests:rate5m{namespace="scoring-integration"} > 0.1
+      for: 5m
+      labels:
+        severity: warning
+        team: ml-integration
+        environment: integration
+      annotations:
+        summary: 'Scoring : taux de décisions positives anormal'
+        description: Écart de {{ $value | humanizePercentage }} avec les 6 dernières heures.
+        runbook: monitoring/runbooks.md#scoringpositiverateshift
+    - alert: ScoringIntegrationNoReplicaAvailable
+      expr: |
+        (sum(kube_deployment_status_replicas_available{namespace="scoring-integration",
+             deployment=~"scoring-integration-predictor-.*"}) or vector(0)) < 1
+      for: 2m
+      labels:
+        severity: critical
+        team: ml-integration
+        environment: integration
+      annotations:
+        summary: Aucun pod de scoring-integration disponible en intégration
+        description: Aucune révision de l'InferenceService n'a de pod prêt.
+        runbook: monitoring/runbooks.md#scoringnoreplicaavailable
+    - alert: ScoringIntegrationDriftJobStale
+      expr: time() - max(push_time_seconds{job="scoring-drift-integration"}) > 2700
+      for: 5m
+      labels:
+        severity: warning
+        team: ml-integration
+        environment: integration
+      annotations:
+        summary: Le job de drift n'a rien publié depuis 45 min
+        description: Dernière publication il y a {{ $value | humanizeDuration }}.
+        runbook: monitoring/runbooks.md#scoringdriftjobstale

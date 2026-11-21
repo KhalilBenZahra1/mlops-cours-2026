@@ -1,0 +1,12 @@
+{
+  "image": "localhost:5001/scoring-api:m7-integration-db3668ce7ab8",
+  "source_revision": "db3668ce7ab8",
+  "digests": [
+    "localhost:5001/scoring-api@sha256:e35b9fe6726b8249d2c22130088a14ad7bf3e93c69ba01528f7d32c20abd415b"
+  ],
+  "size_bytes": 106854635,
+  "user": "10001:10001",
+  "model_version": "19",
+  "threshold": 0.3182,
+  "onnx_sha256": "4b7517525ab6398be391bb58404f8584bdb49502cace1ca070d43b99ddaa222e"
+}

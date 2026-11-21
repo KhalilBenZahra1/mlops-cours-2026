@@ -1,0 +1,7 @@
+# Intégration isolée, hors production et hors Applications Argo CD.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scoring-integration
+  labels:
+    purpose: m7-integration

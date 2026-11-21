@@ -1,0 +1,634 @@
+{
+  "at": "2026-11-21T16:40:53.869971+00:00",
+  "queries": {
+    "up": [
+      {
+        "metric": {
+          "__name__": "up",
+          "container": "kserve-container",
+          "instance": "10.244.1.29:8000",
+          "isvc": "scoring-integration",
+          "job": "monitoring/scoring-api-integration",
+          "namespace": "scoring-integration",
+          "pod": "scoring-integration-predictor-00002-deployment-5b86f775d5-jmntc",
+          "revision": "scoring-integration-predictor-00002"
+        },
+        "value": [
+          1795279253.973,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "container": "kserve-container",
+          "instance": "10.244.1.28:8000",
+          "isvc": "scoring-integration",
+          "job": "monitoring/scoring-api-integration",
+          "namespace": "scoring-integration",
+          "pod": "scoring-integration-predictor-00001-deployment-66b4779896-lj67q",
+          "revision": "scoring-integration-predictor-00001"
+        },
+        "value": [
+          1795279253.973,
+          "1"
+        ]
+      }
+    ],
+    "predictions": [
+      {
+        "metric": {
+          "outcome": "1",
+          "revision": "scoring-integration-predictor-00002"
+        },
+        "value": [
+          1795279253.984,
+          "208"
+        ]
+      },
+      {
+        "metric": {
+          "outcome": "0",
+          "revision": "scoring-integration-predictor-00002"
+        },
+        "value": [
+          1795279253.984,
+          "145"
+        ]
+      },
+      {
+        "metric": {
+          "outcome": "1",
+          "revision": "scoring-integration-predictor-00001"
+        },
+        "value": [
+          1795279253.984,
+          "1889"
+        ]
+      },
+      {
+        "metric": {
+          "outcome": "0",
+          "revision": "scoring-integration-predictor-00001"
+        },
+        "value": [
+          1795279253.984,
+          "1345"
+        ]
+      }
+    ],
+    "model_info": [
+      {
+        "metric": {
+          "__name__": "ml_model_info",
+          "api_version": "m7-integration-db3668ce7ab8-candidate",
+          "container": "kserve-container",
+          "instance": "10.244.1.29:8000",
+          "isvc": "scoring-integration",
+          "job": "monitoring/scoring-api-integration",
+          "model": "scoring-model",
+          "model_version": "19",
+          "namespace": "scoring-integration",
+          "pod": "scoring-integration-predictor-00002-deployment-5b86f775d5-jmntc",
+          "revision": "scoring-integration-predictor-00002",
+          "threshold": "0.3182"
+        },
+        "value": [
+          1795279253.996,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_model_info",
+          "api_version": "m7-integration-db3668ce7ab8-stable",
+          "container": "kserve-container",
+          "instance": "10.244.1.28:8000",
+          "isvc": "scoring-integration",
+          "job": "monitoring/scoring-api-integration",
+          "model": "scoring-model",
+          "model_version": "19",
+          "namespace": "scoring-integration",
+          "pod": "scoring-integration-predictor-00001-deployment-66b4779896-lj67q",
+          "revision": "scoring-integration-predictor-00001",
+          "threshold": "0.3182"
+        },
+        "value": [
+          1795279253.996,
+          "1"
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "metric": {
+          "attribute": "age"
+        },
+        "value": [
+          1795279254.006,
+          "3587"
+        ]
+      },
+      {
+        "metric": {
+          "attribute": "personal_status"
+        },
+        "value": [
+          1795279254.006,
+          "3587"
+        ]
+      },
+      {
+        "metric": {
+          "attribute": "foreign_worker"
+        },
+        "value": [
+          1795279254.006,
+          "3587"
+        ]
+      }
+    ],
+    "drift": [
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "age",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.0833499728093499"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "checking_status",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.00301446414109119"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "credit_amount",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.129070234816763"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "credit_history",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.01534030947274144"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "duration",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.06209153033016396"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "employment",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.050837237604642475"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "existing_credits",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.018723993507128455"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "foreign_worker",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.0004930903177473774"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "housing",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.000058984384617518596"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "installment_commitment",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.022970366794181768"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "job",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.013200822801203459"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "num_dependents",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.003809825083413614"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "other_parties",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.01466944455602261"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "other_payment_plans",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.0012146600703448105"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "own_telephone",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.0012006639187670015"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "personal_status",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.01991829072600995"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "property_magnitude",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.002801751242894733"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "purpose",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.06825836716783655"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "residence_since",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.019098332675305273"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "ml_drift_score",
+          "container": "pushgateway",
+          "endpoint": "http",
+          "feature": "savings_status",
+          "job": "scoring-drift-integration",
+          "model": "scoring-model-integration",
+          "namespace": "monitoring",
+          "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+          "service": "prometheus-pushgateway"
+        },
+        "value": [
+          1795279254.021,
+          "0.03206302713263322"
+        ]
+      }
+    ]
+  },
+  "json_events_by_revision": {
+    "scoring-integration-predictor-00001": 3234,
+    "scoring-integration-predictor-00002": 353
+  },
+  "loki_prediction_streams_found": 1,
+  "loki_counts": [
+    {
+      "metric": {
+        "revision": "scoring-integration-predictor-00001"
+      },
+      "value": [
+        1795279255.078,
+        "3233"
+      ]
+    },
+    {
+      "metric": {
+        "revision": "scoring-integration-predictor-00002"
+      },
+      "value": [
+        1795279255.078,
+        "353"
+      ]
+    }
+  ],
+  "grafana_datasource_query_succeeded": true,
+  "dashboard_panels": [
+    {
+      "id": 2,
+      "title": "Requêtes /predict par seconde",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 3,
+      "title": "RPS par révision",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 4,
+      "title": "Latence P95 / P99",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 5,
+      "title": "Taux de succès (non-5xx)",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 7,
+      "title": "Décisions par seconde (outcome 1 = classe positive : refus)",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 8,
+      "title": "Taux de décisions positives par révision",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 9,
+      "title": "Distribution des scores (probabilité de la classe positive)",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 10,
+      "title": "Score médian",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 11,
+      "title": "Taux de décisions positives par groupe sensible (15 min)",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 12,
+      "title": "Versions servies",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 14,
+      "title": "Score de drift par variable (PSI)",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 15,
+      "title": "Variables en dérive",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 16,
+      "title": "Demandes analysées (dernier run)",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 17,
+      "title": "Dernier run du job de drift",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 19,
+      "title": "CPU par pod",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 20,
+      "title": "Mémoire par pod",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 21,
+      "title": "Pods scrapés par révision",
+      "source": "prometheus",
+      "nonempty": true
+    },
+    {
+      "id": 23,
+      "title": "Logs de l'API (Loki)",
+      "source": "loki",
+      "nonempty": true
+    }
+  ],
+  "integration_pod_images": [
+    "localhost:5001/scoring-api@sha256:e35b9fe6726b8249d2c22130088a14ad7bf3e93c69ba01528f7d32c20abd415b",
+    "localhost:5001/scoring-api@sha256:e35b9fe6726b8249d2c22130088a14ad7bf3e93c69ba01528f7d32c20abd415b"
+  ]
+}
