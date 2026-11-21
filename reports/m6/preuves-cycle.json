@@ -1,0 +1,419 @@
+{
+  "recorded_at": "2026-11-20T21:56:30.233970+00:00",
+  "merges": [
+    {
+      "number": 7,
+      "url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/pull/7",
+      "merged_at": "2026-11-20T21:20:33Z",
+      "merge_sha": "9f658523045249a14ac805d6bc9ad6282eaeeaf4",
+      "base": "main"
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/pull/8",
+      "merged_at": "2026-11-20T21:24:21Z",
+      "merge_sha": "962273213caa4e3274d80dc30a560a072001aef6",
+      "base": "main"
+    },
+    {
+      "number": 9,
+      "url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/pull/9",
+      "merged_at": "2026-11-20T21:27:00Z",
+      "merge_sha": "dfe48bda0e380cb3106982c3884784aa8ec3a726",
+      "base": "main"
+    },
+    {
+      "number": 10,
+      "url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/pull/10",
+      "merged_at": "2026-11-20T21:27:34Z",
+      "merge_sha": "bd68506631003f89fd106bf194c8a3b982a99516",
+      "base": "main"
+    }
+  ],
+  "run_id": "d538fecb-e59e-4d95-a5f0-76ebbd3a5037",
+  "kfp_name": "ct-evidently-drift-20261120-224035",
+  "tasks": {
+    "ingest-ct-data": "SUCCEEDED",
+    "register-challenger": "SUCCEEDED",
+    "promotion-gate": "SUCCEEDED",
+    "train-model": "SUCCEEDED",
+    "prepare-features": "SUCCEEDED",
+    "evaluate-model": "SUCCEEDED",
+    "validate-data": "SUCCEEDED"
+  },
+  "model_version": "19",
+  "previous_champion": "18",
+  "training_run_id": "f2d47c40fcfd4fe98b66a149ed010410",
+  "model_tags": {
+    "ct_trigger": "evidently-drift",
+    "ct_drift_share": "0.1500",
+    "ct_data_uri": "runs:/c03767f36e094618adbbd54f9e262183/batch/current.csv",
+    "kfp_run_id": "d538fecb-e59e-4d95-a5f0-76ebbd3a5037",
+    "promotion": "passed",
+    "validation_status": "passed",
+    "roc_auc": "0.8094",
+    "business_cost": "108",
+    "previous_champion": "18"
+  },
+  "metrics": {
+    "roc_auc": 0.809404761904762,
+    "average_precision": 0.6462726014774622,
+    "f1": 0.5698924731182796,
+    "precision": 0.42063492063492064,
+    "recall": 0.8833333333333333,
+    "accuracy": 0.6,
+    "business_cost": 108.0
+  },
+  "challenger_version": "19",
+  "training_tags": {
+    "data_md5": "e0b5e99c61c5045d1e41457999186a7c",
+    "launched_by": "kfp",
+    "kfp_run_id": "d538fecb-e59e-4d95-a5f0-76ebbd3a5037",
+    "ct_trigger": "evidently-drift",
+    "ct_drift_share": "0.1500",
+    "ct_data_uri": "runs:/c03767f36e094618adbbd54f9e262183/batch/current.csv"
+  },
+  "model_metadata": {
+    "dataset": "german-credit",
+    "model_name": "scoring-model",
+    "model_alias": "champion",
+    "model_version": "19",
+    "run_id": "f2d47c40fcfd4fe98b66a149ed010410",
+    "target": "credit_risk",
+    "positive_class": "bad",
+    "threshold": 0.3182,
+    "threshold_source": "param decision_threshold du run",
+    "features": {
+      "numeric": [
+        "duration",
+        "credit_amount",
+        "installment_commitment",
+        "residence_since",
+        "age",
+        "existing_credits",
+        "num_dependents"
+      ],
+      "categorical": [
+        "checking_status",
+        "credit_history",
+        "purpose",
+        "savings_status",
+        "employment",
+        "personal_status",
+        "other_parties",
+        "property_magnitude",
+        "other_payment_plans",
+        "housing",
+        "job",
+        "own_telephone",
+        "foreign_worker"
+      ]
+    },
+    "onnx_opset": 17,
+    "onnx_sha256": "4b7517525ab6398be391bb58404f8584bdb49502cace1ca070d43b99ddaa222e",
+    "exported_at": "2026-11-20T21:44:26+00:00"
+  },
+  "event": {
+    "source": "evidently-drift",
+    "model": "scoring-model",
+    "dataset": "german-credit",
+    "drift_share": 0.15,
+    "drifted_features": [
+      "duration",
+      "credit_amount",
+      "age"
+    ],
+    "reference": "data/processed/train.csv",
+    "timestamp": "2026-11-20T22:40:33+0100",
+    "data_uri": "runs:/c03767f36e094618adbbd54f9e262183/batch/current.csv",
+    "report_uri": "runs:/c03767f36e094618adbbd54f9e262183/drift_report.html"
+  },
+  "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.8",
+  "revision": "scoring-model-predictor-00006",
+  "resolved_image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api@sha256:1c0d2a48bb6b6a1b2c013bd7a94f85c6f42cab1138fb906f3862248cdf07b0f2",
+  "traffic": [
+    {
+      "latestRevision": true,
+      "percent": 100,
+      "revisionName": "scoring-model-predictor-00006",
+      "tag": "latest",
+      "url": "http://latest-scoring-model-predictor.scoring.example.com"
+    }
+  ],
+  "prod": {
+    "version": "2.1.8",
+    "model_version": "19"
+  },
+  "staging": {
+    "version": "2.1.8",
+    "model_version": "19"
+  },
+  "apps": {
+    "scoring-prod": {
+      "sync": {
+        "comparedTo": {
+          "destination": {
+            "namespace": "scoring",
+            "server": "https://kubernetes.default.svc"
+          },
+          "source": {
+            "path": "k8s/overlays/prod",
+            "repoURL": "https://github.com/KhalilBenZahra1/mlops-cours-2026.git",
+            "targetRevision": "main"
+          }
+        },
+        "revision": "1bbe78a0e66efce9f896c2ee25bcb801fbf619a4",
+        "status": "Synced"
+      },
+      "health": {
+        "lastTransitionTime": "2026-11-20T21:52:03Z",
+        "status": "Healthy"
+      }
+    },
+    "scoring-staging": {
+      "sync": {
+        "comparedTo": {
+          "destination": {
+            "namespace": "scoring-staging",
+            "server": "https://kubernetes.default.svc"
+          },
+          "source": {
+            "path": "k8s/overlays/staging",
+            "repoURL": "https://github.com/KhalilBenZahra1/mlops-cours-2026.git",
+            "targetRevision": "main"
+          }
+        },
+        "revision": "1bbe78a0e66efce9f896c2ee25bcb801fbf619a4",
+        "status": "Synced"
+      },
+      "health": {
+        "lastTransitionTime": "2026-11-20T21:49:17Z",
+        "status": "Healthy"
+      }
+    }
+  },
+  "commits": {
+    "model": {
+      "sha": "fb8204652b5b966da3e30bc601f981740226460b",
+      "at": "2026-11-20T21:44:27+00:00",
+      "subject": "ct: scoring-model v19 (run KFP d538fecb, drift_share=0.15)"
+    },
+    "staging": {
+      "sha": "3e8000cbb5afdfb11bc5f46c6eefd234762a685a",
+      "at": "2026-11-20T21:46:28+00:00",
+      "subject": "gitops(staging): ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.8 [fb82046]"
+    },
+    "canary": {
+      "sha": "937485fb33e988d63f78d803afe8313fddf99993",
+      "at": "2026-11-20T21:49:24+00:00",
+      "subject": "gitops(prod): canary 10% 2.1.8"
+    },
+    "promotion": {
+      "sha": "1bbe78a0e66efce9f896c2ee25bcb801fbf619a4",
+      "at": "2026-11-20T21:50:17+00:00",
+      "subject": "gitops(prod): promote 100% 2.1.8"
+    }
+  },
+  "workflow": {
+    "id": 44822990660,
+    "html_url": "https://github.com/KhalilBenZahra1/mlops-cours-2026/actions/runs/44822990660",
+    "head_sha": "fb8204652b5b966da3e30bc601f981740226460b",
+    "status": "completed",
+    "conclusion": "success",
+    "run_number": 8
+  },
+  "publish_step": {
+    "name": "Publier l'image testée",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 9,
+    "started_at": "2026-11-20T21:45:58Z",
+    "completed_at": "2026-11-20T21:46:04Z"
+  },
+  "timings": {
+    "detection_to_kfp": {
+      "start": "2026-11-20T21:40:28.303551+00:00",
+      "end": "2026-11-20T21:40:35+00:00",
+      "seconds": 6.696
+    },
+    "kfp": {
+      "start": "2026-11-20T21:40:35+00:00",
+      "end": "2026-11-20T21:44:15+00:00",
+      "seconds": 220.0
+    },
+    "model_to_image": {
+      "start": "2026-11-20T21:44:27+00:00",
+      "end": "2026-11-20T21:46:04+00:00",
+      "seconds": 97.0
+    },
+    "image_to_staging": {
+      "start": "2026-11-20T21:46:04+00:00",
+      "end": "2026-11-20T21:49:18.161769+00:00",
+      "seconds": 194.162
+    },
+    "canary_to_promotion": {
+      "start": "2026-11-20T21:50:14.454503+00:00",
+      "end": "2026-11-20T21:52:05.265964+00:00",
+      "seconds": 110.811
+    },
+    "full_cycle": {
+      "start": "2026-11-20T21:40:28.303551+00:00",
+      "end": "2026-11-20T21:52:05.265964+00:00",
+      "seconds": 696.962
+    }
+  },
+  "gate": [
+    "## Gate de promotion : version 19 PROMUE",
+    "| Règle | Résultat |",
+    "|---|---|",
+    "| roc_auc >= 0.7 | OK |",
+    "| business_cost <= 108 (champion v18) | OK |",
+    "| Modèle | roc_auc | coût métier |",
+    "|---|---|---|",
+    "| challenger v19 | 0.8094 | 108 |",
+    "| champion v18 | 0.8094 | 108 |"
+  ],
+  "webhook_history": [
+    {
+      "run_id": "d538fecb-e59e-4d95-a5f0-76ebbd3a5037",
+      "source": "evidently-drift",
+      "state": "SUCCEEDED",
+      "promoted_version": "19",
+      "released": true
+    }
+  ],
+  "selfheal": {
+    "start": "2026-11-20T21:29:26.980977+00:00",
+    "restored_at": "2026-11-20T21:29:28.991389+00:00",
+    "seconds": 2.010411340999781,
+    "observed_after_patch": 50,
+    "restored": 100,
+    "spec_restored": true
+  },
+  "manual_canary": {
+    "start": "2026-11-20T21:33:39.896149+00:00",
+    "canary_verified_at": "2026-11-20T21:35:11.607489+00:00",
+    "commit": "26e9f402f8eec383ff3df878f12987fe41cb84de",
+    "traffic": [
+      {
+        "latestRevision": true,
+        "percent": 10,
+        "revisionName": "scoring-model-predictor-00005",
+        "tag": "latest",
+        "url": "http://latest-scoring-model-predictor.scoring.example.com"
+      },
+      {
+        "latestRevision": false,
+        "percent": 90,
+        "revisionName": "scoring-model-predictor-00004",
+        "tag": "prev",
+        "url": "http://prev-scoring-model-predictor.scoring.example.com"
+      }
+    ],
+    "responses": {
+      "2.0.0": 181,
+      "2.1.7": 19
+    },
+    "errors": 0,
+    "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api:2.1.7"
+  },
+  "manual_promote": {
+    "start": "2026-11-20T21:35:24.640450+00:00",
+    "confirmed_at": "2026-11-20T21:37:04.409304+00:00",
+    "commit": "fcb46b7ea12216936591405805c08f8e5a6dabb6",
+    "responses": {
+      "2.1.7": 200
+    },
+    "served": {
+      "version": "2.1.7",
+      "model_version": "18"
+    }
+  },
+  "failed_x2": {
+    "run_id": "5ac6dafd-f7b7-48e8-abc2-17c82f87705c",
+    "gx": {
+      "success": false,
+      "n_checks": 67,
+      "n_failed": 2,
+      "failed": [
+        "expect_column_values_to_be_between(duration)",
+        "expect_column_values_to_be_between(age)"
+      ],
+      "rows": 1000,
+      "positive_rate": 0.3,
+      "suite": "scoring_contract"
+    },
+    "bounds": [
+      {
+        "column": "duration",
+        "lower": 0.0,
+        "upper": 116.0,
+        "mostly": 0.99,
+        "rows": 1000,
+        "out_of_range_x1.5": 0,
+        "out_of_range_x2": 14
+      },
+      {
+        "column": "age",
+        "lower": 0.0,
+        "upper": 131.0,
+        "mostly": 0.99,
+        "rows": 1000,
+        "out_of_range_x1.5": 0,
+        "out_of_range_x2": 18
+      }
+    ]
+  },
+  "non_regression": [
+    {
+      "name": "check-m0",
+      "command": [
+        "make",
+        "check-m0"
+      ],
+      "start": "2026-11-20T21:54:24.290080+00:00",
+      "end": "2026-11-20T21:54:32.343811+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "check-m1",
+      "command": [
+        "make",
+        "check-m1"
+      ],
+      "start": "2026-11-20T21:54:32.343918+00:00",
+      "end": "2026-11-20T21:54:58.822671+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "check-m5",
+      "command": [
+        "make",
+        "check-m5"
+      ],
+      "start": "2026-11-20T21:54:58.822780+00:00",
+      "end": "2026-11-20T21:55:06.793212+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "make",
+        "lint"
+      ],
+      "start": "2026-11-20T21:55:06.793322+00:00",
+      "end": "2026-11-20T21:55:07.533201+00:00",
+      "exit_code": 0
+    },
+    {
+      "name": "verify-onnx",
+      "command": [
+        "python",
+        "packaging/app/verify_onnx.py"
+      ],
+      "start": "2026-11-20T21:55:07.533318+00:00",
+      "end": "2026-11-20T21:55:11.458630+00:00",
+      "exit_code": 0
+    }
+  ]
+}
