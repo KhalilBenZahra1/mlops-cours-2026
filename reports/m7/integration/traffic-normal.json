@@ -1,0 +1,18 @@
+{
+  "start": "2026-11-21T16:35:28.493334+00:00",
+  "host": "scoring-integration-predictor.scoring-integration.example.com",
+  "mode": "normal",
+  "requested_duration_seconds": 180,
+  "target_rps": 20,
+  "batch": 1,
+  "model_version": "19",
+  "threshold": 0.3182,
+  "smoke_metrics_status": 200,
+  "invalid_status": 422,
+  "end": "2026-11-21T16:38:29.406071+00:00",
+  "elapsed_seconds": 180.669,
+  "predictions": 3586,
+  "errors": 0,
+  "positive_rate_percent": 58.4,
+  "mean_score": 0.413
+}

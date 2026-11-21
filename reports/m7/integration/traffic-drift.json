@@ -1,0 +1,15 @@
+{
+  "start": "2026-11-21T16:42:50.189510+00:00",
+  "end": "2026-11-21T16:47:52.640203+00:00",
+  "elapsed_seconds": 300.751,
+  "mode": "drift",
+  "scenario": "default guide scenario: all numeric features from dataset.yaml multiplied by 1.5",
+  "factor": 1.5,
+  "target_rps": 20,
+  "batch": 1,
+  "predictions": 5977,
+  "errors": 0,
+  "positive_rate_percent": 81.3,
+  "mean_score": 0.585,
+  "host": "scoring-integration-predictor.scoring-integration.example.com"
+}

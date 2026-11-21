@@ -1,0 +1,21 @@
+{
+  "stable_revision": "scoring-integration-predictor-00001",
+  "url": "http://scoring-integration-predictor.scoring-integration.example.com",
+  "candidate_revision": "scoring-integration-predictor-00002",
+  "traffic": [
+    {
+      "latestRevision": true,
+      "percent": 10,
+      "revisionName": "scoring-integration-predictor-00002"
+    },
+    {
+      "latestRevision": false,
+      "percent": 90,
+      "revisionName": "scoring-integration-predictor-00001",
+      "tag": "prev",
+      "url": "http://prev-scoring-integration-predictor.scoring-integration.example.com"
+    }
+  ],
+  "generation": 2,
+  "image": "localhost:5001/scoring-api:m7-integration-db3668ce7ab8"
+}

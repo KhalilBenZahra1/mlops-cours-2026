@@ -1,0 +1,23 @@
+# Préparation uniquement : NE PAS appliquer sans URL webhook.site ET autorisation.
+# Exclu du kustomization.yaml : aucune notification externe par défaut.
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: scoring-integration-webhook
+  namespace: monitoring
+spec:
+  route:
+    receiver: integration-test
+    matchers:
+      - name: team
+        value: ml-integration
+        matchType: "="
+    groupBy: [alertname, severity]
+    groupWait: 10s
+    groupInterval: 5m
+    repeatInterval: 1h
+  receivers:
+    - name: integration-test
+      webhookConfigs:
+        - urlSecret: {name: integration-test-webhook, key: url}
+          sendResolved: true

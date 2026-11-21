@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-11-21T16:39:35+00:00",
+  "namespace": "scoring-integration",
+  "isvc": "scoring-integration",
+  "window": "5m",
+  "stable": "scoring-integration-predictor-00001",
+  "canary": "scoring-integration-predictor-00002",
+  "canary_percent": 10,
+  "decision": "CONTINUE",
+  "command": "uv run python -m pipelines.gitops canary 50",
+  "checks": [
+    {
+      "check": "observabilité",
+      "status": "PASS",
+      "detail": "métriques du canary scrapées (up=1)"
+    },
+    {
+      "check": "volume",
+      "status": "PASS",
+      "detail": "stable 3314 / canary 375 requêtes /predict (minimum 100)"
+    },
+    {
+      "check": "erreurs",
+      "status": "PASS",
+      "detail": "5xx canary 0.00% (stable 0.00%, max 1.00%)"
+    },
+    {
+      "check": "latence",
+      "status": "PASS",
+      "detail": "P95 canary 4.8 ms (stable 4.8 ms, max 30 ms)"
+    },
+    {
+      "check": "scores",
+      "status": "PASS",
+      "detail": "PSI des scores canary/stable 0.047 (max 0.25)"
+    },
+    {
+      "check": "décisions",
+      "status": "PASS",
+      "detail": "taux de décision positive canary 59.3% vs stable 58.5% (écart +0.9%, max ±10%)"
+    }
+  ],
+  "stats": {
+    "scoring-integration-predictor-00001": {
+      "model_version": "19",
+      "api_version": "m7-integration-db3668ce7ab8-stable",
+      "threshold": "0.3182",
+      "requests": 3314,
+      "predictions": 3314,
+      "error_rate": 0.0,
+      "p95_ms": 4.8,
+      "positive_rate": 0.5849015056762358,
+      "mean_score": 0.4196800205954133,
+      "up": 1.0
+    },
+    "scoring-integration-predictor-00002": {
+      "model_version": "19",
+      "api_version": "m7-integration-db3668ce7ab8-candidate",
+      "threshold": "0.3182",
+      "requests": 375,
+      "predictions": 372,
+      "error_rate": 0.0,
+      "p95_ms": 4.8,
+      "positive_rate": 0.5934703550021958,
+      "mean_score": 0.4157349824777858,
+      "up": 1.0
+    }
+  },
+  "queries": {
+    "requests": "sum by (revision) (increase(http_requests_total{namespace=\"scoring-integration\",isvc=\"scoring-integration\",handler=\"/predict\"}[5m]))",
+    "errors": "sum by (revision) (increase(http_requests_total{namespace=\"scoring-integration\",isvc=\"scoring-integration\",handler=\"/predict\",code=~\"5..\"}[5m]))",
+    "predictions": "sum by (revision) (increase(ml_predictions_total{namespace=\"scoring-integration\",isvc=\"scoring-integration\"}[5m]))",
+    "positives": "sum by (revision) (increase(ml_predictions_total{namespace=\"scoring-integration\",isvc=\"scoring-integration\",outcome=\"1\"}[5m]))",
+    "score_sum": "sum by (revision) (increase(ml_prediction_score_sum{namespace=\"scoring-integration\",isvc=\"scoring-integration\"}[5m]))",
+    "p95_seconds": "histogram_quantile(0.95, sum by (revision, le) (rate(ml_inference_latency_seconds_bucket{namespace=\"scoring-integration\",isvc=\"scoring-integration\"}[5m])))",
+    "score_buckets": "sum by (revision, le) (increase(ml_prediction_score_bucket{namespace=\"scoring-integration\",isvc=\"scoring-integration\"}[5m]))",
+    "model_info": "max by (revision, model_version, api_version, threshold) (ml_model_info{namespace=\"scoring-integration\",isvc=\"scoring-integration\"})",
+    "up": "max by (revision) (up{namespace=\"scoring-integration\",isvc=\"scoring-integration\"})"
+  }
+}

@@ -1,0 +1,22 @@
+bash ./labs/m6-*/check.sh
+Lab 6 — CI/CD/CT (Git : origin/main = 1bbe78a, prod : scoring)
+✅ Fichiers du lab (workflow, k8s/, pipelines CT, tests, modèle versionné)
+✅ .github/workflows/ci.yml valide (schéma GitHub Actions, lint/tests/build/deploy)
+✅ Dernier run de la CI sur main : success (gh run list)
+✅ Lint + tests locaux (ruff, pytest)
+✅ Overlays Kustomize staging et prod construits
+✅ Argo CD installé et prêt (namespace argocd)
+✅ Applications scoring-staging et scoring-prod : Synced + Healthy, auto-sync + selfHeal
+✅ Staging : InferenceService prêt, image construite par la CI (ghcr.io)
+✅ Prod : InferenceService géré par Argo CD, image et canary = origin/main
+✅ Prod : la nouvelle révision sert le tag de Git (route latest-, /version)
+✅ Webhook CT joignable (localhost:8095/health)
+✅ Ré-entraînement déclenché : run MLflow tagué ct_trigger + rapport de dérive
+✅ KFP : le run ct-pipeline de ce ré-entraînement a réussi
+✅ Promotion : @champion issu de la gate du CT et servi en prod
+✅ Historique GitOps : commits CI (staging), bot CT (modèle) et prod (canary)
+✅ Aucun nom de colonne en dur dans le code du lab (dataset.yaml)
+✅ CT_WEBHOOK_TOKEN dans .env et absent de Git
+✅ Rapport reports/rapport-m6.md : 5 sections, sans TODO
+
+Résultat : 18/18 vérifications OK

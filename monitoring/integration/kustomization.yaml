@@ -1,0 +1,10 @@
+# Intégration isolée, hors production et hors Applications Argo CD.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- namespace.yaml
+- inferenceservice.yaml
+- podmonitor.yaml
+- evidently-cronjob.yaml
+- alerts.yaml
+- dashboards

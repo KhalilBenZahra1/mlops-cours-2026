@@ -1,0 +1,495 @@
+{
+  "observations": [
+    {
+      "observed_at": "2026-11-21T16:50:21.757659+00:00",
+      "state": "pending",
+      "health": "ok",
+      "alerts": [
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "duration",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "existing_credits",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "installment_commitment",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "num_dependents",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "residence_since",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "age",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "credit_amount",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "pending",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        }
+      ]
+    },
+    {
+      "observed_at": "2026-11-21T16:54:23.442468+00:00",
+      "state": "firing",
+      "health": "ok",
+      "alerts": [
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "age",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "credit_amount",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "duration",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "existing_credits",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "installment_commitment",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "num_dependents",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "ScoringIntegrationDataDrift",
+            "container": "pushgateway",
+            "endpoint": "http",
+            "environment": "integration",
+            "feature": "residence_since",
+            "job": "scoring-drift-integration",
+            "model": "scoring-model-integration",
+            "namespace": "monitoring",
+            "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+            "service": "prometheus-pushgateway",
+            "severity": "warning",
+            "team": "ml-integration"
+          },
+          "state": "firing",
+          "activeAt": "2026-11-21T16:49:09.960473346Z",
+          "value": "3.5e-01"
+        }
+      ]
+    }
+  ],
+  "external_notification_sent": false,
+  "ct_called": false,
+  "alertmanager_received": [
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "residence_since",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    },
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "age",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    },
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "credit_amount",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    },
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "installment_commitment",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    },
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "duration",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    },
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "existing_credits",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    },
+    {
+      "labels": {
+        "alertname": "ScoringIntegrationDataDrift",
+        "container": "pushgateway",
+        "endpoint": "http",
+        "environment": "integration",
+        "feature": "num_dependents",
+        "job": "scoring-drift-integration",
+        "model": "scoring-model-integration",
+        "namespace": "monitoring",
+        "pod": "prometheus-pushgateway-589c7894d9-mzr27",
+        "prometheus": "monitoring/kube-prom-stack-kube-prome-prometheus",
+        "service": "prometheus-pushgateway",
+        "severity": "warning",
+        "team": "ml-integration"
+      },
+      "status": {
+        "inhibitedBy": [],
+        "mutedBy": [],
+        "silencedBy": [],
+        "state": "active"
+      },
+      "startsAt": "2026-11-21T16:54:09.960Z",
+      "receivers": [
+        {
+          "name": "null"
+        }
+      ]
+    }
+  ],
+  "active_receivers": [
+    "null"
+  ],
+  "finished_at": "2026-11-21T16:54:23.542873+00:00"
+}

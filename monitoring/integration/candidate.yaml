@@ -1,0 +1,38 @@
+# Intégration isolée, hors production et hors Applications Argo CD.
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: scoring-integration
+  namespace: scoring-integration
+  labels:
+    purpose: m7-integration
+spec:
+  predictor:
+    canaryTrafficPercent: 10
+    containers:
+    - image: localhost:5001/scoring-api:m7-integration-db3668ce7ab8
+      imagePullPolicy: IfNotPresent
+      name: kserve-container
+      ports:
+      - containerPort: 8000
+        protocol: TCP
+      readinessProbe:
+        httpGet:
+          path: /health
+          port: 8000
+      resources:
+        limits:
+          cpu: '1'
+          memory: 512Mi
+        requests:
+          cpu: 200m
+          memory: 256Mi
+      env:
+      - name: APP_VERSION
+        value: m7-integration-db3668ce7ab8-candidate
+      - name: LOG_PREDICTIONS
+        value: 'true'
+    maxReplicas: 1
+    minReplicas: 1
+    scaleMetric: rps
+    scaleTarget: 200

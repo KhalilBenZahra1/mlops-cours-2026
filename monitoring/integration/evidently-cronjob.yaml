@@ -1,0 +1,88 @@
+# Intégration isolée, hors production et hors Applications Argo CD.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scoring-drift-integration
+  namespace: monitoring
+spec:
+  schedule: '*/15 * * * *'
+  suspend: true
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+            app: scoring-drift-integration
+        spec:
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+          - name: drift
+            image: localhost:5001/scoring-drift:1.0.0
+            imagePullPolicy: IfNotPresent
+            envFrom:
+            - configMapRef:
+                name: scoring-drift-reference
+            env:
+            - name: AWS_ENDPOINT_URL
+              value: http://s3.storage:8333
+            - name: AWS_DEFAULT_REGION
+              value: us-east-1
+            - name: AWS_REQUEST_CHECKSUM_CALCULATION
+              value: when_required
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: LOKI_URL
+              value: http://loki.monitoring:3100
+            - name: PUSHGATEWAY_URL
+              value: prometheus-pushgateway.monitoring:9091
+            - name: REPORTS_URI
+              value: s3://monitoring/integration/drift-reports
+            - name: WINDOW_MINUTES
+              value: '60'
+            - name: MIN_ROWS
+              value: '500'
+            - name: MAX_ROWS
+              value: '5000'
+            - name: DRIFT_THRESHOLD
+              value: '0.25'
+            - name: MODEL_NAME
+              value: scoring-model-integration
+            - name: PUSH_JOB
+              value: scoring-drift-integration
+            - name: LOKI_QUERY
+              value: '{namespace="scoring-integration", container="kserve-container"}
+                |= `"event":"prediction"`'
+            - name: CT_WEBHOOK_URL
+              value: ''
+            - name: CT_WEBHOOK_TOKEN
+              value: ''
+            resources:
+              requests:
+                cpu: 200m
+                memory: 384Mi
+              limits:
+                cpu: '1'
+                memory: 1Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
