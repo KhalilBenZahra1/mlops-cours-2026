@@ -1,0 +1,24 @@
+{
+  "sha256_before": {
+    "reports/m6/captures/argocd.png": "d7cec742a3e7d0dfef9456dd68328450622c8661030c0514faec44f45b976372",
+    "reports/m6/captures/check-m6.png": "f6e54bd02fb8eeb3609845122905a33bc0570e10570a5ef04688b51b487673d4",
+    "reports/m6/captures/github-actions.png": "2905768e9da074aa0da57d573f3467f111f86086702b875d288781a3ce2a7b18",
+    "reports/m6/captures/kfp.png": "edbc0fc719db846a6e13eee4ffed5c42956f8fdf033994ff4481fef2284a241a",
+    "reports/m6/captures/production.png": "9829d1697c16f7ac7b96ef8f3250003d4a0a219349e65f683fb8f2db22b7a12d",
+    "reports/m6/gate.md": "5648c40a2eeeb6e9941994aa7be6cabbb52bb2fa5fa53a43d440283b0c07e6d6",
+    "reports/m6/preuves-cycle.json": "748f6789f56ce5b9708a469ee360d505a1b57309fa19a9a3993d38347003f1da",
+    "reports/m6/validation.txt": "5331a5ed06f3504d2a3ce3abebc30bce073ab25aa8332b760a5dee071a3f61d7",
+    "reports/rapport-m6.md": "70e4371828afce6505febf9d7fbecea522483a5ca299c70a18881585f693caac"
+  },
+  "unchanged_after": {
+    "reports/m6/captures/argocd.png": true,
+    "reports/m6/captures/check-m6.png": true,
+    "reports/m6/captures/github-actions.png": true,
+    "reports/m6/captures/kfp.png": true,
+    "reports/m6/captures/production.png": true,
+    "reports/m6/gate.md": true,
+    "reports/m6/preuves-cycle.json": true,
+    "reports/m6/validation.txt": true,
+    "reports/rapport-m6.md": true
+  }
+}

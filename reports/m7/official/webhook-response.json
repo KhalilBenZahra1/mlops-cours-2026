@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-21T18:32:28.702233+00:00",
+  "destination": "webhook.site",
+  "default_status": 200,
+  "default_content": "ok",
+  "default_content_type": "text/plain",
+  "reason": "Slack-format notifier requires a successful ok response",
+  "reference": "https://docs.webhook.site/api/tokens.html",
+  "slack_contacted": false
+}

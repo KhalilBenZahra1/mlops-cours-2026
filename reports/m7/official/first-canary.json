@@ -1,0 +1,246 @@
+{
+  "start": "2026-11-21T18:13:04.587802+00:00",
+  "old_served": {
+    "version": "2.1.8",
+    "model_version": "19"
+  },
+  "staging_tag": "2.1.15",
+  "image": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api",
+  "latest-metrics_status": 200,
+  "latest-version": {
+    "version": "2.1.15",
+    "model_version": "19"
+  },
+  "latest-prediction_smoke": {
+    "status": 200,
+    "model_version": "19",
+    "threshold": 0.3182,
+    "count": 1
+  },
+  "prev-metrics_status": 404,
+  "prev-version": {
+    "version": "2.1.8",
+    "model_version": "19"
+  },
+  "prev-prediction_smoke": {
+    "status": 200,
+    "model_version": "19",
+    "threshold": 0.3182,
+    "count": 1
+  },
+  "canary_ready_at": "2026-11-21T18:14:07.950902+00:00",
+  "canary_status": {
+    "address": {
+      "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+    },
+    "components": {
+      "predictor": {
+        "address": {
+          "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+        },
+        "latestCreatedRevision": "scoring-model-predictor-00007",
+        "latestReadyRevision": "scoring-model-predictor-00007",
+        "latestRolledoutRevision": "scoring-model-predictor-00006",
+        "previousRolledoutRevision": "scoring-model-predictor-00005",
+        "traffic": [
+          {
+            "latestRevision": true,
+            "percent": 10,
+            "revisionName": "scoring-model-predictor-00007",
+            "tag": "latest",
+            "url": "http://latest-scoring-model-predictor.scoring.example.com"
+          },
+          {
+            "latestRevision": false,
+            "percent": 90,
+            "revisionName": "scoring-model-predictor-00006",
+            "tag": "prev",
+            "url": "http://prev-scoring-model-predictor.scoring.example.com"
+          }
+        ],
+        "url": "http://scoring-model-predictor.scoring.example.com"
+      }
+    },
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-11-12T16:27:52Z",
+        "status": "True",
+        "type": "IngressReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "LatestDeploymentReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorConfigurationReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "status": "True",
+        "type": "PredictorReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorRouteReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "RoutesReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-12T16:23:30Z",
+        "severity": "Info",
+        "status": "False",
+        "type": "Stopped"
+      }
+    ],
+    "deploymentMode": "Knative",
+    "modelStatus": {
+      "copies": {
+        "failedCopies": 0,
+        "totalCopies": 1
+      },
+      "states": {
+        "activeModelState": "Loaded",
+        "targetModelState": "Loaded"
+      },
+      "transitionStatus": "UpToDate"
+    },
+    "observedGeneration": 13,
+    "url": "http://scoring-model-predictor.scoring.example.com"
+  },
+  "promoted_at": "2026-11-21T18:15:44.482871+00:00",
+  "served": {
+    "version": "2.1.15",
+    "model_version": "19"
+  },
+  "final_status": {
+    "address": {
+      "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+    },
+    "components": {
+      "predictor": {
+        "address": {
+          "url": "http://scoring-model-predictor.scoring.svc.cluster.local"
+        },
+        "latestCreatedRevision": "scoring-model-predictor-00007",
+        "latestReadyRevision": "scoring-model-predictor-00007",
+        "latestRolledoutRevision": "scoring-model-predictor-00007",
+        "previousRolledoutRevision": "scoring-model-predictor-00006",
+        "traffic": [
+          {
+            "latestRevision": true,
+            "percent": 100,
+            "revisionName": "scoring-model-predictor-00007",
+            "tag": "latest",
+            "url": "http://latest-scoring-model-predictor.scoring.example.com"
+          }
+        ],
+        "url": "http://scoring-model-predictor.scoring.example.com"
+      }
+    },
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-11-12T16:27:52Z",
+        "status": "True",
+        "type": "IngressReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "LatestDeploymentReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:13:59Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorConfigurationReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:15:37Z",
+        "status": "True",
+        "type": "PredictorReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:15:37Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "PredictorRouteReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:15:37Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-11-21T18:15:37Z",
+        "severity": "Info",
+        "status": "True",
+        "type": "RoutesReady"
+      },
+      {
+        "lastTransitionTime": "2026-11-12T16:23:30Z",
+        "severity": "Info",
+        "status": "False",
+        "type": "Stopped"
+      }
+    ],
+    "deploymentMode": "Knative",
+    "modelStatus": {
+      "copies": {
+        "failedCopies": 0,
+        "totalCopies": 1
+      },
+      "states": {
+        "activeModelState": "Loaded",
+        "targetModelState": "Loaded"
+      },
+      "transitionStatus": "UpToDate"
+    },
+    "observedGeneration": 14,
+    "url": "http://scoring-model-predictor.scoring.example.com"
+  },
+  "pod_images": [
+    {
+      "pod": "scoring-model-predictor-00006-deployment-5c7c95bbf4-6lr2d",
+      "containers": [
+        {
+          "name": "kserve-container",
+          "imageID": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api@sha256:1c0d2a48bb6b6a1b2c013bd7a94f85c6f42cab1138fb906f3862248cdf07b0f2"
+        },
+        {
+          "name": "queue-proxy",
+          "imageID": "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2"
+        }
+      ]
+    },
+    {
+      "pod": "scoring-model-predictor-00007-deployment-6798458d48-kq9ft",
+      "containers": [
+        {
+          "name": "kserve-container",
+          "imageID": "ghcr.io/khalilbenzahra1/mlops-cours-2026/scoring-api@sha256:0ba8a74f5818a5b81c45e0a15d7e4142b45a6facbf9eb00b47d73fd8767af604"
+        },
+        {
+          "name": "queue-proxy",
+          "imageID": "gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:a3cc71ce80dbc6df8781f15eac2cf3531a4c9815271799afd8776bef9e6aeaf2"
+        }
+      ]
+    }
+  ]
+}

@@ -10,12 +10,13 @@ metadata:
   namespace: monitoring
 spec:
   schedule: "*/15 * * * *"
-  # Préparation avant fusion : activer après publication de l'API instrumentée.
-  # Le test manuel de plomberie reste possible ; aucun webhook CT n'est configuré.
-  suspend: true
+  # API instrumentée publiée et vérifiée : analyses officielles activées.
+  # Le webhook CT reste local, appelé depuis le poste selon le guide.
+  suspend: false
   concurrencyPolicy: Forbid          # jamais deux analyses en même temps
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 3
+  # Conserver les jobs de démonstration pour les captures et la relecture.
+  successfulJobsHistoryLimit: 20
+  failedJobsHistoryLimit: 20
   jobTemplate:
     spec:
       backoffLimit: 1

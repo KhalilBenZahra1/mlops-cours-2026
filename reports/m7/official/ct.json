@@ -1,0 +1,109 @@
+{
+  "at": "2026-11-21T18:42:33.890480+00:00",
+  "run_id": "a052e470-2935-40d6-a687-f2175e33b88a",
+  "state": "SUCCEEDED",
+  "created_at": "2026-11-21 18:37:59+00:00",
+  "start_time": "None",
+  "ct_versions": [
+    {
+      "version": "20",
+      "run_id": "9ed81e39c7f34009a297653c505ce627",
+      "tags": {
+        "ct_trigger": "evidently-drift",
+        "ct_drift_share": "0.1000",
+        "ct_data_uri": "src.download",
+        "kfp_run_id": "a052e470-2935-40d6-a687-f2175e33b88a",
+        "promotion": "rejected",
+        "validation_status": "failed",
+        "roc_auc": "0.8094",
+        "business_cost": "108"
+      }
+    }
+  ],
+  "champion": {
+    "version": "19",
+    "run_id": "f2d47c40fcfd4fe98b66a149ed010410",
+    "tags": {
+      "ct_trigger": "evidently-drift",
+      "ct_drift_share": "0.1500",
+      "ct_data_uri": "runs:/c03767f36e094618adbbd54f9e262183/batch/current.csv",
+      "kfp_run_id": "d538fecb-e59e-4d95-a5f0-76ebbd3a5037",
+      "promotion": "passed",
+      "validation_status": "passed",
+      "roc_auc": "0.8094",
+      "business_cost": "108",
+      "previous_champion": "18"
+    }
+  },
+  "challenger": {
+    "version": "20",
+    "run_id": "9ed81e39c7f34009a297653c505ce627",
+    "tags": {
+      "ct_trigger": "evidently-drift",
+      "ct_drift_share": "0.1000",
+      "ct_data_uri": "src.download",
+      "kfp_run_id": "a052e470-2935-40d6-a687-f2175e33b88a",
+      "promotion": "rejected",
+      "validation_status": "failed",
+      "roc_auc": "0.8094",
+      "business_cost": "108"
+    }
+  },
+  "webhook_health": {
+    "status": "ok",
+    "busy": false,
+    "last_run_id": "a052e470-2935-40d6-a687-f2175e33b88a"
+  },
+  "webhook_runs": [
+    {
+      "run_id": "a052e470-2935-40d6-a687-f2175e33b88a",
+      "source": "evidently-drift",
+      "state": "SUCCEEDED",
+      "promoted_version": null
+    }
+  ],
+  "business_tasks": [
+    {
+      "name": "ingest-ct-data",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:38:20+00:00",
+      "end_time": "2026-11-21 18:38:51+00:00"
+    },
+    {
+      "name": "validate-data",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:39:01+00:00",
+      "end_time": "2026-11-21 18:39:21+00:00"
+    },
+    {
+      "name": "prepare-features",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:39:31+00:00",
+      "end_time": "2026-11-21 18:39:52+00:00"
+    },
+    {
+      "name": "train-model",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:40:02+00:00",
+      "end_time": "2026-11-21 18:40:22+00:00"
+    },
+    {
+      "name": "evaluate-model",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:40:32+00:00",
+      "end_time": "2026-11-21 18:40:53+00:00"
+    },
+    {
+      "name": "register-challenger",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:41:03+00:00",
+      "end_time": "2026-11-21 18:41:23+00:00"
+    },
+    {
+      "name": "promotion-gate",
+      "state": "SUCCEEDED",
+      "start_time": "2026-11-21 18:41:33+00:00",
+      "end_time": "2026-11-21 18:41:53+00:00"
+    }
+  ]
+}

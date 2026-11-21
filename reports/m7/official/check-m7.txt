@@ -1,0 +1,19 @@
+bash ./labs/m7-*/check.sh
+Lab 7 — Monitoring & observabilité ML (scoring/scoring-model, stack dans monitoring)
+✅ Fichiers du lab (monitoring/, prometheus-client dans packaging/requirements.txt)
+✅ Tests du Lab 7 : /metrics de l'API, trafic, analyse du canary (pytest)
+✅ Stack prête : Prometheus, Alertmanager, Grafana, operator, Pushgateway, Loki, Alloy
+✅ PodMonitor scoring-api présent
+✅ Cible scoring-model scrapée par Prometheus (up == 1)
+✅ Métriques métier présentes (décisions, scores, latence, groupes de dataset.yaml)
+✅ Dashboard scoring-overview chargé par Grafana
+✅ Règles d'alerte chargées (groupe scoring.alerts, ≥ 4 alertes, santé ok)
+✅ Alertmanager : AlertmanagerConfig scoring-slack + Secret slack-webhook chargés
+✅ Image du job de drift dans le registry (scoring-drift)
+✅ CronJob scoring-drift : au moins une exécution réussie
+✅ Métrique de drift : une série ml_drift_score par variable de dataset.yaml
+✅ Loki reçoit les prédictions journalisées par l'API
+✅ Rapport d'analyse du canary (reports/m7/canary-analysis.{md,json})
+✅ Rapport reports/rapport-m7.md : 5 sections remplies, sans TODO
+
+Résultat : 15/15 vérifications OK

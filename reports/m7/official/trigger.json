@@ -1,0 +1,13 @@
+{
+  "started": "2026-11-21T18:37:50.029866+00:00",
+  "finished": "2026-11-21T18:38:01.120496+00:00",
+  "http_status": 202,
+  "response": {
+    "status": "triggered",
+    "reason": "dérive sur 10% des variables (age, credit_amount)",
+    "run_id": "a052e470-2935-40d6-a687-f2175e33b88a"
+  },
+  "source": "monitoring/evidently-job/calc_drift.py on workstation",
+  "data_source": "Loki production predictions",
+  "official_drift_report": "s3://monitoring/drift-reports/drift-20261121T183007Z.html"
+}
