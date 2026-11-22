@@ -1,0 +1,17 @@
+Evaluating: Quels outils utilise-t-on pour versionner les donn...
+Evaluating: Quel stockage objet S3 le cours utilise-t-il, et p...
+Evaluating: Comment désigner le modèle en production dans le r...
+Evaluating: Dans quel format MLflow 3 sérialise-t-il un modèle...
+Evaluating: Quel jeu de données sert de fil rouge au cours ?...
+
+Juge : qwen3.5:4b — 5 questions × 4 métriques
+Scored 1/5: faithfulness=0.50, answer_relevancy=0.70, context_precision=0.37, context_recall=0.50
+Scored 2/5: faithfulness=1.00, answer_relevancy=0.60, context_precision=0.81, context_recall=1.00
+Scored 3/5: faithfulness=1.00, answer_relevancy=0.76, context_precision=1.00, context_recall=1.00
+Scored 4/5: faithfulness=1.00, answer_relevancy=0.93, context_precision=1.00, context_recall=0.50
+Scored 5/5: faithfulness=1.00, answer_relevancy=0.42, context_precision=0.33, context_recall=0.00
+
+=== RESULTATS RAGAS ===
+{'faithfulness': 0.9, 'answer_relevancy': 0.682, 'context_precision': 0.701, 'context_recall': 0.6}
+
+Details sauves dans /home/khalil/mlops-cours-2026/rag/reports/ragas_results.csv

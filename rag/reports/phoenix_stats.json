@@ -1,0 +1,9 @@
+{
+  "rag_requests": 8,
+  "llm_calls": 8,
+  "tokens_in": 6566,
+  "tokens_out": 480,
+  "cost_equiv_usd": 0.0013,
+  "latency_p50_s": 17.59,
+  "latency_p95_s": 43.19
+}
